@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorWhite"
+                android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_back"
+        style="@style/login_text_colorsize"
+        android:layout_height="64dp"
+        android:layout_gravity="center_vertical"
+        android:drawableStart="@mipmap/back"
+        android:drawablePadding="3dp"
+        android:gravity="center"
+        android:paddingBottom="6dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:paddingTop="30dp"
+        android:text="@string/back"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/login_text_colorsize"
+        android:layout_height="27.7dp"
+        android:layout_alignTop="@+id/tv_back"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:gravity="center"/>
+<!--
+    <ImageView
+        android:id="@+id/iv_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/tv_title"
+        android:layout_marginStart="13.7dp"
+        android:layout_marginEnd="11.3dp"
+        android:layout_marginTop="5dp"
+        android:src="@mipmap/subscribe_item_palynumber"/>
+
+    <ImageView
+        android:id="@+id/iv_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/iv_play"
+        android:layout_marginTop="2dp"
+        android:layout_toStartOf="@+id/iv_play"
+        android:src="@mipmap/subscribe_downloads"/>
+
+    <TextView
+        android:id="@+id/tv_download_number"
+        style="@style/text_12sp_colorauxiliary"
+        android:layout_alignTop="@+id/iv_download"
+        android:layout_marginStart="-6dp"
+        android:layout_marginTop="-6dp"
+        android:layout_toEndOf="@+id/iv_download"
+       />-->
+
+    <ImageView
+        android:id="@+id/iv_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="27dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="11.3dp"
+        android:src="@mipmap/subscribe_item_palynumber"/>
+
+    <ImageView
+        android:id="@+id/iv_download"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/subscribe_downloads"
+        android:layout_alignTop="@+id/tv_title"
+        android:layout_toStartOf="@+id/iv_play"/>
+
+    <TextView
+        android:id="@+id/tv_download_number"
+        style="@style/text_12sp_colorauxiliary"
+        android:layout_alignTop="@+id/iv_download"
+        android:layout_marginStart="-11dp"
+        android:layout_marginTop="-6dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_toEndOf="@+id/iv_download"/>
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tv_back"
+        android:background="@color/colorTextLineGrey"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line"/>
+</RelativeLayout>

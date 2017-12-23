@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorBackground"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_fragment_banner"/>
+
+    <FrameLayout
+        android:id="@+id/fl_image_watermarking"
+        style="@style/mine_frame"
+        android:layout_marginTop="20dp"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:text="@string/image_watermarking"/>
+
+        <Switch
+            android:id="@+id/switch_image_watermarking"
+            style="@style/setting_switch"/>
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_notice_praise"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:text="@string/cleancache"/>
+
+        <TextView
+            android:id="@+id/tv_cache"
+            style="@style/login_text_colorsize"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="7dp"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_voice_selection"
+        style="@style/mine_frame"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:text="@string/voice_selection"/>
+
+        <Spinner
+            android:id="@+id/spinner_voice_selection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:entries="@array/languages"/>
+    </FrameLayout>
+</LinearLayout>

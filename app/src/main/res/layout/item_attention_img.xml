@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="54.3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+            >
+
+
+    <ImageView
+        android:id="@+id/iv_scholar_icon"
+        android:layout_width="48dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="7dp"
+        android:padding="2dp"
+        android:layout_height="48.3dp"/>
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/iv_attention"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/guide_delete_icon"/>
+
+    <TextView
+        android:id="@+id/tv_scholar_name"
+        android:layout_below="@+id/iv_scholar_icon"
+        style="@style/login_text_colorsize"
+        android:layout_marginTop="4dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textSize="11sp"
+        android:text=""/>
+
+</RelativeLayout>

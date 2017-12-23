@@ -1,0 +1,174 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_user_info"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite">
+
+    <ImageView
+        android:id="@+id/iv_user_icon"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_marginEnd="6.3dp"
+        android:layout_marginStart="16.3dp"
+        android:layout_marginTop="12.7dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        style="@style/text_12sp_colorblack"
+        android:layout_alignTop="@+id/iv_user_icon"
+        android:layout_marginStart="6.3dp"
+        android:layout_toEndOf="@+id/iv_user_icon"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/iv_attention"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_user_name"
+        android:layout_toEndOf="@+id/tv_user_name"
+        android:paddingBottom="3dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="6.7dp"
+        android:paddingTop="2dp"
+        android:src="@drawable/isfollow_selector"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/iv_sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_prompt"
+        android:layout_toEndOf="@+id/tv_user_name"
+        android:paddingBottom="3dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="6.7dp"
+        android:paddingTop="2dp" />
+
+    <TextView
+        android:id="@+id/tv_prompt"
+        style="@style/text_12sp_colorauxiliary"
+        android:layout_alignStart="@+id/tv_user_name"
+        android:layout_below="@+id/tv_user_name"
+        android:layout_marginTop="9.3dp"
+        android:text="@string/add_job_information" />
+
+    <TextView
+        android:id="@+id/tv_user_position"
+        style="@style/text_12sp_colorauxiliary"
+        android:layout_alignStart="@+id/tv_user_name"
+        android:layout_below="@+id/tv_prompt"
+        android:layout_marginTop="5.7dp"
+        android:textColor="@color/colorTextLineGrey" />
+
+    <TextView
+        android:id="@+id/tv_user_phone"
+        style="@style/text_12sp_colorinterface"
+        android:layout_alignStart="@+id/iv_user_icon"
+        android:layout_below="@+id/tv_user_position"
+        android:layout_marginTop="9.3dp"
+        android:layout_marginLeft="2dp"
+        android:drawablePadding="5dp"
+        android:drawableStart="@mipmap/phoen_icon" />
+
+    <TextView
+        android:id="@+id/tv_user_email"
+        style="@style/text_12sp_colorinterface"
+        android:layout_alignStart="@+id/iv_user_icon"
+        android:layout_below="@+id/tv_user_phone"
+        android:layout_marginBottom="6.7dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="7.7dp"
+        android:drawablePadding="5dp"
+        android:drawableStart="@mipmap/mailbox_icon" />
+
+    <TextView
+        android:id="@+id/tv_user_web"
+        style="@style/text_12sp_colorinterface"
+        android:layout_alignStart="@+id/iv_user_icon"
+        android:layout_below="@+id/tv_user_email"
+        android:drawablePadding="5dp"
+        android:layout_marginTop="1dp"
+        android:drawableStart="@mipmap/web" />
+
+    <TextView
+        android:id="@+id/tv_paper"
+        style="@style/text_12sp_colorinterface.user_number"
+        android:layout_alignStart="@+id/tv_user_web"
+        android:layout_below="@+id/tv_user_web"
+        android:text="@string/paper"
+
+        android:textColor="@color/colorTextLineGrey" />
+
+    <TextView
+        android:id="@+id/tv_paper_number"
+        style="@style/text_12sp_colorinterface.user_number"
+        android:layout_alignTop="@+id/tv_paper"
+        android:layout_toEndOf="@+id/tv_paper"
+        android:width="50dp"
+        android:paddingEnd="0dp"
+        android:paddingStart="6dp" />
+
+    <TextView
+        android:id="@+id/tv_review"
+
+        style="@style/text_12sp_colorinterface.user_number"
+        android:layout_alignTop="@+id/tv_paper"
+        android:layout_toEndOf="@+id/tv_paper_number"
+        android:text="@string/summary"
+        android:textColor="@color/colorTextLineGrey" />
+
+    <TextView
+        android:id="@+id/tv_arrow"
+        style="@style/text_12sp_colorinterface"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/tv_prompt"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="10dp"
+        android:drawableEnd="@mipmap/set_right_arrow"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_review_number"
+        style="@style/text_12sp_colorinterface.user_number"
+        android:layout_alignTop="@+id/tv_paper"
+        android:layout_toEndOf="@+id/tv_review"
+        android:width="50dp"
+        android:paddingEnd="0dp"
+        android:paddingStart="6dp" />
+
+    <TextView
+        android:id="@+id/tv_fans"
+        style="@style/text_12sp_colorinterface.user_number"
+        android:layout_alignTop="@+id/tv_paper"
+        android:layout_toEndOf="@+id/tv_review_number"
+        android:text="@string/fans"
+        android:textColor="@color/colorTextLineGrey" />
+
+    <TextView
+        android:id="@+id/tv_fans_number"
+        style="@style/text_12sp_colorinterface.user_number"
+        android:layout_alignBaseline="@+id/tv_follow"
+        android:layout_alignBottom="@+id/tv_follow"
+        android:layout_toEndOf="@+id/tv_fans"
+        android:width="50dp"
+        android:paddingEnd="0dp"
+        android:paddingStart="6dp" />
+
+    <TextView
+        android:id="@+id/tv_follow"
+        style="@style/text_12sp_colorinterface.user_number"
+        android:layout_alignTop="@+id/tv_paper"
+        android:layout_toEndOf="@+id/tv_fans_number"
+        android:text="@string/follow"
+        android:textColor="@color/colorTextLineGrey" />
+
+    <TextView
+        android:id="@+id/tv_follow_number"
+        style="@style/text_12sp_colorinterface.user_number"
+        android:layout_width="50dp"
+        android:layout_alignTop="@+id/tv_paper"
+        android:layout_toEndOf="@+id/tv_follow"
+        android:paddingEnd="0dp"
+        android:paddingStart="6dp" />
+</RelativeLayout>

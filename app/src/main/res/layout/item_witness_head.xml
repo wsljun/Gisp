@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/colorWhite"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <TextView
+        style="@style/text_12sp_colorblack"
+        android:layout_marginTop="17.3dp"
+        android:text="@string/select_your_person"/>
+
+    <TextView
+        style="@style/text_12sp_colorblack"
+        android:layout_marginTop="9.7dp"
+        android:text="@string/professional_identity"/>
+
+    <TextView
+        style="@style/list_title"
+        android:layout_marginTop="13.3dp"
+        android:text="@string/someone_may_know"/>
+</LinearLayout>

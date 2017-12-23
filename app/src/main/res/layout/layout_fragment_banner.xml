@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/line_banner"
+             android:layout_width="match_parent"
+             android:layout_height="64dp"
+             android:background="@color/colorWhite"
+             android:paddingTop="24dp">
+
+    <FrameLayout
+        android:id="@+id/fl_news"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/tv_news_spot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/home_news_spot"/>
+
+        <ImageView
+            android:id="@+id/tv_home_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="5dp"
+            android:src="@mipmap/home_news"
+            android:textColor="@color/colorBlack"
+            android:textSize="7.7sp"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_back"
+        style="@style/login_text_colorsize"
+        android:layout_gravity="center_vertical"
+        android:drawableStart="@mipmap/back"
+        android:drawablePadding="3dp"
+        android:gravity="center"
+        android:padding="6dp"
+        android:text="@string/back"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/login_text_colorsize"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/tv_right"
+        style="@style/login_text_colorsize"
+        android:layout_gravity="center_vertical|end"
+        android:gravity="center"
+        android:padding="6dp"/>
+
+    <FrameLayout
+        android:id="@+id/fl_menu_two"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|end"
+        android:layout_marginEnd="50dp">
+
+        <ImageView
+            android:id="@+id/iv_menu_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="7dp"
+            android:gravity="center"
+            android:visibility="gone"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_menu"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|end">
+
+        <ImageView
+            android:id="@+id/iv_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="7dp"
+            android:gravity="center"/>
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_gravity="bottom"
+        android:background="@color/colorTextLineGrey"/>
+</FrameLayout>

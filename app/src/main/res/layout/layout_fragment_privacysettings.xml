@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorBackground"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_fragment_banner"/>
+
+    <FrameLayout
+        android:id="@+id/fl_my_data"
+        style="@style/mine_frame"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:text="@string/see_my_information"/>
+
+        <TextView
+            android:id="@+id/tv_my_data"
+            style="@style/privacy_setting_right"/>
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_my_emails"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:text="@string/see_my_email"/>
+
+        <TextView
+            android:id="@+id/tv_my_emails"
+            style="@style/privacy_setting_right"
+            />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_my_phone"
+        style="@style/mine_frame"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:text="@string/see_my_phone"/>
+
+        <TextView
+            android:id="@+id/tv_my_phone"
+            style="@style/privacy_setting_right"/>
+    </FrameLayout>
+
+</LinearLayout>

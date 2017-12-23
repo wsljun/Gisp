@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_fragment_banner"/>
+
+    <TextView
+        style="@style/text_12sp_colorblack"
+        android:layout_gravity="start"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/input_phone"
+        android:textSize="@dimen/sp_16"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_area_code"
+            style="@style/login_text_colorsize"
+            android:background="@mipmap/bindingphone_areacode_bg"
+            android:gravity="center"
+            android:text="@string/area_code"/>
+
+        <View
+            android:layout_width="6dp"
+            android:layout_height="1dp"
+            android:layout_margin="4dp"
+            android:background="@color/colorBlack"/>
+
+        <EditText
+            android:id="@+id/et_phone_input_frame"
+            style="@style/login_text_colorsize"
+            android:background="@mipmap/bindingphone_phoneinput_bg"
+            android:padding="5dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_input_verification_code"
+            style="@style/text_12sp_colorblack"
+            android:background="@mipmap/bindingphone_inputcode_bg"
+            android:gravity="center"
+            android:hint="@string/input_verification_code"
+            android:textColorHint="@color/colorTextLineGrey" />
+
+        <TextView
+            android:id="@+id/tv_get_verification_code"
+            style="@style/login_text_colorsize"
+            android:layout_marginStart="16dp"
+            android:background="@mipmap/bindingphone_getcode_bg"
+            android:gravity="center"
+            android:text="@string/get_verification_code"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:text="@string/correct_verification_code"
+        style="@style/text_12sp_colorauxiliary"
+        android:textSize="@dimen/text_size"/>
+
+    <TextView
+        android:id="@+id/tv_confirm"
+        style="@style/login_text_colorsize"
+        android:layout_marginTop="44dp"
+        android:background="@mipmap/bindingphone_btn_bg"
+        android:gravity="center"
+        android:text="@string/confirm"/>
+
+
+    <TextView
+        android:id="@+id/tv_close"
+        style="@style/login_text_colorsize"
+        android:layout_marginTop="16dp"
+        android:background="@mipmap/bindingphone_btn_bg"
+        android:gravity="center"
+        android:text="@string/cancel"/>
+</LinearLayout>

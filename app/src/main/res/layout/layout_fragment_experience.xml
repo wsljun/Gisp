@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_fragment_banner" />
+
+    <FrameLayout
+        android:id="@+id/fl_user_school"
+        android:layout_width="match_parent"
+        android:layout_height="52.3dp"
+        android:background="@color/colorWhite">
+
+        <TextView
+            style="@style/info_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:text="@string/school" />
+
+        <TextView
+            android:id="@+id/tv_user_school"
+            style="@style/edit_text_colorsize"
+            android:layout_marginEnd="15dp" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBackground" />
+
+    <FrameLayout
+        android:id="@+id/fl_user_major"
+        android:layout_width="match_parent"
+        android:layout_height="52.3dp"
+        android:background="@color/colorWhite">
+
+        <TextView
+            style="@style/info_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:text="@string/major" />
+
+        <TextView
+            android:id="@+id/tv_user_major"
+            style="@style/edit_text_colorsize"
+            android:layout_marginEnd="15dp" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBackground" />
+
+    <FrameLayout
+        android:id="@+id/fl_user_edubackground"
+        android:layout_width="match_parent"
+        android:layout_height="52.3dp"
+        android:background="@color/colorWhite">
+
+        <TextView
+            style="@style/info_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:text="@string/edubackground" />
+
+        <TextView
+            android:id="@+id/tv_user_edubackground"
+            style="@style/right_text_colorsize"
+            android:hint="@string/mandatory"
+            android:textColorHint="@color/colorTextLineGrey" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_user_degree"
+        android:layout_width="match_parent"
+        android:layout_height="52.3dp"
+        android:background="@color/colorWhite">
+
+        <TextView
+            style="@style/info_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:text="@string/degree" />
+
+        <TextView
+            android:id="@+id/tv_user_degree"
+            style="@style/right_text_colorsize"
+            android:hint="@string/mandatory"
+            android:textColorHint="@color/colorTextLineGrey" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBackground" />
+
+    <FrameLayout
+        android:id="@+id/fl_user_starttime"
+        android:layout_width="match_parent"
+        android:layout_height="52.3dp"
+        android:background="@color/colorWhite">
+
+        <TextView
+            style="@style/info_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:text="@string/starttime" />
+
+        <TextView
+            android:id="@+id/tv_user_starttime"
+            style="@style/right_text_colorsize"
+            android:hint="@string/mandatory"
+            android:textColorHint="@color/colorTextLineGrey" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBackground" />
+
+    <FrameLayout
+        android:id="@+id/fl_user_endtime"
+        android:layout_width="match_parent"
+        android:layout_height="52.3dp"
+        android:background="@color/colorWhite">
+
+        <TextView
+            style="@style/info_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:text="@string/endtime" />
+
+        <TextView
+            android:id="@+id/tv_user_endtime"
+            style="@style/right_text_colorsize"
+            android:hint="@string/mandatory"
+            android:textColorHint="@color/colorTextLineGrey" />
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/tv_delete"
+        style="@style/text_12sp_colorinterface"
+        android:layout_gravity="center"
+        android:layout_marginTop="34dp"
+        android:background="@mipmap/guide_next"
+        android:gravity="center"
+        android:text="@string/delete"
+        android:textSize="@dimen/text_size" />
+</LinearLayout>

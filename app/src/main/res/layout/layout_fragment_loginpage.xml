@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+    <include layout="@layout/layout_fragment_banner"/>
+
+    <EditText
+        android:id="@+id/ed_enter_phone"
+        android:hint="@string/enter_phone"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:imeOptions="actionNext"
+        style="@style/login_edittext"/>
+
+    <EditText
+        android:id="@+id/ed_enter_password"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"
+        android:hint="@string/enter_password"
+        android:imeOptions="actionDone"
+        android:maxLength="8"
+        style="@style/login_edittext"/>
+
+    <TextView
+        android:id="@+id/tv_register"
+        android:layout_marginBottom="18dp"
+        android:layout_marginTop="36.3dp"
+        android:gravity="center"
+        android:text="@string/register"
+        android:background="@mipmap/login_btn_bg"
+        style="@style/text_12sp_colorwhite"
+        android:textSize="@dimen/text_size" />
+
+
+    <TextView
+        android:id="@+id/tv_forget_password"
+        android:text="@string/forget_password"
+        style="@style/login_text_colorsize" />
+    <android.support.v4.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <TextView
+        android:id="@+id/tv_user_agreement"
+        android:layout_marginBottom="30dp"
+        android:text="@string/user_agreement"
+        style="@style/login_text_colorsize" />
+
+
+</LinearLayout>

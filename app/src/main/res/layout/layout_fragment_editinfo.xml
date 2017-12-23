@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_refresh_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!--<include layout="@layout/item_user_info"/>-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite">
+
+                <ImageView
+                    android:id="@+id/iv_user_icon"
+                    android:layout_width="43dp"
+                    android:layout_height="43dp"
+                    android:layout_marginEnd="6.3dp"
+                    android:layout_marginStart="16.3dp"
+                    android:layout_marginTop="12.7dp" />
+
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    style="@style/text_12sp_colorblack"
+                    android:layout_alignTop="@+id/iv_user_icon"
+                    android:layout_marginStart="6.3dp"
+                    android:layout_toEndOf="@+id/iv_user_icon"
+                    android:textSize="@dimen/sp_20" />
+
+                <ImageView
+                    android:id="@+id/iv_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/tv_prompt"
+                    android:layout_toEndOf="@+id/tv_user_name"
+                    android:paddingBottom="3dp"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="6.7dp"
+                    android:paddingTop="2dp" />
+
+                <TextView
+                    android:id="@+id/tv_prompt"
+                    style="@style/text_12sp_colorauxiliary"
+                    android:layout_alignStart="@+id/tv_user_name"
+                    android:layout_below="@+id/tv_user_name"
+                    android:layout_marginTop="5dp"
+                    android:paddingTop="4.3dp" />
+
+                <TextView
+                    android:id="@+id/tv_user_position"
+                    style="@style/text_12sp_colorauxiliary"
+                    android:layout_alignStart="@+id/tv_user_name"
+                    android:layout_below="@+id/tv_prompt"
+                    android:paddingTop="5.7dp"
+                    android:textColor="@color/colorTextLineGrey" />
+
+                <TextView
+                    android:id="@+id/tv_user_phone"
+                    style="@style/text_12sp_colorinterface"
+                    android:layout_alignStart="@+id/iv_user_icon"
+                    android:layout_below="@+id/tv_user_position"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="4dp"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@mipmap/phoen_icon"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="5.3dp" />
+
+                <TextView
+                    android:id="@+id/tv_user_email"
+                    style="@style/text_12sp_colorinterface"
+                    android:layout_alignStart="@+id/iv_user_icon"
+                    android:layout_below="@+id/tv_user_phone"
+                    android:layout_marginBottom="7.7dp"
+                    android:layout_marginLeft="2dp"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@mipmap/mailbox_icon"
+                    android:paddingTop="4.7dp" />
+
+                <TextView
+                    android:id="@+id/tv_user_web"
+                    style="@style/text_12sp_colorinterface"
+                    android:layout_alignStart="@+id/iv_user_icon"
+                    android:layout_below="@+id/tv_user_email"
+                    android:layout_marginTop="1dp"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@mipmap/web"
+                    android:paddingBottom="5dp" />
+
+                <TextView
+                    android:id="@+id/tv_edit"
+                    style="@style/text_12sp_colorinterface"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@+id/iv_user_icon"
+                    android:padding="10dp"
+                    android:text="@string/edit" />
+            </RelativeLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:background="@color/colorBackground">
+
+                <TextView
+                    style="@style/list_title"
+                    android:text="@string/education_experience" />
+
+                <TextView
+                    android:id="@+id/tv_add"
+                    style="@style/text_12sp_colorinterface"
+                    android:layout_gravity="end|center_vertical"
+                    android:padding="10dp"
+                    android:text="@string/add_to" />
+            </FrameLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                style="@style/list_title"
+                android:text="@string/self_introduction" />
+
+            <EditText
+                android:id="@+id/editText"
+                style="@style/text_12sp_colorblack"
+                android:layout_width="match_parent"
+                android:layout_height="106dp"
+                android:background="@null"
+                android:gravity="top"
+                android:padding="13dp"
+                android:scrollbars="vertical" />
+
+            <TextView
+                android:id="@+id/tv_next"
+                style="@style/text_12sp_colorinterface"
+                android:layout_gravity="center"
+                android:layout_marginBottom="34dp"
+                android:layout_marginTop="34dp"
+                android:background="@mipmap/guide_next"
+                android:gravity="center"
+                android:text="@string/next_choose_references"
+                android:textSize="@dimen/text_size" />
+
+        </LinearLayout>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

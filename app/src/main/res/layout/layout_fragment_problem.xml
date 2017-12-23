@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorWhite"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:id="@+id/im_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="10dp"
+            android:padding="10dp"
+            android:src="@mipmap/guide_close"/>
+
+        <TextView
+            android:id="@+id/tv_put_question"
+            style="@style/login_text_colorsize"
+            android:layout_gravity="center"
+            android:text="@string/put_question"/>
+
+        <TextView
+            android:id="@+id/tv_publish"
+            style="@style/login_text_colorsize"
+            android:layout_gravity="end|center_vertical"
+            android:layout_margin="10dp"
+            android:text="@string/publish"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_examine_minutely"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/colorInterface"
+        android:gravity="center_vertical"
+        android:paddingStart="6.7dp"
+        android:paddingEnd="0dp"
+        android:text="@string/problem_hint"
+        android:textColor="@color/colorWhite"
+        android:textSize="11sp"
+        android:visibility="gone"/>
+
+    <FrameLayout
+        android:id="@+id/fl_edit"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="11dp"
+        android:layout_weight="1"
+        android:background="@mipmap/problem_edit_bg">
+
+        <AutoCompleteTextView
+            android:id="@+id/editText_answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="start"
+            android:hint="@string/answer_concise"
+            android:padding="13dp"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@color/colorTextLineGrey"
+            android:textSize="@dimen/text_twelve"/>
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/tv_text_number"
+        style="@style/text_12sp_colorauxiliary"
+        android:layout_height="30dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="-30dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="41.3dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginTop="41dp"
+        android:background="@color/colorBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/iv_answer_at"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:src="@mipmap/answer_at"/>
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/iv_answer_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:src="@mipmap/answer_link"/>
+
+        <TextView
+            android:id="@+id/tv_empty"
+            style="@style/text_12sp_colorauxiliary"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:text="@string/empty"
+            android:textSize="@dimen/text_size"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            style="@style/text_12sp_colorinterface"
+            android:layout_marginEnd="15dp"
+            android:gravity="center"
+            android:text="@string/confirm"
+            android:textSize="@dimen/text_size"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+</LinearLayout>

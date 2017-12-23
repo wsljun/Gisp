@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_user_icon"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="11.7dp"
+        android:layout_marginTop="7.3dp"/>
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        style="@style/text_12sp_colorinterface"
+        android:layout_alignBaseline="@+id/tv_user_time"
+        android:layout_alignBottom="@+id/tv_user_time"
+        android:layout_marginStart="4.7dp"
+        android:layout_toEndOf="@+id/iv_user_icon"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/tv_user_time"
+        style="@style/time_style"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="17dp"/>
+
+    <TextView
+        android:id="@+id/tv_problem"
+        style="@style/text_13sp_colorblack"
+        android:layout_alignStart="@+id/tv_user_name"
+        android:layout_below="@+id/tv_user_name"
+        android:layout_marginTop="6.3dp"
+        android:textColor="@color/colorTranslucentBlack"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_answer_reply"
+        style="@style/text_13sp_colorblack"
+        android:layout_alignStart="@+id/tv_problem"
+        android:layout_below="@+id/tv_problem"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorAuxiliary"
+        android:textSize="13sp"/>
+
+    <TextView
+        android:id="@+id/tv_answer_name"
+        style="@style/text_13sp_colorblack"
+        android:layout_below="@+id/tv_problem"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/tv_answer_reply"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text=""
+        android:textColor="@color/colorTextLineGrey"
+        android:textSize="13sp"/>
+
+
+    <LinearLayout
+        android:id="@+id/rl_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tv_answer_reply"
+        android:layout_below="@+id/tv_answer_name"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_voice"
+            style="@style/text_12sp_colorwhite"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@mipmap/voice_bg"
+            android:drawableStart="@mipmap/answer_icon"
+            android:gravity="end|center_vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textSize="9sp"
+            android:visibility="gone"
+            />
+
+        <LinearLayout
+            android:id="@+id/linear_layout_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_questioning_frame"
+                style="@style/time_style"
+                android:background="@mipmap/questioning_frame"
+                android:gravity="center"
+                android:text="@string/examine_minutely"
+                android:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/tv_inquiry_text"
+                style="@style/text_13sp_colorblack"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:visibility="visible"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_answer_two"
+            style="@style/text_13sp_colorblack"
+            android:layout_marginTop="10dp"
+            android:text="@string/reply"
+            android:textColor="@color/colorAuxiliary"
+            android:textSize="13sp"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_answer_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/answer_box"
+                android:gravity="center"
+                android:text="@string/to_answer"
+                android:textColor="@color/colorAuxiliary"
+                android:textSize="11sp"
+                android:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/tv_answer_text"
+                style="@style/text_13sp_colorblack"
+                android:layout_marginStart="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:visibility="visible"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_voice_two"
+            style="@style/text_12sp_colorwhite"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@mipmap/voice_bg"
+            android:drawableStart="@mipmap/answer_icon"
+            android:gravity="end|center_vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textSize="9sp"
+            android:visibility="gone"
+            />
+
+        <LinearLayout
+            android:id="@+id/linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_link"
+                style="@style/text_12sp_colorauxiliary"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="1dp"
+                android:drawableStart="@mipmap/text_link"
+                android:drawablePadding="5dp"
+                android:text="@string/web_link"
+                android:textSize="11sp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tv_ask_btn"
+                style="@style/text_12sp_colorauxiliary"
+                android:background="@mipmap/inquiry_button"
+                android:gravity="center"
+                android:text="@string/examine_minutely"
+                android:textSize="11sp"
+                android:visibility="gone"/>
+
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/tv_switch"
+                style="@style/time_style"
+                android:layout_gravity="bottom"
+                android:drawablePadding="4dp"
+                android:drawableEnd="@drawable/switch_selector"
+                android:text="@string/open_up"
+                android:textColor="@color/colorBlack"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

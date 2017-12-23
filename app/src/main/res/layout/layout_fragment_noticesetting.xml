@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorBackground"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_fragment_banner"/>
+
+
+    <FrameLayout
+        android:id="@+id/fl_notice_atmy"
+        style="@style/mine_frame"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:text="@string/at_my"/>
+
+        <Switch
+            android:id="@+id/switch_at_my"
+            style="@style/setting_switch"/>
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_notice_praise"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:text="@string/praise"/>
+
+        <Switch
+            android:id="@+id/switch_notice_praise"
+            style="@style/setting_switch"/>
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_notice_comment"
+        style="@style/mine_frame"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:text="@string/comment"/>
+
+        <Switch
+            android:id="@+id/switch_notice_comment"
+            style="@style/setting_switch"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_notice_problem"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:text="@string/problem"/>
+
+        <Switch
+            android:id="@+id/switch_notice_problem"
+            style="@style/setting_switch"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_notice_answer"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:text="@string/answer"/>
+
+        <Switch
+            android:id="@+id/switch_notice_answer"
+            style="@style/setting_switch"/>
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_friend_request"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:text="@string/friend_request"/>
+
+        <Switch
+            android:id="@+id/switch_friend_request"
+            style="@style/setting_switch"/>
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_same_question"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:text="@string/same_question"/>
+
+        <Switch
+            android:id="@+id/switch_same_question"
+            style="@style/setting_switch"/>
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_notice_news"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:text="@string/news"/>
+
+        <Switch
+            android:id="@+id/switch_notice_news"
+            style="@style/setting_switch"/>
+    </FrameLayout>
+</LinearLayout>

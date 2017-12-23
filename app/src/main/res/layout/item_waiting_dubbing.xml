@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite">
+
+    <View
+        android:visibility="gone"
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="6.7dp"
+        android:background="@color/colorBackground"/>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_title"
+        style="@style/text_13sp_colorblack"
+        android:layout_below="@+id/line"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_time"
+        style="@style/time_style"
+        android:layout_alignTop="@+id/tv_title"/>
+
+    <View
+        android:visibility="gone"
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@mipmap/dotted_line"/>
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="38.7dp"
+        android:layout_height="38.7dp"
+        android:layout_below="@+id/view"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"/>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/iv_icon"
+        android:layout_alignTop="@+id/iv_icon"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="-1dp"
+        android:src="@mipmap/subscribe_item_paly"/>
+
+    <LinearLayout
+
+        android:id="@+id/ll_waiting_dubbing"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/iv_icon"
+        android:layout_toEndOf="@+id/iv_icon"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_version"
+            style="@style/text_13sp_colorblack"
+            android:text="@string/abstract_version"/>
+
+        <ProgressBar
+            android:id="@+id/progressbar_dubbing"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="100dp"
+            android:layout_height="23dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="14dp"
+            android:background="@mipmap/progressbar_bg"
+            android:maxHeight="29dp"
+            android:minHeight="29dp"
+            android:padding="4dp"
+            android:progress="60"
+            android:progressDrawable="@drawable/progressbar_bg"
+            android:src="@mipmap/subscribe_play"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_progress"
+            style="@style/text_12sp_colorwhite"
+            android:layout_marginStart="-60dp"
+            android:textSize="11sp"/>
+
+        <TextView
+            android:id="@+id/tv_language"
+            style="@style/text_12sp_colorauxiliary"
+            android:layout_marginStart="60dp"
+            android:background="@mipmap/waiting_dubbing_btn"
+            android:gravity="center"
+            android:text="@string/en"/>
+
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/tv_menu"
+            style="@style/widthheight_wrap_content"
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/subscribe_item_spot"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_dubbing_complete"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/iv_icon"
+        android:layout_toEndOf="@+id/iv_icon"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_version_complete"
+            android:text="@string/abstract_version"
+            style="@style/text_13sp_colorblack"/>
+
+        <TextView
+            android:id="@+id/tv_release_dubbing"
+            style="@style/item_dubbing_waiting"
+            android:drawableStart="@mipmap/dubbing_release"
+            android:text="@string/release"/>
+
+        <TextView
+            android:id="@+id/tv_preview_dubbing"
+            style="@style/item_dubbing_waiting"
+            android:drawableStart="@mipmap/dubbing_preview"
+            android:text="@string/preview"/>
+
+        <TextView
+            android:id="@+id/tv_edit_dubbing"
+            style="@style/item_dubbing_waiting"
+            android:drawableStart="@mipmap/dubbing_edit"
+            android:text="@string/edit"/>
+
+        <TextView
+            android:id="@+id/tv_language_complete"
+            style="@style/text_12sp_colorauxiliary"
+            android:layout_marginStart="8dp"
+            android:background="@mipmap/waiting_dubbing_btn"
+            android:gravity="center"
+            android:text="@string/en"
+            />
+
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/tv_menu_complete"
+            style="@style/widthheight_wrap_content"
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/subscribe_item_spot"/>
+    </LinearLayout>
+
+</RelativeLayout>

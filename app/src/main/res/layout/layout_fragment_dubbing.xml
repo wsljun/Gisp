@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorBackground"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_fragment_banner"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:background="@color/colorBlack"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/colorBackground"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/colorBlack"/>
+
+        <ImageView
+            android:id="@+id/iv_left_slip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:padding="10dp"
+            android:src="@mipmap/left_slip"/>
+
+        <ImageView
+            android:id="@+id/iv_right_slide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:padding="10dp"
+            android:src="@mipmap/right_slide"/>
+
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/colorBackground"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlack"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_hint"
+            style="@style/time_style"
+            android:layout_alignParentEnd="false"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginTop="8dp"
+            android:textSize="@dimen/sp_16"/>
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/time_style"
+            android:layout_alignParentEnd="false"
+            android:layout_below="@+id/tv_hint"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/timer"
+            android:textSize="@dimen/sp_20"/>
+
+        <ImageView
+            android:id="@+id/iv_btn"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_below="@+id/tv_time"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5dp"
+            android:src="@mipmap/in_recording_spot"/>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_btn"
+            android:layout_marginTop="5dp"
+          >
+
+            <TextView
+                android:id="@+id/tv_dubbing_audition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="72dp"
+                android:layout_marginEnd="65dp"
+                android:drawableTop="@drawable/dubbing_audition"
+                android:text="@string/audition"
+                android:textColor="@color/colorWhite"/>
+
+            <TextView
+                android:id="@+id/tv_dubbing_re_record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@mipmap/dubbing_re_record"
+                android:text="@string/remake"
+                android:textColor="@color/colorWhite"/>
+
+            <TextView
+                android:id="@+id/tv_dubbing_determine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="72dp"
+                android:layout_marginEnd="65dp"
+                android:drawableTop="@mipmap/dubbing_determine"
+                android:text="@string/complete"
+                android:textColor="@color/colorWhite"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_dubbing"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorWhite"
+        android:visibility="gone"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="@color/colorBackground"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/iv_dubbing"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorWhite"
+        android:padding="3dp"
+        android:src="@mipmap/recording_icon"
+        android:visibility="gone"/>
+
+</LinearLayout>

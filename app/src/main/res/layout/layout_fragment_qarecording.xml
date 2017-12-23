@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorWhite"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_fragment_banner"/>
+
+    <TextView
+        android:id="@+id/tv_answer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginTop="8.3dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical"
+        android:textColor="@color/colorBlack"
+        android:textSize="12sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6.7dp"
+        android:background="@color/colorBackground"/>
+
+    <LinearLayout
+        android:id="@+id/recording"
+        android:layout_width="match_parent"
+        android:layout_height="214dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_hint"
+            android:layout_width="126.7dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="31dp"
+            android:layout_marginTop="25dp"
+            android:background="@mipmap/qa_speechbubble"
+            android:gravity="center"
+            android:text="@string/record_hint"
+            android:textColor="@color/colorWhite"
+            android:textSize="11sp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tv_start_hint"
+            android:layout_width="164dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="31dp"
+            android:layout_marginTop="25dp"
+            android:background="@mipmap/qa_speechbubble"
+            android:gravity="center"
+            android:text="@string/complete_record_hint"
+            android:textColor="@color/colorWhite"
+            android:textSize="11sp"
+            />
+
+        <ImageView
+            android:id="@+id/tv_record"
+            android:layout_width="94dp"
+            android:layout_height="94dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:onClick="toggleRecording"
+            android:scaleType="fitXY"
+            android:src="@mipmap/recording_icon"/>
+    </LinearLayout>
+
+
+</LinearLayout>

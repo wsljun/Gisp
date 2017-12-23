@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="11dp"
+        android:layout_marginTop="45dp"
+        android:src="@mipmap/guide_close"/>
+
+    <TextView
+        android:layout_marginTop="66dp"
+        android:text="@string/welcome_page"
+        style="@style/text_12sp_colorblack"
+        android:textSize="21sp"/>
+
+    <TextView
+        style="@style/login_text_colorsize"
+        android:layout_marginTop="15.3dp"
+        android:text="@string/choose_areas_interest"/>
+
+    <TextView
+        style="@style/guide_textview"
+        android:id="@+id/tv_areas_concern"
+        android:drawableStart="@mipmap/domain_icon"
+        android:text="@string/areas_of_concern"/>
+
+    <TextView
+        android:id="@+id/tv_key_words"
+        style="@style/guide_textview"
+        android:drawableStart="@mipmap/keyword_icon"
+        android:paddingStart="16dp"
+        android:paddingEnd="0dp"
+        android:text="@string/key_words"/>
+
+    <TextView
+        android:id="@+id/tv_concerned_scholar"
+        style="@style/guide_textview"
+        android:drawableStart="@mipmap/scholar_icon"
+        android:text="@string/concerned_scholar"
+        />
+
+    <TextView
+        android:id="@+id/tv_attention"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
+        android:background="@mipmap/guide_btn_bg"
+        android:gravity="center"
+        android:text="@string/select_area_expertise"
+        style="@style/text_12sp_colorwhite"
+        android:textSize="@dimen/text_size"/>
+    <TextView
+        android:id="@+id/tv_home"
+        android:textSize="12sp"
+        android:textColor="@color/colorInterface"
+        android:text="@string/access_to_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

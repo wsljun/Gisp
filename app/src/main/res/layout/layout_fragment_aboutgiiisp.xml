@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorBackground"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_fragment_banner"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:src="@mipmap/about_logo"/>
+
+    <TextView
+        style="@style/userinfo_text_colorsize"
+        android:layout_marginTop="13dp"
+        android:text="@string/app_name"/>
+
+    <TextView
+        android:id="@+id/tv_versionName"
+        style="@style/userinfo_text_colorsize"
+        android:layout_marginTop="7.7dp"/>
+
+
+    <TextView
+        android:id="@+id/tv_feedback"
+        style="@style/userinfo_text_colorsize"
+        android:layout_marginTop="80dp"
+        android:background="@mipmap/about_btn_bg"
+        android:gravity="center"
+        android:text="@string/feedback"/>
+
+<!--  <TextView
+        android:id="@+id/tv_check_update"
+        style="@style/userinfo_text_colorsize"
+        android:layout_marginTop="5dp"
+        android:background="@mipmap/about_btn_bg"
+        android:gravity="center"
+        android:text="检查更新"/>-->
+
+    <android.support.v4.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        style="@style/text_12sp_colorauxiliary"
+        android:layout_marginBottom="4.3dp"
+        android:text="@string/company"
+        android:textColor="@color/colorTextLineGrey"/>
+
+    <TextView
+        style="@style/text_12sp_colorauxiliary"
+        android:layout_marginBottom="22dp"
+        android:text="@string/giiisp_copyright"
+        android:textColor="@color/colorTextLineGrey"/>
+</LinearLayout>

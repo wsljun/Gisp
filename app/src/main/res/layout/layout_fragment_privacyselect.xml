@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorWhite"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_fragment_banner"/>
+
+    <RadioGroup
+
+        android:id="@+id/rg_privacy_select"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RadioButton
+            android:id="@+id/rb_everyone"
+            style="@style/radio_buttin_paivacy"
+            android:text="@string/all_the_people"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackground"/>
+
+        <RadioButton
+            android:id="@+id/rb_friend"
+            style="@style/radio_buttin_paivacy"
+            android:checked="true"
+            android:text="@string/only_friends"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackground"/>
+
+        <RadioButton
+            android:id="@+id/rb_me"
+            style="@style/radio_buttin_paivacy"
+            android:text="@string/only_yourself"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackground"/>
+
+    </RadioGroup>
+
+</LinearLayout>

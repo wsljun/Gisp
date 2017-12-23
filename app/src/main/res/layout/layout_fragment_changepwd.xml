@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/colorBackground"
+              android:layout_width="match_parent"
+              android:gravity="center_horizontal"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/layout_fragment_banner"/>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginTop="23.3dp"
+        android:background="@color/colorBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:gravity="center"
+            android:text="@string/current_password"
+            style="@style/login_text_colorsize"/>
+        <EditText
+            style="@style/changepwd_edittext"
+            android:id="@+id/et_current_password"/>
+    </LinearLayout>
+
+
+    <View
+        android:layout_marginTop="10dp"
+        android:background="@color/colorGray"
+        android:layout_marginEnd="27.3dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"/>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:gravity="center"
+            style="@style/login_text_colorsize"
+            android:text="@string/new_pwd"/>
+        <EditText
+            android:id="@+id/et_new_pwd"
+            style="@style/changepwd_edittext"/>
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:gravity="center"
+            style="@style/login_text_colorsize"
+            android:text="@string/confirm_password" />
+
+        <EditText
+            android:id="@+id/et_confirm_pwd"
+            style="@style/changepwd_edittext"/>
+    </LinearLayout>
+
+    <View
+        android:background="@color/colorGray"
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"/>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/show_password"
+            style="@style/login_text_colorsize"/>
+        <Switch
+            android:layout_marginStart="21dp"
+            android:id="@+id/switch_notice_news"
+            android:checked="false"
+            style="@style/setting_switch"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/ensure_correct_password"
+        style="@style/login_text_colorsize"/>
+    <TextView
+        android:id="@+id/tv_confirm"
+        android:layout_marginTop="35.3dp"
+        android:text="@string/confirm"
+        android:gravity="center"
+        android:background="@mipmap/changpwd_btn_bg"
+        android:layout_gravity="center_horizontal"
+        style="@style/login_text_colorsize"
+        />
+    <TextView
+        android:id="@+id/tv_close"
+        android:layout_marginTop="17.7dp"
+        android:background="@mipmap/changpwd_btn_bg"
+        android:text="@string/cancel"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        style="@style/login_text_colorsize"/>
+</LinearLayout>

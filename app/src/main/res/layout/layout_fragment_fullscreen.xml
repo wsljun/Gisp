@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <RelativeLayout android:id="@+id/relative_full"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager_paper"
+            android:layout_width="match_parent"
+            android:layout_height="275dp"
+            android:background="@color/colorPrimary"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/viewpager_paper"
+            android:layout_marginTop="2dp"
+            android:background="@color/colorInterface"/>
+
+        <ImageView
+            android:id="@+id/iv_fullscreen_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/recycler_view"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="3.3dp"
+            android:layout_marginEnd="5.7dp"
+            android:src="@mipmap/fullscreen_button"/>
+
+        <TextView
+            android:id="@+id/tv_play_time"
+            style="@style/text_12sp_colorwhite"
+            android:layout_alignTop="@+id/recycler_view"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
+      />
+
+        <TextView
+            android:id="@+id/tv_duration"
+            style="@style/text_12sp_colorwhite"
+            android:layout_alignTop="@+id/recycler_view"
+            android:layout_toEndOf="@+id/tv_play_time"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"/>
+
+        <SeekBar
+            android:id="@+id/seek_bar_paper"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_below="@+id/viewpager_paper"
+            android:layout_marginTop="-14dp"
+            android:focusable="true"
+            android:maxHeight="2dp"
+            android:minHeight="2dp"
+            android:paddingBottom="0dp"
+            android:paddingEnd="0dp"
+            android:paddingStart="0dp"
+            android:paddingTop="0dp"
+            android:progress="100"
+            android:progressDrawable="@drawable/seek_bar"
+            android:thumb="@mipmap/notification"
+            android:thumbOffset="0dp"/>
+    </RelativeLayout>
+</RelativeLayout>

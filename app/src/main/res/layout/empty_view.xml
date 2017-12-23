@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:wheel="http://schemas.android.com/apk/res-auto"
+              style="@style/bg"
+              android:id="@+id/ll_empty_view"
+              android:layout_margin="3dp"
+              android:gravity="center"
+              android:orientation="vertical"
+    >
+
+    <ImageView
+        android:id="@+id/iv_empty"
+        style="@style/empty_img"
+        android:src="@mipmap/ic_launcher"/>
+    <com.pnikosis.materialishprogress.ProgressWheel
+        android:visibility="gone"
+        android:id="@+id/progress_wheel"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        wheel:matProg_barColor="@color/colorInterface"
+        wheel:matProg_progressIndeterminate="true"/>
+    <TextView
+        android:id="@+id/tv_empty"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/there_is_no_data"
+        android:textColor="@color/colorTextLineGrey"/>
+</LinearLayout>

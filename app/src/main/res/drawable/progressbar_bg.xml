@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="45dp"/>
+            <solid android:color="@color/colorTextLineGrey"/>
+        </shape>
+    </item>
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <corners android:radius="45dp"/>
+                <solid android:color="@color/colorTextLineGrey"/>
+            </shape>
+        </clip>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <padding
+                    android:bottom="12dp"
+                    android:left="12dp"
+                    android:right="12dp"
+                    android:top="12dp"/><!-- 各方向的间隔 -->
+
+                <!-- 圆角弧度 20 -->
+                <corners android:radius="45dp"/>
+
+                <solid android:color="#F99C71"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorBackground"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_fragment_banner"/>
+
+    <EditText
+        android:id="@+id/ed_enter_name"
+        style="@style/register_text_colorsizebg"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="24dp"
+        android:hint="@string/name"
+        android:textSize="16sp"
+        android:imeOptions="actionNext"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/ed_enter_phone"
+        style="@style/register_text_colorsizebg"
+        android:layout_marginBottom="10dp"
+        android:hint="@string/enter_phone"
+        android:inputType="phone"
+        android:textSize="16sp"
+        android:imeOptions="actionNext"
+        android:maxLength="11"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ed_enter_code"
+            style="@style/register_text_colorsizebg"
+            android:layout_width="140dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:background="@mipmap/register_codeinput_bg"
+            android:hint="@string/enter_verification_code"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLength="4"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_verification_code"
+            android:layout_width="114.4dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:background="@mipmap/register_code_bg"
+            android:gravity="center"
+            android:text="@string/get_verification_code"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/ed_enter_password"
+        style="@style/register_text_colorsizebg"
+        android:layout_marginBottom="10dp"
+        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
+        android:hint="@string/login_enter_password"
+        android:textSize="16sp"
+        android:imeOptions="actionNext"
+        android:inputType="textPassword"
+        android:maxLength="8"/>
+
+    <EditText
+        android:id="@+id/ed_second_password"
+        style="@style/register_text_colorsizebg"
+        android:textSize="16sp"
+        android:layout_marginBottom="11dp"
+        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
+        android:hint="@string/login_second_password"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:maxLength="8"/>
+
+    <TextView
+        android:layout_marginBottom="25.3dp"
+        style="@style/text_12sp_colorwhite"
+        android:text="@string/password_can_only"
+        android:textColor="@color/colorTextLineGrey"/>
+
+    <TextView
+        android:id="@+id/tv_register"
+        android:background="@mipmap/login_btn_bg"
+        android:gravity="center"
+        android:text="@string/login"
+        style="@style/text_12sp_colorwhite"
+        android:textSize="@dimen/text_size"/>
+
+    <android.support.v4.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/tv_user_agreement"
+        style="@style/login_text_colorsize"
+        android:layout_marginBottom="30dp"
+        android:text="@string/user_agreement"/>
+
+
+</LinearLayout>

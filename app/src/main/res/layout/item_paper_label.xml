@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite">
+
+    <TextView
+        android:id="@+id/tv_label"
+        android:layout_marginLeft="6.7dp"
+        android:layout_marginRight="6.7dp"
+        android:layout_marginTop="7.3dp"
+        android:drawablePadding="6.7dp"
+        android:drawableTop="@mipmap/large_label_icon"
+        style="@style/text_12sp_colorinterface"
+        android:textSize="10sp"/>
+
+
+    <com.zhy.view.flowlayout.TagFlowLayout
+        android:id="@+id/tag_flowlayout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignTop="@+id/tv_label"
+        android:layout_toEndOf="@+id/tv_label"
+        app:max_select="-1"/>
+
+    <TextView
+        android:id="@+id/tv_switch"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/tag_flowlayout"
+        android:layout_marginEnd="6dp"
+        android:drawablePadding="4dp"
+        android:drawableEnd="@drawable/switch_selector"
+        android:text="@string/open_up"
+        style="@style/text_12sp_colorblack"
+        android:textSize="11sp"/>
+    <!--  <TextView
+            android:id="@+id/tv_switch"
+            style="@style/text_12sp_colorblack"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/tv_author"
+            android:layout_marginRight="24dp"
+            android:text="展开"
+            android:textSize="11sp"/>
+
+        <ImageView
+            android:id="@+id/iv_switch"
+            android:layout_width="14dp"
+            android:layout_height="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="6dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/tv_author"
+            android:background="@mipmap/open_icon"/>-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tv_switch"
+        android:layout_marginTop="7.3dp"
+        android:background="@color/colorBackground"/>
+</RelativeLayout>

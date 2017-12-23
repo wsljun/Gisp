@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          android:background="@color/colorInterface"
+          android:paddingLeft="8dp"
+          android:paddingRight="8dp"
+          android:paddingTop="2dp"
+          android:paddingBottom="2dp"
+          android:id="@+id/tv_tag"
+          android:layout_marginStart="3dp"
+          android:layout_marginTop="3dp"
+          android:textSize="11sp"
+          style="@style/text_12sp_colorwhite"/>
+
+    <!-- <TextView
+         android:id="@+id/tv_literature"
+    />-->

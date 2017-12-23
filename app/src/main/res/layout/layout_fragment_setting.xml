@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorBackground"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_fragment_banner"/>
+
+    <FrameLayout
+        android:id="@+id/fl_user_info"
+        style="@style/mine_frame"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            style="@style/userinfo_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="64dp"
+            android:textSize="@dimen/text_twelve"/>
+
+        <ImageView
+            android:id="@+id/im_user_icon"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="20dp"/>
+
+        <TextView
+            style="@style/right_text_colorsize"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_account_security"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:drawableStart="@mipmap/privacy_setting"
+            android:text="@string/account_security"/>
+
+        <TextView
+            style="@style/right_text_colorsize"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/fl_privacy_setting"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:drawableStart="@mipmap/setting_accountsecurity"
+            android:text="@string/privacy_setting"/>
+
+        <TextView
+            style="@style/right_text_colorsize"/>
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/fl_notification_settings"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:drawableStart="@mipmap/setting_notice"
+            android:text="@string/notification_settings"/>
+
+        <TextView
+            style="@style/right_text_colorsize"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_system_setting"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:drawableStart="@mipmap/setting_icon"
+            android:text="@string/system_setting"/>
+
+        <TextView
+            style="@style/right_text_colorsize"/>
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/fl_my_points"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:drawableStart="@mipmap/setting_integral"
+            android:text="@string/my_points"/>
+
+        <TextView
+            style="@style/right_text_colorsize"/>
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_about_giiisp"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/setting_item_configure"
+            android:drawableStart="@mipmap/setting_about"
+            android:text="@string/about_giiisp"/>
+
+        <TextView
+            style="@style/right_text_colorsize"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_signout"
+        style="@style/login_text_colorsize"
+        android:layout_width="match_parent"
+        android:layout_height="52.3dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorWhite"
+        android:gravity="center"
+        android:text="@string/logout"/>
+</LinearLayout>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingBottom="7dp"
+        android:paddingTop="26dp">
+
+        <FrameLayout
+            android:id="@+id/fl_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/tv_news_spot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="11dp"
+                android:src="@mipmap/home_news_spot"/>
+
+            <TextView
+                android:id="@+id/tv_home_news"
+                style="@style/text_12sp_colorblack"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginTop="2dp"
+                android:drawablePadding="3dp"
+                android:drawableTop="@mipmap/home_news"
+                android:text="消息"
+                android:textSize="7.7sp"/>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_home_search"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="@mipmap/inputfield"
+            android:drawableStart="@mipmap/magnifier_icon"
+            android:drawablePadding="7dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:padding="7dp"
+            android:text="@string/search_hint"
+            android:textColor="@color/colorTextLineGrey"
+            android:textSize="11sp"/>
+
+        <TextView
+            android:id="@+id/tv_home_history"
+            style="@style/text_12sp_colorblack"
+            android:layout_marginStart="9dp"
+            android:drawablePadding="3dp"
+            android:drawableTop="@mipmap/home_history"
+            android:paddingStart="8dp"
+            android:paddingEnd="9dp"
+            android:text="@string/history"
+            android:textSize="7.7sp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tv_home_download"
+            style="@style/text_12sp_colorblack"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:drawablePadding="3dp"
+            android:drawableTop="@mipmap/home_download"
+            android:paddingStart="9dp"
+            android:paddingEnd="7dp"
+            android:paddingTop="1dp"
+            android:text="@string/download"
+            android:textSize="7.7sp"/>
+
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

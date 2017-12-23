@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:background="@color/colorWhite"
+                android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/click_to_dismiss"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/popup_anima"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp"
+            android:background="@drawable/bg_rectangular_registered"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/update_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:lineSpacingExtra="5dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:id="@+id/message"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:lineSpacingExtra="5dp"
+                android:scrollbars="vertical"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                />
+
+            <LinearLayout
+                android:id="@+id/ll_download"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@color/colorInterface">
+
+                <TextView
+                    android:id="@+id/tv_later"
+                    style="@style/text_12sp_colorwhite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/later"
+                    android:textSize="16sp"/>
+
+                <View
+                    android:layout_width="21dp"
+
+                    android:layout_height="match_parent"
+                    android:background="#eee"/>
+
+                <TextView
+                    android:id="@+id/tv_upgrade"
+                    style="@style/text_12sp_colorwhite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/upgrade"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

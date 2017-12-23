@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="135dp"
+
+                  android:layout_height="wrap_content"
+                  android:id="@+id/linear_company_name"
+                  android:orientation="vertical">
+      <TextView
+          android:id="@+id/tv_company_name"
+          android:textSize="11sp"
+          android:background="@drawable/screen_checked_bg"
+          android:textColor="@color/colorWhite"
+          android:paddingLeft="6dp"
+          android:paddingRight="6dp"
+          android:paddingTop="3dp"
+          android:paddingBottom="3dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
+    </LinearLayout>
+</RelativeLayout>

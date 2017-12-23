@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPaperBg">
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:id="@+id/linear_company_name"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_centerInParent="true"
+                  android:layout_margin="20dp"
+                  android:background="@color/colorWhite"
+                  android:gravity="center_horizontal"
+                  android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_company_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/sex"
+            android:textSize="20sp"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:button="@null"
+                android:drawableEnd="@drawable/bg_sex_choose"
+                android:text="@string/man"/>
+            <View
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/colorTextLineGrey"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:button="@null"
+                android:checked="true"
+                android:textSize="18sp"
+                android:drawableEnd="@drawable/bg_sex_choose"
+                android:text="@string/gril"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_fragment_banner" />
+
+    <FrameLayout
+        android:id="@+id/fl_user_icon"
+        style="@style/mine_frame"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            style="@style/info_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:text="@string/icon" />
+
+        <ImageView
+            android:id="@+id/iv_user_icon"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="20dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView style="@style/mine_text_colorsize" />
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_user_name"
+
+        style="@style/mine_frame"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            style="@style/info_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:text="@string/real_name" />
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            style="@style/right_text_colorsize"
+            android:text="" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_user_sex"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/info_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:text="@string/sex" />
+
+        <TextView
+            android:id="@+id/tv_user_sex"
+            style="@style/right_text_colorsize" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_user_mechanism"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/info_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:text="@string/subordinate_institution" />
+
+        <TextView
+            android:id="@+id/tv_user_mechanism"
+            style="@style/right_text_colorsize" />
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_user_position"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/info_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:text="@string/user_position" />
+
+        <TextView
+            android:id="@+id/tv_user_position"
+            style="@style/right_text_colorsize" />
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_user_professional"
+        style="@style/mine_frame"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/info_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:text="@string/fieldmajor" />
+
+        <TextView
+            android:id="@+id/tv_user_professional"
+            style="@style/right_text_colorsize" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_user_resume"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/info_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:text="@string/user_resume" />
+
+        <TextView
+            android:id="@+id/tv_user_resume"
+            style="@style/right_text_colorsize" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_user_web"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/info_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:text="@string/edit_user_web" />
+
+        <TextView
+            android:id="@+id/tv_user_web"
+            style="@style/right_text_colorsize" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_contact_information"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:background="@color/colorBackground"
+        android:gravity="center_vertical"
+        android:paddingEnd="16.3dp"
+        android:paddingStart="14dp"
+        android:text="@string/contact_information"
+        android:textColor="@color/colorTextLineGrey"
+        android:textSize="13sp"/>
+
+    <FrameLayout
+        android:id="@+id/fl_user_email"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/info_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:text="@string/email" />
+
+        <TextView
+            android:id="@+id/tv_user_email"
+            style="@style/right_text_colorsize"
+            android:hint="@string/fill_in_email" />
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_user_phone"
+        style="@style/mine_frame">
+
+        <TextView
+            style="@style/info_text_colorsize"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="14dp"
+            android:text="@string/enter_phone" />
+
+        <TextView
+            android:id="@+id/tv_user_phone"
+            style="@style/right_text_colorsize" />
+    </FrameLayout>
+</LinearLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_scholar_name"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:background="@color/colorBackground"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/scholars"
+        android:textColor="@color/colorTextLineGrey"
+        android:textSize="13sp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_scholar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_more"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:gravity="center"
+        android:text="@string/more"
+        android:textColor="@color/colorInterface"
+        android:textSize="13sp"/>
+
+    <TextView
+        android:id="@+id/tv_paper_list"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:background="@color/colorBackground"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/paper_list"
+        android:textColor="@color/colorTextLineGrey"
+        android:textSize="13sp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView_paper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_paper_more"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:gravity="center"
+        android:text="@string/more"
+        android:textColor="@color/colorInterface"
+        android:textSize="13sp"/>
+</LinearLayout>

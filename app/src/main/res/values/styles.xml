@@ -1,0 +1,294 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorWhite</item>
+        <item name="colorPrimaryDark">@color/colorWhite</item>
+        <item name="colorAccent">@color/colorInterface</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="login_text_colorsize">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/text_size</item>
+    </style>
+
+    <style name="mine_text_colorsize">
+        <item name="android:layout_gravity">end|center_vertical</item>
+        <item name="android:layout_marginEnd">7dp</item>
+        <item name="android:drawablePadding">7dp</item>
+        <item name="android:drawableEnd">@mipmap/set_right_arrow</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorAuxiliary</item>
+        <item name="android:textSize">@dimen/text_twelve</item>
+    </style>
+
+    <style name="edit_text_colorsize">
+        <item name="android:layout_gravity">end|center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/text_twelve</item>
+    </style>
+
+    <style name="register_text_colorsizebg" parent="login_text_colorsize">
+        <item name="android:background">@mipmap/login_input_bg</item>
+        <item name="android:textColorHint">@color/colorTextLineGrey</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_marginStart">45.5dp</item>
+        <item name="android:layout_marginEnd">45.5dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="userinfo_text_colorsize">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextLineGrey</item>
+        <item name="android:textSize">@dimen/text_size</item>
+    </style>
+
+    <style name="info_text_colorsize">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextLineGrey</item>
+        <item name="android:textColorHint">@color/colorGray</item>
+        <item name="android:textSize">@dimen/text_twelve</item>
+    </style>
+
+    <style name="setting_item_configure" parent="login_text_colorsize">
+        <item name="android:layout_marginStart">14dp</item>
+        <item name="android:drawablePadding">7dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">start|center_vertical</item>
+    </style>
+
+    <style name="setting_switch">
+        <item name="android:layout_gravity">end|center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:switchMinWidth">10dp</item>
+        <item name="android:checked">true</item>
+        <item name="android:layout_marginEnd">7dp</item>
+        <item name="android:thumb">@drawable/thumb</item>
+        <item name="android:track">@drawable/track</item>
+    </style>
+
+    <style name="inform_radiobutton" parent="userinfo_text_colorsize">
+        <item name="android:button">@drawable/bg_sex_choose</item>
+        <item name="android:paddingStart">7dp</item>
+        <item name="android:paddingEnd">7dp</item>
+    </style>
+
+    <style name="login_edittext" parent="login_text_colorsize">
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:background">@mipmap/login_input_bg</item>
+        <item name="android:paddingStart">10.3dp</item>
+        <item name="android:paddingEnd">10.3dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_marginStart">45.5dp</item>
+        <item name="android:layout_marginEnd">45.5dp</item>
+        <item name="android:textColorHint">@color/colorTextLineGrey</item>
+    </style>
+
+    <style name="changepwd_edittext">
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_marginStart">19.7dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLength">8</item>
+        <item name="android:background">@mipmap/changpwd_bg</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:inputType">textPassword</item>
+    </style>
+
+    <style name="guide_textview" parent="login_text_colorsize">
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="privacy_setting_right">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">end|center_vertical</item>
+        <item name="android:layout_marginEnd">7dp</item>
+        <item name="android:drawablePadding">6dp</item>
+        <item name="android:drawableEnd">@mipmap/set_right_arrow</item>
+        <item name="android:textColor">@color/colorTextLineGrey</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="transparentFrameWindowStyle" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/answer_recorder_bg</item>
+    </style>
+
+    <style name="main_menu_animstyle">
+        <item name="android:windowEnterAnimation">@anim/recorder_dialog_in_anim</item>
+        <item name="android:windowExitAnimation">@anim/recorder_dialog_out_anim</item>
+    </style>
+
+    <style name="item_duration_size">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="text_12sp_colorinterface">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorInterface</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="text_11sp_maxline1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="text_12sp_colorblack">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="time_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:textColor">@color/colorTextLineGrey</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="text_13sp_colorblack">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="text_12sp_colorauxiliary">
+        <item name="android:textColor">@color/colorAuxiliary</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="item_paperchild_icon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:drawablePadding">3dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textColor">@color/colorTextLineGrey</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="widthheight_wrap_content">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="text_12sp_colorwhite">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="list_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">34dp</item>
+        <item name="android:background">@color/colorBackground</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">16.3dp</item>
+        <item name="android:paddingEnd">16.3dp</item>
+        <item name="android:textColor">@color/colorTextLineGrey</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="item_dubbing_waiting">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:drawablePadding">6dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorTextLineGrey</item>
+        <item name="android:textSize">9sp</item>
+    </style>
+
+    <style name="right_text_colorsize" parent="edit_text_colorsize">
+        <item name="android:layout_gravity">end|center_vertical</item>
+        <item name="android:layout_marginEnd">7dp</item>
+        <item name="android:drawablePadding">7dp</item>
+        <item name="android:drawableEnd">@mipmap/set_right_arrow</item>
+    </style>
+
+    <style name="mine_frame">
+        <item name="android:layout_marginTop">1dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">52.3dp</item>
+        <item name="android:background">@color/colorWhite</item>
+    </style>
+
+    <style name="text_right">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">top|end</item>
+        <item name="android:textColor">@color/colorAuxiliary</item>
+        <item name="android:textSize">10.7dp</item>
+    </style>
+
+    <style name="radio_buttin_paivacy">
+        <item name="android:paddingStart">9dp</item>
+        <item name="android:paddingEnd">9dp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:paddingTop">17dp</item>
+        <item name="android:paddingBottom">17dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@drawable/bg_privacy</item>
+    </style>
+
+    <style name="text_12sp_colorgray">
+        <item name="android:textSize">@dimen/text_twelve</item>
+        <item name="android:textColor">@color/colorGray</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+    <style name="bg">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/colorWhite</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="empty_img">
+        <item name="android:layout_width">@dimen/def_height</item>
+        <item name="android:layout_height">@dimen/def_height</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="text_12sp_colorinterface.user_number">
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+    </style>
+</resources>

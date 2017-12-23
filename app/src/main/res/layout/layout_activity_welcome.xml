@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorWhite"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+               android:id="@+id/iv_welcome"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="155dp"
+               android:scaleType="fitXY"
+               android:src="@mipmap/welcome_logo"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26.3dp"
+        android:src="@mipmap/welcome_text"/>
+
+    <TextView
+        style="@style/text_12sp_colorauxiliary"
+        android:layout_marginTop="10.3dp"
+        android:text="@string/giiisp_slogan"
+        android:textColor="@color/colorTextLineGrey"/>
+</LinearLayout>

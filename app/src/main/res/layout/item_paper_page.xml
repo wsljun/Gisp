@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/colorWhite">
+    <View
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:background="@color/colorTextLineGrey"
+        android:layout_height="0.5dp"/>
+    <!--<View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="6.7dp"
+        android:background="@color/colorBackground"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:text="行星动力学"
+        android:textColor="@color/colorBlack"
+        android:textSize="12.7sp"/>
+    <TextView
+        android:id="@+id/tv_photo_flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_title"
+        android:layout_toRightOf="@+id/tv_title"
+        android:layout_marginLeft="10dp"
+        android:text="行星动力学"
+        android:textColor="@color/colorBlack"
+        android:textSize="12.7sp"/>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/tv_title"
+        android:layout_marginRight="10dp"
+        android:text="2017-2-3"
+        android:textColor="@color/colorTextLineGrey"
+        android:textSize="11sp"/>
+-->
+
+</LinearLayout>

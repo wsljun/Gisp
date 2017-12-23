@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:gravity="center"
+              android:background="@color/colorWhite"
+              android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_tab_text"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="13dp"
+            android:drawableTop="@drawable/bg_tab_mine"
+            android:drawablePadding="3.3dp"
+            android:textColor="@drawable/tab_paper_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <ImageView
+        android:layout_below="@+id/tv_tab_text"
+        android:layout_width="match_parent"
+        android:src="@drawable/tab_paper_bg"
+        android:layout_height="1dp"/>
+    <View
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="2dp"
+        android:background="@color/colorTextLineGrey"
+        android:layout_width="1dp"
+        android:layout_height="53dp"/>
+</RelativeLayout>

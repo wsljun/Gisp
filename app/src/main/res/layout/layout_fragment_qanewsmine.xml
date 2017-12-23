@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_back"
+        style="@style/login_text_colorsize"
+        android:layout_height="63dp"
+        android:layout_gravity="center_vertical"
+        android:drawableStart="@mipmap/back"
+        android:drawablePadding="3dp"
+        android:gravity="center"
+        android:paddingBottom="6dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:paddingTop="30dp"
+        android:text="@string/back"
+        android:visibility="invisible"/>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="183.3dp"
+        android:layout_height="27.7dp"
+        android:layout_alignTop="@+id/tv_back"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@mipmap/tab_left"
+        app:tabGravity="fill"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/colorWhite"
+        app:tabTextAppearance="@style/login_text_colorsize"
+        app:tabTextColor="@color/colorBlack"/>
+
+    <ImageView
+        android:id="@+id/iv_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/tab_layout"
+        android:layout_marginEnd="11.3dp"
+        android:layout_marginStart="13.7dp"
+        android:layout_marginTop="5dp"
+        android:src="@mipmap/subscribe_item_palynumber"/>
+
+    <ImageView
+        android:id="@+id/iv_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/iv_play"
+        android:layout_marginTop="2dp"
+        android:layout_toStartOf="@+id/iv_play"
+        android:src="@mipmap/subscribe_downloads"/>
+
+    <TextView
+        android:id="@+id/tv_download_number"
+        android:layout_alignTop="@+id/iv_download"
+        android:layout_toEndOf="@+id/iv_download"
+        android:layout_marginTop="-6dp"
+        android:layout_marginStart="-6dp"
+        style="@style/text_12sp_colorauxiliary"/>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/tv_back"
+        android:background="@color/colorTextLineGrey"/>
+
+    <com.giiisp.giiisp.widget.MViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line"/>
+</RelativeLayout>

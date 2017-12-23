@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_fragment_banner"/>
+
+
+    <FrameLayout
+        android:id="@+id/fl_change_password"
+        android:layout_width="match_parent"
+        android:layout_height="52.3dp">
+        <TextView
+            android:text="@string/change_password"
+            android:layout_marginStart="14dp"
+            android:layout_gravity="start|center_vertical"
+            style="@style/login_text_colorsize"/>
+        <TextView
+            android:drawableEnd="@mipmap/set_right_arrow"
+            android:layout_marginEnd="7dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBackground"/>
+    <FrameLayout
+        android:id="@+id/fl_binding_phone"
+        android:layout_width="match_parent"
+        android:layout_height="52.3dp">
+        <TextView
+            android:text="@string/binding_phone"
+            android:layout_marginStart="14dp"
+            android:layout_gravity="start|center_vertical"
+            style="@style/login_text_colorsize"/>
+        <TextView
+            android:id="@+id/tv_phone_number"
+            android:drawableEnd="@mipmap/set_right_arrow"
+            android:layout_marginEnd="7dp"
+            android:drawablePadding="7dp"
+            android:layout_gravity="end|center_vertical"
+          style="@style/userinfo_text_colorsize"/>
+    </FrameLayout>
+
+</LinearLayout>

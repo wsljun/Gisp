@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recording_complete"
+    android:layout_width="match_parent"
+    android:layout_height="214dp"
+    android:background="@color/colorBackground"
+    android:gravity="bottom">
+
+    <TextView
+        android:id="@+id/tv_back_edit"
+        android:layout_width="match_parent"
+        android:layout_height="33.7dp"
+        android:background="@color/colorWhite"
+        android:drawableStart="@mipmap/qa_edit"
+        android:paddingStart="7.3dp"
+        android:paddingEnd="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_recording"
+        style="@style/text_12sp_colorwhite"
+        android:layout_below="@+id/tv_back_edit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31.7dp"
+        android:background="@mipmap/qa_speech_bubble"
+        android:drawableStart="@mipmap/qa_sound"
+        android:gravity="end|center_vertical"
+        android:paddingStart="5dp"
+        android:paddingEnd="13.3dp"/>
+
+    <TextView
+        android:id="@+id/tv_audition"
+        style="@style/text_12sp_colorwhite"
+        android:layout_below="@+id/tv_recording"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="6.7dp"
+        android:text="@string/click_on_the_audition"
+        android:textColor="@color/colorTextLineGrey"/>
+
+    <TextView
+        android:id="@+id/tv_reset"
+        android:layout_below="@+id/tv_audition"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="29.7dp"
+        android:layout_marginTop="17.7dp"
+        android:background="@mipmap/qa_reset"
+        android:gravity="center"
+        android:onClick="restartRecording"
+        android:text="@string/reset"
+        style="@style/text_12sp_colorauxiliary"/>
+
+    <TextView
+        android:id="@+id/tv_publish"
+        style="@style/text_12sp_colorinterface"
+        android:layout_alignTop="@+id/tv_reset"
+        android:layout_marginStart="142.7dp"
+        android:layout_toEndOf="@+id/tv_reset"
+        android:background="@mipmap/qa_publish"
+        android:gravity="center"
+        android:text="@string/publish"/>
+</RelativeLayout>

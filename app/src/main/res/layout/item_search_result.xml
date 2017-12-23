@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/colorBackground"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_scholar_name"
+        style="@style/list_title"
+        android:text="@string/scholars"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"/>
+
+    <TextView
+        android:id="@+id/tv_more"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_marginBottom="1dp"
+        android:gravity="center"
+        android:text="@string/more"
+        android:background="@color/colorWhite"
+        android:textColor="@color/colorInterface"
+        android:textSize="13sp"/>
+</LinearLayout>

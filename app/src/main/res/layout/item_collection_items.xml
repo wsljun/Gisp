@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite">
+
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="38.7dp"
+        android:layout_height="38.7dp"
+        android:layout_marginBottom="11dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="11dp"/>
+
+    <ImageView
+        android:id="@+id/iv_frame"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/iv_icon"
+        android:layout_alignTop="@+id/iv_icon"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="-1dp"
+        android:src="@drawable/play_selector"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/iv_icon"
+        android:layout_toEndOf="@+id/iv_icon"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_version"
+            style="@style/text_13sp_colorblack"/>
+
+        <TextView
+            android:id="@+id/tv_paper_browse"
+            style="@style/item_paperchild_icon"
+            android:drawableStart="@mipmap/subscribe_item_browse"/>
+
+        <TextView
+            android:id="@+id/tv_paper_collected"
+            style="@style/item_paperchild_icon"
+            android:drawableStart="@drawable/collected_selector"/>
+
+        <TextView
+            android:id="@+id/tv_paper_download"
+            style="@style/item_paperchild_icon"
+            android:drawableStart="@mipmap/subscribe_item_download"/>
+
+        <TextView
+            android:id="@+id/tv_paper_problem"
+            style="@style/item_paperchild_icon"
+            android:layout_marginStart="8dp"
+            android:drawableStart="@mipmap/subscribe_item_problem"/>
+
+        <TextView
+            android:id="@+id/tv_progress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9.3dp"
+            android:layout_weight="1"
+            android:textColor="@color/colorAuxiliary"
+            android:textSize="11sp"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/tv_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="2dp"
+            android:src="@mipmap/subscribe_item_spot"/>
+    </LinearLayout>
+
+</RelativeLayout>

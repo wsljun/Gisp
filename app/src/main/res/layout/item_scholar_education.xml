@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingEnd="12.7dp"
+                android:paddingStart="12.7dp"
+    >
+
+    <TextView
+        android:id="@+id/tv_edit"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:text="@string/edit"
+        style="@style/text_12sp_colorinterface"/>
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorBlack"
+        style="@style/text_11sp_maxline1"/>
+
+    <TextView
+        android:id="@+id/tv_university_name"
+        android:layout_below="@+id/tv_description"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/colorTextLineGrey"
+        style="@style/text_11sp_maxline1"/>
+
+
+</RelativeLayout>

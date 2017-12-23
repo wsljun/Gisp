@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@color/colorWhite">
+
+    <TextView
+        android:id="@+id/tv_indexes"
+        style="@style/text_12sp_colorblack"
+        android:layout_marginTop="10.7dp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/text_12sp_colorblack"
+        android:layout_alignTop="@+id/tv_indexes"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/tv_indexes"
+      />
+
+    <TextView
+        android:id="@+id/tv_description"
+        style="@style/text_12sp_colorblack"
+        android:layout_marginStart="10dp"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:textSize="11sp"/>
+
+    <TextView
+        android:id="@+id/tv_link"
+        style="@style/text_12sp_colorinterface"
+        android:layout_alignStart="@+id/tv_title"
+        android:layout_below="@+id/tv_description"
+        android:layout_marginTop="6.7dp"
+        android:textSize="11sp"
+        android:visibility="gone"/>
+
+    <com.zhy.view.flowlayout.TagFlowLayout
+        android:id="@+id/fl_author"
+        style="@style/text_12sp_colorinterface"
+        android:layout_width="290dp"
+        android:layout_alignStart="@+id/tv_title"
+        android:layout_below="@+id/tv_link"
+        android:layout_marginTop="6.7dp"
+        android:textSize="11sp"
+        app:max_select="-1"/>
+
+    <TextView
+        android:id="@+id/tv_switch"
+        style="@style/text_12sp_colorblack"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/fl_author"
+        android:layout_marginEnd="5dp"
+        android:drawablePadding="6dp"
+        android:drawableEnd="@drawable/switch_selector"
+        android:padding="3dp"
+        android:text="@string/open_up"
+        android:textSize="11sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tv_switch"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorBackground"/>
+
+
+</RelativeLayout>

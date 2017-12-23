@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+             android:layout_marginStart="20dp"
+             android:layout_marginEnd="20dp"
+             android:layout_height="64dp">
+        <TextView
+            android:id="@+id/tv_attention"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textSize="@dimen/text_size"
+            style="@style/text_12sp_colorwhite"
+            android:textColor="@drawable/attention_selector_text"
+            android:background="@drawable/attention_selector"/>
+    <ImageView
+        android:id="@+id/iv_attention"
+        android:visibility="gone"
+        android:src="@mipmap/guide_delete_icon"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="18dp"
+        android:layout_height="wrap_content"/>
+</FrameLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<android.support.v7.widget.CardView
+                                    xmlns:qpp="http://schemas.android.com/apk/res-auto"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:elevation="100dp"
+                                    android:gravity="center_horizontal"
+                                    android:orientation="vertical"
+                                    qpp:cardElevation="10dp"
+                                    qpp:cardMaxElevation="11dp"
+                                    qpp:cardUseCompatPadding="true">-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="120dp"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="120dp"
+                  android:layout_height="160dp"
+                  android:background="@mipmap/scholar_bg"
+                  android:gravity="center"
+                  android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_scholar_icon"
+            android:layout_width="92dp"
+            android:layout_height="109.3dp"/>
+
+        <TextView
+            android:id="@+id/tv_scholar_name"
+            style="@style/text_12sp_colorblack"
+            android:layout_marginBottom="6.3dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"/>
+    </LinearLayout>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_user_position"
+        style="@style/text_12sp_colorblack"
+        android:layout_marginBottom="6.7dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:ellipsize="end"
+        android:maxLength="14"
+        android:maxLines="2"
+     />
+</LinearLayout>
+    <!--</android.support.v7.widget.CardView>-->

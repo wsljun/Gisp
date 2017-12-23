@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/fl_user_icAndpassport"
+            style="@style/mine_frame">
+
+            <TextView
+                style="@style/info_text_colorsize"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="14dp"
+                android:text="@string/icAndpassport_verified" />
+
+            <TextView
+                android:id="@+id/tv_user_icAndpassport"
+                style="@style/right_text_colorsize" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_user_icimg"
+            style="@style/mine_frame"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                style="@style/info_text_colorsize"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="14dp"
+                android:text="@string/icimg_verified" />
+
+            <ImageView
+                android:id="@+id/iv_user_icimg"
+                android:layout_width="43dp"
+                android:layout_height="43dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="20dp" />
+
+            <TextView style="@style/mine_text_colorsize" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_user_zzAndzd"
+            android:layout_marginTop="10dp"
+            style="@style/mine_frame">
+
+            <TextView
+                style="@style/info_text_colorsize"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="14dp"
+                android:text="@string/zzAndzd_verified" />
+
+            <TextView
+                android:id="@+id/tv_user_zzAndzd"
+                style="@style/right_text_colorsize" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_user_stuimg"
+            style="@style/mine_frame"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                style="@style/info_text_colorsize"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="14dp"
+                android:text="@string/stuimg_verified" />
+
+            <ImageView
+                android:id="@+id/iv_user_stuimg"
+                android:layout_width="43dp"
+                android:layout_height="43dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="20dp" />
+
+            <TextView style="@style/mine_text_colorsize" />
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/fl_user_paperimg"
+            style="@style/mine_frame"
+            android:layout_marginTop="1dp">
+
+            <TextView
+                style="@style/info_text_colorsize"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="14dp"
+                android:text="@string/icimg_verified" />
+
+            <ImageView
+                android:id="@+id/iv_user_paperimg"
+                android:layout_width="43dp"
+                android:layout_height="43dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="20dp" />
+
+            <TextView style="@style/mine_text_colorsize" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_submission"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:layout_gravity="bottom|end"
+        android:background="#de28acff"
+        android:gravity="center"
+        android:text="@string/confirm_submission"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_size" />
+</FrameLayout>

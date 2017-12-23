@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          android:id="@+id/paper_language"
+          android:gravity="center"
+          style="@style/text_12sp_colorwhite"
+          android:layout_marginTop="5dp"
+          android:background="@mipmap/paper_cn_bg">
+
+</TextView>

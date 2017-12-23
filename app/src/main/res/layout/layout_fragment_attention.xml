@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorWhite"
+                android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_my_attention"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/bg_rectangular_white"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_my_attention"
+        style="@style/login_text_colorsize"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/colorWhite"
+        android:padding="2dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_recommended_attention"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_below="@+id/rv_my_attention"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/bg_rectangular_white"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"/>
+
+    <TextView
+        android:id="@+id/tv_recommended_attention"
+        style="@style/login_text_colorsize"
+        android:layout_below="@+id/rv_my_attention"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/colorWhite"
+        android:padding="2dp"/>
+
+    <TextView
+        android:id="@+id/tv_next"
+        android:layout_below="@+id/rv_recommended_attention"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="@mipmap/guide_next"
+        android:gravity="center"
+        style="@style/text_12sp_colorinterface"
+        android:textSize="@dimen/text_size"/>
+
+</RelativeLayout>

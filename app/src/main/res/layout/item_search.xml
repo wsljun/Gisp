@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_search_title"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="14dp"
+        style="@style/time_style"
+        android:layout_alignParentEnd="false"
+        android:layout_marginBottom="13dp"
+        android:text="@string/you_search"/>
+
+    <TextView
+        android:id="@+id/tv_empty"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="14dp"
+        style="@style/time_style"
+        android:textColor="@color/colorInterface"
+        android:text="@string/empty"/>
+    <com.zhy.view.flowlayout.TagFlowLayout
+        android:id="@+id/tag_flowlayout"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_below="@+id/tv_search_title"
+        style="@style/widthheight_wrap_content"/>
+    <View
+        android:layout_below="@+id/tag_flowlayout"
+        android:background="@color/colorBackground"
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"/>
+</RelativeLayout>
