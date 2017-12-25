@@ -110,6 +110,17 @@ public class UserInfoEntity extends BaseEntity {
         private String email;
         private String isVIP;
         private String web;
+        private String emailauthen ;
+
+        public String getEmailauthen() {
+            return emailauthen;
+        }
+
+        public void setEmailauthen(String emailauthen) {
+            this.emailauthen = emailauthen;
+        }
+
+
 
         private boolean isCheck = false;
 

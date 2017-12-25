@@ -232,6 +232,17 @@ public class UrlConstants {
         //用户认证
         public static final String USER_AUTHEN = "api/user/userAuthen.do";
 
+        /**
+         * 验证论文密码 根据homePage 返回的isEncrypt 判断 0:需要验证，1：不需要验证密码
+         * {
+         "result": 1,
+         "code": "",
+         "info": "操作成功！"
+         }
+         *
+         * */
+        public static final String CHECK_PAPERPWD = "/api/post/checkPaperPwd.do";
+
 
     }
 

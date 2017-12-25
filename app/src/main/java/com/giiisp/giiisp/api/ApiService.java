@@ -44,6 +44,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface ApiService {
     //发送验证码
@@ -79,7 +80,7 @@ public interface ApiService {
     //更新用户头像接口
     @Multipart
     @POST(UrlConstants.RequestUrl.USER_UPDATE_PORTRAIT)
-    Call<BaseEntity> getUpdatePortraitInfo(@Query("uid") String uid, @Part MultipartBody.Part filePrta);
+    Call<BaseEntity> getUpdatePortraitInfo(@Query("uid") String uid, @Part MultipartBody.Part filePrta); // TODO img
 
     //检查指定手机号是否注册
     @GET(UrlConstants.RequestUrl.EXAMINE_PHONE)
@@ -265,9 +266,10 @@ public interface ApiService {
     Call<SubscribeEntity> getListFollowedPaperInfo(@FieldMap ArrayMap<String, Object> options);
 
     //保存录音
-    @FormUrlEncoded
+    @Multipart
     @POST(UrlConstants.RequestUrl.SAVE_RECORD)
-    Call<BaseEntity> getSaveRecordInfo(@FieldMap ArrayMap<String, Object> options);
+//    @Headers("Connection:close")
+    Call<BaseEntity> getSaveRecordInfo(@QueryMap ArrayMap<String, Object> options, @Part MultipartBody.Part parts); // TODO audio
 
     //首页
     @FormUrlEncoded
@@ -357,5 +359,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(UrlConstants.RequestUrl.SAVE_FOLLOW_PAPER_PICTURE)
     Call<BaseEntity> getListQuizInfo(@FieldMap ArrayMap<String, Object> options);*/
+
+   // 检查论文密码
+    @FormUrlEncoded
+    @POST(UrlConstants.RequestUrl.CHECK_PAPERPWD)
+    Call<BaseEntity> checkPaperPwd(@FieldMap ArrayMap<String, Object> options);
 
 }

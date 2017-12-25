@@ -40,8 +40,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import okhttp3.MultipartBody;
 
-import static com.giiisp.giiisp.base.BaseActivity.isVip;
-//import static com.giiisp.giiisp.base.BaseActivity.token;
 import static com.giiisp.giiisp.base.BaseActivity.uid;
 
 /**
@@ -146,7 +144,7 @@ public class EditInfoFragment extends BaseMvpFragment<BaseImpl, WholePresenter> 
                 String self = editText.getText().toString();
                 if (!TextUtils.isEmpty(self)) {
                     MultipartBody.Part part1 = MultipartBody.Part.createFormData("self_introduction", self);
-                    ((VerifiedActivity) getActivity()).parts.add(part1); // Todo au NO
+                    ((VerifiedActivity) getActivity()).parts.add(part1); // Todo au NO 上传照片
                 }
                 getVerifiedActivity().getViewPagerVerified().setCurrentItem(1);
                 break;

@@ -870,8 +870,8 @@ public class WholePresenter extends BasePresenter<BaseImpl> {
         });
     }
 
-    public void getSaveRecordData(ArrayMap<String, Object> options) {
-        ModelFactory.getBaseModel().getSaveRecordData(options, new Callback<BaseEntity>() {
+    public void getSaveRecordData(ArrayMap<String, Object> options,MultipartBody.Part part) {
+        ModelFactory.getBaseModel().getSaveRecordData(options,part, new Callback<BaseEntity>() {
             @Override
             public void onResponse(Call<BaseEntity> call, Response<BaseEntity> response) {
                 if (response.isSuccessful()) {
@@ -1328,5 +1328,25 @@ public class WholePresenter extends BasePresenter<BaseImpl> {
             parts.add(part);
         }
         return parts;
+    }
+
+
+    //TODO 验证论文密码
+    public void checkPaperPwd(ArrayMap<String, Object> options) {
+        ModelFactory.getBaseModel().checkPaperPwd(options, new Callback<BaseEntity>() {
+            @Override
+            public void onResponse(Call<BaseEntity> call, Response<BaseEntity> response) {
+                if (response.isSuccessful()) {
+                    // response.body() 返回 ResponseBody
+                    BaseEntity entity = response.body();
+                    impl.onSuccess(entity);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseEntity> call, Throwable t) {
+                impl.onFailure(call + "", (Exception) t);
+            }
+        });
     }
 }

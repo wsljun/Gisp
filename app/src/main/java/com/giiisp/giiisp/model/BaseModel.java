@@ -35,6 +35,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Callback;
+import retrofit2.http.Part;
 
 /**
  * Created by Administrator on 2017/5/3.
@@ -213,8 +214,8 @@ public class BaseModel {
         ApiStore.getInstance().getApiService().getListFollowedPaperInfo(options).enqueue(callback);
     }
 
-    public void getSaveRecordData(ArrayMap<String, Object> options, Callback<BaseEntity> callback) {
-        ApiStore.getInstance().getApiService().getSaveRecordInfo(options).enqueue(callback);
+    public void getSaveRecordData( ArrayMap<String, Object> options,MultipartBody.Part part, Callback<BaseEntity> callback) {
+        ApiStore.getInstance().getApiService().getSaveRecordInfo(options,part).enqueue(callback);
     }
 
     public void gethomePageData(ArrayMap<String, Object> options, Callback<HomeEntity> callback) {
@@ -280,5 +281,9 @@ public class BaseModel {
 
     public void selectUser(ArrayMap<String, Object> options, Callback<SelectUser> callback) {
         ApiStore.getInstance().getApiService().selectUser(options).enqueue(callback);
+    }
+
+    public void checkPaperPwd(ArrayMap<String, Object> options, Callback<BaseEntity> callback) {
+        ApiStore.getInstance().getApiService().checkPaperPwd(options).enqueue(callback);
     }
 }

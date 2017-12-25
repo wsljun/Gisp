@@ -742,7 +742,7 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
                 }
                 itemClickAdapter = new ItemClickAdapter((BaseActivity) getActivity(), R.layout.item_collection, this.list, type);
                 break;
-            case "wait_dubbing":
+            case "wait_dubbing": // TODo test
                 tvTitle.setText(R.string.voice_file_list);
                 ivMenu.setImageResource(R.mipmap.dubbing_refresh);
                 ivMenu.setVisibility(View.VISIBLE);
@@ -2085,7 +2085,7 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
                 //                           itemClickAdapter.getItem()
                 break;
 
-            case R.id.tv_release_dubbing:
+            case R.id.tv_release_dubbing:  // TODO 发布
 
                 if (dubbingAdapter != null) {
                     ClickEntity item = dubbingAdapter.getItem(position);
@@ -2120,7 +2120,7 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
                 }
 
                 break;
-            case R.id.tv_preview_dubbing:
+            case R.id.tv_preview_dubbing: // TODO 预览按钮
                 if (dubbingAdapter != null) {
                     ClickEntity item = dubbingAdapter.getItem(position);
                     if (item != null) {
@@ -2130,14 +2130,14 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
                             String version = item.getVersion();
                             ArrayList<String> list = new ArrayList<>();
                             list.add(version);
-                            if (TextUtils.isEmpty(id) && list.size() > 0)
+                            if (!TextUtils.isEmpty(id) && list.size() > 0)
                                 PaperDetailsActivity.actionActivity(getContext(), id, list, type);
                         }
 
                     }
                 }
                 break;
-            case R.id.tv_edit_dubbing:
+            case R.id.tv_edit_dubbing: // TODO 编辑
                 if (dubbingAdapter == null)
                     return;
                 ClickEntity dubbing = dubbingAdapter.getItem(position);

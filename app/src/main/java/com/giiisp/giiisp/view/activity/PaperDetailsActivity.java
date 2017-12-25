@@ -274,15 +274,17 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     }
 
     public static void actionActivity(Context context, int id, String type) {
-        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
-        sIntent.putExtra("id", id);
-        sIntent.putExtra("type", type);
-        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(sIntent);
+        checkPwd(context); //todo
+//        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
+//        sIntent.putExtra("id", id);
+//        sIntent.putExtra("type", type);
+//        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+//        context.startActivity(sIntent);
     }
 
     public static void actionActivity(Context context, String id, ArrayList<String> version, String type) {
-        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
+//        checkPwd(context);
+                Intent sIntent = new Intent(context, PaperDetailsActivity.class);
         sIntent.putExtra("id", id);
         sIntent.putExtra("type", type);
         sIntent.putStringArrayListExtra("version", version);
@@ -291,21 +293,23 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     }
 
     public static void actionActivity(Context context, String id, ArrayList<String> recordOneRows, ArrayList<String> recordTwoRows, ArrayList<String> photoRows, String type, String title) {
-        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
-        sIntent.putExtra("id", id);
-        sIntent.putExtra("type", type);
-        sIntent.putStringArrayListExtra("recordOneRows", recordOneRows);
-        sIntent.putStringArrayListExtra("recordTwoRows", recordTwoRows);
-        sIntent.putStringArrayListExtra("photoRows", photoRows);
-        sIntent.putExtra("title", title);
-        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(sIntent);
+        checkPwd(context);
+//        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
+//        sIntent.putExtra("id", id);
+//        sIntent.putExtra("type", type);
+//        sIntent.putStringArrayListExtra("recordOneRows", recordOneRows);
+//        sIntent.putStringArrayListExtra("recordTwoRows", recordTwoRows);
+//        sIntent.putStringArrayListExtra("photoRows", photoRows);
+//        sIntent.putExtra("title", title);
+//        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+//        context.startActivity(sIntent);
     }
 
     public static void actionActivity(Context context) {
-        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
-        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(sIntent);
+        checkPwd(context);
+//        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
+//        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+//        context.startActivity(sIntent);
     }
     @Override
     public void initData() {
@@ -738,18 +742,17 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                     // 显示
                     normalDialog.show();
                 } else
-                    switch (BaseActivity.isVip) {
+                    switch (BaseActivity.emailauthen) { // TODO 按照 emailauthen 判断
                         case "0":
-                        case "1":
                             Utils.showToast("      认证请联系：\n" +
                                     "+86 185 0101 0114 \n" +
                                     " service@giiisp.com");
                             break;
-                        case "2":
+                        case "1":
                             String pcid = photosBeanRows.get(position).getId();
                             ProblemActivity.actionActivity(this, "Problem", pcid, uid);
                             break;
-                        case "3":
+                        case "2":
                             Utils.showToast("等待认证完成");
                             break;
                     }
@@ -1706,5 +1709,17 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
         textView.setText(tabTitle[position]);
 
         return view;
+    }
+
+
+    public static void checkPwd(Context context){
+        Utils.showDialog((BaseActivity) context,"此文档需要输入密码", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Utils.showToast("开始请求");
+                ((BaseActivity) context).finish();
+            }
+        });
+
     }
 }

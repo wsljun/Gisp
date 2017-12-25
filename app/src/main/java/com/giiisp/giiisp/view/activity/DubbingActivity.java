@@ -40,6 +40,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 /**
  * 配音的页面
@@ -257,7 +260,9 @@ public class DubbingActivity extends DubbingPermissionActivity implements BaseQu
                 back = false;
                 resolveStopRecord();
                 resolvePausePlayRecord();
-                postDubbing();
+//                postDubbing(); TODO 直接上传
+                upAudio();
+
                 break;
             case R.id.tv_dubbing_re_record:
                 resolveStopRecord();
@@ -298,6 +303,10 @@ public class DubbingActivity extends DubbingPermissionActivity implements BaseQu
         }
     }
 
+    /**
+     * @param key
+     */
+     File file ;
     @Override
     protected void keyCompete(String key) {
         super.keyCompete(key);
@@ -307,6 +316,7 @@ public class DubbingActivity extends DubbingPermissionActivity implements BaseQu
 
             double duration = 0;
             try {
+                file = new File(filePath);
                 long fileSize = SDFileHelper.getFileSize(new File(filePath));
                 double rint = SDFileHelper.FormetFileSize(fileSize);
                 duration = Math.rint(rint * 100) / 100;
@@ -323,13 +333,47 @@ public class DubbingActivity extends DubbingPermissionActivity implements BaseQu
             map.put("size", duration);
             map.put("duration", recorderSecondsElapsed);
             map.put("language", language);
-            map.put("path", UrlConstants.RequestUrl.MP3_URL + key);
-            presenter.getSaveRecordData(map);
+            RequestBody requestBody = RequestBody.create(MediaType.parse("audio/mp3"), file);
+            MultipartBody.Part part = MultipartBody.Part.createFormData("recordFile", file.getName(), requestBody);
+//            map.put("path", UrlConstants.RequestUrl.MP3_URL + key); // TOdo recordFile
+            presenter.getSaveRecordData(map,part);
         }
 
+    }
+    /*
+    * TODO 上传录音
+    * */
+    public void upAudio(){
+        ArrayMap<String, Object> map = new ArrayMap<>();
+        if (photoRows != null && photoRows.size() > position) {
+            String id = photoRows.get(position).getId();
 
-        //
-        //
+            double duration = 0;
+            try {
+                file = new File(filePath);
+                long fileSize = SDFileHelper.getFileSize(new File(filePath));
+                double rint = SDFileHelper.FormetFileSize(fileSize);
+                duration = Math.rint(rint * 100) / 100;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (recordRows != null && recordRows.size() > position) {
+                String recordId = recordRows.get(position).getId();
+                map.put("id", recordId);
+            }
+//            map.put("token", token);
+            map.put("uid", uid);
+            map.put("pcid", id);
+            map.put("size", duration);
+            map.put("duration", recorderSecondsElapsed);
+            map.put("language", language); //application/x-www-form-urlencoded ,multipart/form-data
+            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            MultipartBody.Part part = MultipartBody.Part.createFormData("recordFile", file.getName(), requestBody);
+//            map.put("path", UrlConstants.RequestUrl.MP3_URL + key); // TOdo recordFile
+//            List<MultipartBody.Part> parts = new ArrayList<>();
+//            parts.add(part);
+            presenter.getSaveRecordData(map,part);
+        }
 
 
     }
@@ -337,6 +381,7 @@ public class DubbingActivity extends DubbingPermissionActivity implements BaseQu
     @Override
     protected void postDubbing() {
         super.postDubbing();
+
     }
 
     @Override

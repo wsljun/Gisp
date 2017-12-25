@@ -41,8 +41,8 @@ import zlc.season.rxdownload2.entity.DownloadFlag;
 import zlc.season.rxdownload2.entity.DownloadRecord;
 
 import static com.giiisp.giiisp.base.BaseActivity.isVip;
-//import static com.giiisp.giiisp.base.BaseActivity.token;
 import static com.giiisp.giiisp.base.BaseActivity.uid;
+import static com.giiisp.giiisp.base.BaseActivity.emailauthen;
 
 /**
  * '我的'页面
@@ -176,23 +176,23 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
         } else {
             tvUserEmail.setText("未绑定邮箱");
         }
-        if (TextUtils.isEmpty(userInfo.getIsVIP())) {  // TODO Test
+        if (TextUtils.isEmpty(userInfo.getEmailauthen())) {  // TODO Test TextUtils.isEmpty(userInfo.getIsVIP()) 修改字段 isvip 替换
             Log.d("Presenter", "initUser: isIVP: "+userInfo.getIsVIP());
-            isVip = "0";
+            emailauthen = "0";
             tvRecordinAuthentication.setText("去认证");
             tvRecordinAuthentication.setCompoundDrawables(null, null, null, null);
         } else {
+            emailauthen = userInfo.getEmailauthen(); // isvip = 1,2 认证完成 （身份认证判断），0 ：身份认证，3：认证中；
             isVip = userInfo.getIsVIP();
-            switch (userInfo.getIsVIP()) {
+            switch ("1") { // 新认证字段 // userInfo.getEmailauthen() todo test 1
                 case "0":
                     tvRecordinAuthentication.setText("去认证");
                     tvRecordinAuthentication.setCompoundDrawables(null, null, null, null);
                     break;
                 case "1":
-                case "2":
                     tvRecordinAuthentication.setText("开始配音");
                     break;
-                case "3":
+                case "2":
                     tvRecordinAuthentication.setText("正在认证中");
                     break;
                 default:
@@ -311,7 +311,7 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
                 break;
             case R.id.tv_recording_authentication:
                 //
-                switch (BaseActivity.isVip) {
+                switch ("1") { // TODO 开始录音是否Ok todo test 1 BaseActivity.emailauthen
                     case "0":
 
                        /* Utils.showToast("      认证请联系：\n" +
@@ -321,10 +321,9 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
 //                        VerifiedActivity.actionActivity(getContext());
                     break;
                     case "1":
-                    case "2":
-                        FragmentActivity.actionActivity(getContext(), "wait_dubbing");
+                        FragmentActivity.actionActivity(getContext(), "wait_dubbing"); // TODO 认证完成开始录音
                         break;
-                    case "3":
+                    case "2":
                         Utils.showToast(R.string.in_authentication);
                         break;
                     default:

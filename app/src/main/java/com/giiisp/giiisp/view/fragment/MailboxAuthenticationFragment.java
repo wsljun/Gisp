@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,9 +50,10 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 
 import static android.app.Activity.RESULT_OK;
+import static com.giiisp.giiisp.base.BaseActivity.emailauthen;
 import static com.giiisp.giiisp.base.BaseActivity.uid;
 
-//import static com.giiisp.giiisp.base.BaseActivity.token;
+import static com.giiisp.giiisp.base.BaseActivity.isVip;
 
 
 /**
@@ -62,6 +64,8 @@ import static com.giiisp.giiisp.base.BaseActivity.uid;
 public class MailboxAuthenticationFragment extends BaseMvpFragment<BaseImpl, WholePresenter> implements BaseImpl, View.OnClickListener {
     @BindView(R.id.tv_title)
     TextView tvTitle;
+    @BindView(R.id.tv_verified)
+    TextView tvVerified;
     @BindView(R.id.ed_enter_email)
     EditText edEnterEmail;
     @BindView(R.id.iv_email_tu)
@@ -80,6 +84,28 @@ public class MailboxAuthenticationFragment extends BaseMvpFragment<BaseImpl, Who
     public void initView() {
         tvTitle.setText(R.string.mailbox_authentication);
         progressPopupWindow = new ProgressPopupWindow((BaseActivity) getActivity());
+        if (TextUtils.isEmpty(isVip)) {  // TODO Test 修改字段 isvip 判断身份认证的显示状态
+            Log.d("Presenter", "initUser: isIVP: "+isVip);
+            isVip = "0";
+            tvVerified.setText(R.string.position_verified);
+            tvVerified.setCompoundDrawables(null, null, null, null);
+        } else {
+            switch (isVip) { // 新认证字段
+                case "0":
+                    tvVerified.setText(R.string.position_verified);
+                    tvVerified.setCompoundDrawables(null, null, null, null);
+                    break;
+                case "1":
+                case "2":
+                    tvVerified.setText("认证完成");
+                    tvVerified.setClickable(false);
+                    break;
+                case "3":
+                    tvVerified.setText("正在认证中");
+                    tvVerified.setClickable(false);
+                    break;
+            }
+        }
     }
 
     @Override
