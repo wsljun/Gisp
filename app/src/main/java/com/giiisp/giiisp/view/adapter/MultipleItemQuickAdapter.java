@@ -69,11 +69,11 @@ public class MultipleItemQuickAdapter extends BaseMultiItemQuickAdapter<ClickEnt
                     if (!TextUtils.isEmpty(userInfoEntity.getIsFollowed())) {
                         helper.getView(R.id.iv_attention).setSelected(userInfoEntity.getIsFollowed().equals("1"));
                     }
-                    if ( userInfo.getSex() == 1) {
-                        ImageLoader.getInstance().displayImage(context,R.mipmap.ic_sex_male,helper.getView(R.id.iv_sex));
+                    if (userInfo.getSex() == 1) {
+                        ImageLoader.getInstance().displayImage(context, R.mipmap.ic_sex_male, helper.getView(R.id.iv_sex));
                     }
-                    if ( userInfo.getSex() == 2) {
-                        ImageLoader.getInstance().displayImage(context,R.mipmap.ic_sex_female,helper.getView(R.id.iv_sex));
+                    if (userInfo.getSex() == 2) {
+                        ImageLoader.getInstance().displayImage(context, R.mipmap.ic_sex_female, helper.getView(R.id.iv_sex));
                     }
                     if (TextUtils.isEmpty(userInfo.getWeb())) {
                         helper.setText(R.id.tv_user_web, "未添加个人网址");
@@ -259,6 +259,7 @@ public class MultipleItemQuickAdapter extends BaseMultiItemQuickAdapter<ClickEnt
                                 ClickEntity clickEntity = new ClickEntity(row.getTitle(), row.getPath());
                                 clickEntity.setPaperId(row.getId() + "");
                                 clickEntity.setVersion(row.getVersion());
+                                clickEntity.setIsEncrypt(row.getIsEncrypt());
                                 list.add(clickEntity);
 
                             }
@@ -276,11 +277,26 @@ public class MultipleItemQuickAdapter extends BaseMultiItemQuickAdapter<ClickEnt
                     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                         ClickEntity clickEntity = (ClickEntity) adapter.getItem(position);
                         if (clickEntity != null) {
-                            String paperId =clickEntity.getPaperId();
+
+
+                            String paperId = clickEntity.getPaperId();
                             String version = clickEntity.getVersion();
                             ArrayList<String> arrayVersion = new ArrayList<>();
                             arrayVersion.add(version);
-                            PaperDetailsActivity.actionActivity(context, paperId, arrayVersion, "home");
+//                            PaperDetailsActivity.actionActivity(context, paperId, arrayVersion, "home");
+
+                            switch (item.getString()) {
+                                case "综述专栏":
+                                case "热门推荐":
+                                    if (clickEntity.getIsEncrypt().equals("0")) {
+                                        PaperDetailsActivity.checkPwd(context, paperId, arrayVersion, "home");
+                                    }
+                                    break;
+                                default:
+                                    PaperDetailsActivity.actionActivity(context, paperId, arrayVersion, "home");
+                                    break;
+
+                            }
                         }
 
 
@@ -290,6 +306,7 @@ public class MultipleItemQuickAdapter extends BaseMultiItemQuickAdapter<ClickEnt
         }
     }
 
+
     private void initChildRecylerView(ClickEntity item, List<ClickEntity> arrayList, RecyclerView recyclerView) {
         ItemClickAdapter itemClickAdapter = new ItemClickAdapter(context, R.layout.item_paper_indexes, arrayList, item.getString());
         itemClickAdapter.setOnItemClickListener(new OnItemClickListener() {
@@ -298,7 +315,7 @@ public class MultipleItemQuickAdapter extends BaseMultiItemQuickAdapter<ClickEnt
                 ClickEntity multipleItemQuickAdapterItem = (ClickEntity) adapter.getItem(position);
                 if (multipleItemQuickAdapterItem != null && multipleItemQuickAdapterItem.getSummarizeBean() != null) {
                     UserInfoEntity.SummarizeBean paper = multipleItemQuickAdapterItem.getSummarizeBean();
-                    if (paper!=null){
+                    if (paper != null) {
                         String id = paper.getId();
                         String version = paper.getVersion();
                         ArrayList<String> list = new ArrayList<>();
