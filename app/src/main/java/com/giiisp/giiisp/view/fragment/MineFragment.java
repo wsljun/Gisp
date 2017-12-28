@@ -184,7 +184,7 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
         } else {
             emailauthen = userInfo.getEmailauthen(); // isvip = 1,2 认证完成 （身份认证判断），0 ：身份认证，3：认证中；
             isVip = userInfo.getIsVIP();
-            switch ("1") { // 新认证字段 // userInfo.getEmailauthen() todo test 1
+            switch (emailauthen) { // 新认证字段 // userInfo.getEmailauthen() todo test 1
                 case "0":
                     tvRecordinAuthentication.setText("去认证");
                     tvRecordinAuthentication.setCompoundDrawables(null, null, null, null);
@@ -311,7 +311,7 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
                 break;
             case R.id.tv_recording_authentication:
                 //
-                switch ("1") { // TODO 开始录音是否Ok todo test 1 BaseActivity.emailauthen
+                switch (emailauthen) { // TODO 开始录音是否Ok todo test 1 BaseActivity.emailauthen
                     case "0":
 
                        /* Utils.showToast("      认证请联系：\n" +

@@ -336,5 +336,6 @@
     <string name="tishi_qtx">请填写完整内容</string>
     <string name="tishi_zsyg">至少选择两个认证人</string>
 
+    <string name="title_checkpwd">此文档需要输入密码</string>
     <item name="tag_app_size" type="id"/>
 </resources>

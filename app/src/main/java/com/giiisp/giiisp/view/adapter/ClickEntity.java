@@ -278,6 +278,16 @@ public class ClickEntity extends AbstractExpandableItem<ClickEntity> implements 
     private Note note;
     private String paperId;
 
+    private String isEncrypt;
+
+    public String getIsEncrypt() {
+        return isEncrypt;
+    }
+
+    public void setIsEncrypt(String isEncrypt) {
+        this.isEncrypt = isEncrypt;
+    }
+
     public TextView getDownloadStatus() {
         return downloadStatus;
     }
