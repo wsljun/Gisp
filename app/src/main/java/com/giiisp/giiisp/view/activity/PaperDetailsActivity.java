@@ -199,7 +199,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     public static String paperId;
     public static String id;
     private String storageId;
-    public static String downloadId;
+    public static String downloadId="";
     private ItemClickAdapter itemClickAdapter;
     private ArrayList<String> photoList;
     private ArrayList<String> recordOneList;
@@ -299,15 +299,15 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
 
     public static void actionActivity(Context context, String id, ArrayList<String> recordOneRows, ArrayList<String> recordTwoRows, ArrayList<String> photoRows, String type, String title) {
 //        checkPwd(context);
-//        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
-//        sIntent.putExtra("id", id);
-//        sIntent.putExtra("type", type);
-//        sIntent.putStringArrayListExtra("recordOneRows", recordOneRows);
-//        sIntent.putStringArrayListExtra("recordTwoRows", recordTwoRows);
-//        sIntent.putStringArrayListExtra("photoRows", photoRows);
-//        sIntent.putExtra("title", title);
-//        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-//        context.startActivity(sIntent);
+        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
+        sIntent.putExtra("id", id);
+        sIntent.putExtra("type", type);
+        sIntent.putStringArrayListExtra("recordOneRows", recordOneRows);
+        sIntent.putStringArrayListExtra("recordTwoRows", recordTwoRows);
+        sIntent.putStringArrayListExtra("photoRows", photoRows);
+        sIntent.putExtra("title", title);
+        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(sIntent);
     }
 
     public static void actionActivity(Context context) {
@@ -320,7 +320,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     @Override
     public void initData() {
         id = getIntent().getStringExtra("id");
-        //        downloadId = getIntent().getIntExtra("downloadId", -1);
+//        downloadId = getIntent().getStringExtra("id");
         type = getIntent().getStringExtra("type");
         title = getIntent().getStringExtra("title");
         version = getIntent().getStringArrayListExtra("version");
@@ -566,9 +566,9 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                         playService.setImageList(photoList);
                         playService.play(position);
                     }
-                    downloadId = string;
-                    paperId = "";
                 }
+                downloadId = id;
+                paperId = "";
 
                 break;
         }
@@ -1736,9 +1736,9 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                                 if (response.isSuccessful()) {
                                     // response.body() 返回 ResponseBody
                                     BaseEntity entity = response.body();
-                                    if(entity.getResult()==1){
+                                    if (entity.getResult() == 1) {
                                         PaperDetailsActivity.actionActivity(context, pid, v, "home");
-                                    }else{
+                                    } else {
                                         Utils.showToast(entity.getInfo());
                                     }
                                 }
