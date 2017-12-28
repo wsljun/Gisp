@@ -28,12 +28,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.giiisp.giiisp.R;
@@ -51,6 +53,7 @@ import com.giiisp.giiisp.entity.NoteDao;
 import com.giiisp.giiisp.entity.PaperDatailEntity;
 import com.giiisp.giiisp.entity.PaperEntity;
 import com.giiisp.giiisp.entity.Song;
+import com.giiisp.giiisp.entity.UserInfoEntity;
 import com.giiisp.giiisp.presenter.WholePresenter;
 import com.giiisp.giiisp.utils.ImageLoader;
 import com.giiisp.giiisp.utils.Utils;
@@ -70,6 +73,7 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 import com.shuyu.waveview.AudioPlayer;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.tencent.connect.UserInfo;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
@@ -274,7 +278,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     }
 
     public static void actionActivity(Context context, int id, String type) {
-        checkPwd(context); //todo
+        checkPwd(context);
 //        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
 //        sIntent.putExtra("id", id);
 //        sIntent.putExtra("type", type);
@@ -283,13 +287,13 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     }
 
     public static void actionActivity(Context context, String id, ArrayList<String> version, String type) {
-//        checkPwd(context);
-                Intent sIntent = new Intent(context, PaperDetailsActivity.class);
-        sIntent.putExtra("id", id);
-        sIntent.putExtra("type", type);
-        sIntent.putStringArrayListExtra("version", version);
-        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(sIntent);
+        checkPwd(context); //todo
+//        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
+//        sIntent.putExtra("id", id);
+//        sIntent.putExtra("type", type);
+//        sIntent.putStringArrayListExtra("version", version);
+//        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+//        context.startActivity(sIntent);
     }
 
     public static void actionActivity(Context context, String id, ArrayList<String> recordOneRows, ArrayList<String> recordTwoRows, ArrayList<String> photoRows, String type, String title) {
@@ -1712,14 +1716,49 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     }
 
 
-    public static void checkPwd(Context context){
-        Utils.showDialog((BaseActivity) context,"此文档需要输入密码", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Utils.showToast("开始请求");
-                ((BaseActivity) context).finish();
-            }
-        });
+    /**
+     * TODO  对论文进行 密码检查 未完成，
+     * step 1 : 判断   UserInfoEntity.UserInfoBean entity.getEmailauthen() ;
+     *          是否为 0 ；0：需要验证，1：不需要验证；
+     * step 2 : == 0 , showDialog --> 输入密码 --> presenter.checkPaperPwd(map);-->
+     *          成功 ： 进入论文详情；
+     *          失败 ： 重新输入密码；
+     *
+     * @param context
+     */
+    public  static void checkPwd(Context context){
+        UserInfoEntity.UserInfoBean entity = new UserInfoEntity.UserInfoBean();
+        entity.getEmailauthen();
+
+//        Utils.showDialog((BaseActivity) context,"此文档需要输入密码", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                Utils.showToast("开始请求");
+//                ((BaseActivity) context).finish();
+//            }
+//        });
+
+        final EditText editText = new EditText(context);
+        editText.setSingleLine();
+        AlertDialog.Builder inputDialog =
+                new AlertDialog.Builder(context);
+        inputDialog.setTitle("此文档需要输入密码")
+                   .setView(editText);
+        inputDialog.setPositiveButton("确定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(context,
+                                editText.getText().toString(),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+
+
+
+
 
     }
 }
