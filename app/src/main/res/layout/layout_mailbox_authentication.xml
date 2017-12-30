@@ -53,17 +53,7 @@
         android:textSize="@dimen/text_size" />
 
 
-    <TextView
-        android:id="@+id/tv_verified"
-        style="@style/text_12sp_colorwhite"
-        android:layout_width="174dp"
-        android:layout_height="41dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/item_blue_bg"
-        android:gravity="center"
-        android:text="@string/position_verified"
-        android:textSize="@dimen/text_size" />
+
 
 
 </LinearLayout>
