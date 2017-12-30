@@ -35,7 +35,6 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.giiisp.giiisp.R;
@@ -53,7 +52,7 @@ import com.giiisp.giiisp.entity.NoteDao;
 import com.giiisp.giiisp.entity.PaperDatailEntity;
 import com.giiisp.giiisp.entity.PaperEntity;
 import com.giiisp.giiisp.entity.Song;
-import com.giiisp.giiisp.entity.UserInfoEntity;
+import com.giiisp.giiisp.model.ModelFactory;
 import com.giiisp.giiisp.presenter.WholePresenter;
 import com.giiisp.giiisp.utils.ImageLoader;
 import com.giiisp.giiisp.utils.Utils;
@@ -73,7 +72,6 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 import com.shuyu.waveview.AudioPlayer;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.tencent.connect.UserInfo;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
@@ -94,6 +92,9 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import razerdp.basepopup.BasePopupWindow;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import zlc.season.rxdownload2.RxDownload;
 import zlc.season.rxdownload2.db.DataBaseHelper;
 import zlc.season.rxdownload2.entity.DownloadBean;
@@ -278,7 +279,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     }
 
     public static void actionActivity(Context context, int id, String type) {
-        checkPwd(context);
+//        checkPwd(context);
 //        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
 //        sIntent.putExtra("id", id);
 //        sIntent.putExtra("type", type);
@@ -287,17 +288,17 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     }
 
     public static void actionActivity(Context context, String id, ArrayList<String> version, String type) {
-        checkPwd(context); //todo
-//        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
-//        sIntent.putExtra("id", id);
-//        sIntent.putExtra("type", type);
-//        sIntent.putStringArrayListExtra("version", version);
-//        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-//        context.startActivity(sIntent);
+//        checkPwd(context);
+        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
+        sIntent.putExtra("id", id);
+        sIntent.putExtra("type", type);
+        sIntent.putStringArrayListExtra("version", version);
+        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(sIntent);
     }
 
     public static void actionActivity(Context context, String id, ArrayList<String> recordOneRows, ArrayList<String> recordTwoRows, ArrayList<String> photoRows, String type, String title) {
-        checkPwd(context);
+//        checkPwd(context);
 //        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
 //        sIntent.putExtra("id", id);
 //        sIntent.putExtra("type", type);
@@ -310,11 +311,12 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     }
 
     public static void actionActivity(Context context) {
-        checkPwd(context);
+//        checkPwd(context);
 //        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
 //        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 //        context.startActivity(sIntent);
     }
+
     @Override
     public void initData() {
         id = getIntent().getStringExtra("id");
@@ -339,7 +341,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
             }
         }
 //        storageId = id + string;
-        storageId =  id;
+        storageId = id;
         photoList = getIntent().getStringArrayListExtra("photoRows");
         recordOneList = getIntent().getStringArrayListExtra("recordOneRows");
         recordTwoList = getIntent().getStringArrayListExtra("recordTwoRows");
@@ -361,6 +363,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
 
 
     }
+
     @Override
     public void initView() {
         fullScreenPopup = new FullScreenPopupWindow(this);
@@ -621,6 +624,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
         }
         super.initNetwork();
     }
+
     @SuppressLint("WrongConstant")
     @OnClick({R.id.tv_back, R.id.iv_fullscreen_button, R.id.iv_empty, R.id.tv_empty, R.id.tv_paper_marrow, R.id.tv_paper_complete, R.id.tv_paper_abstract, R.id.tv_cn, R.id.tv_en, R.id.tv_liked_number, R.id.fl_paper_play, R.id.iv_fast_forward, R.id.iv_back_off, R.id.iv_play_stop, R.id.et_comm_post, R.id.fl_download, R.id.fl_collection, R.id.fl_share})
     public void onViewClicked(View view) {
@@ -1543,7 +1547,6 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     }
 
 
-
     private class ImageAdapter extends PagerAdapter {
 
         private List<ImageView> viewlist;
@@ -1622,8 +1625,6 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
         Log.i("--->>", "onKeyDown: " + keyCode);
         return super.onKeyDown(keyCode, event);
     }
-
-
 
 
     public void loadDownloadNunber() {
@@ -1716,49 +1717,42 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     }
 
 
-    /**
-     * TODO  对论文进行 密码检查 未完成，
-     * step 1 : 判断   UserInfoEntity.UserInfoBean entity.getEmailauthen() ;
-     *          是否为 0 ；0：需要验证，1：不需要验证；
-     * step 2 : == 0 , showDialog --> 输入密码 --> presenter.checkPaperPwd(map);-->
-     *          成功 ： 进入论文详情；
-     *          失败 ： 重新输入密码；
-     *
-     * @param context
-     */
-    public  static void checkPwd(Context context){
-        UserInfoEntity.UserInfoBean entity = new UserInfoEntity.UserInfoBean();
-        entity.getEmailauthen();
-
-//        Utils.showDialog((BaseActivity) context,"此文档需要输入密码", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                Utils.showToast("开始请求");
-//                ((BaseActivity) context).finish();
-//            }
-//        });
-
-        final EditText editText = new EditText(context);
-        editText.setSingleLine();
-        AlertDialog.Builder inputDialog =
-                new AlertDialog.Builder(context);
-        inputDialog.setTitle("此文档需要输入密码")
-                   .setView(editText);
-        inputDialog.setPositiveButton("确定",
+    public static void checkPwd(Context context, String pid, ArrayList<String> v, String type) {
+        final EditText inputServer = new EditText(context);
+        inputServer.setPadding(50, 50, 50, 50);
+        inputServer.setFocusable(true);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(context.getString(R.string.title_checkpwd)).setView(inputServer).setNegativeButton(R.string.cancel, null);
+        builder.setPositiveButton(R.string.confirm,
                 new DialogInterface.OnClickListener() {
-                    @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(context,
-                                editText.getText().toString(),
-                                Toast.LENGTH_SHORT).show();
+                        String inputName = inputServer.getText().toString();
+                        ArrayMap<String, Object> map = new ArrayMap<>();
+                        map.put("pwd", inputName);
+                        map.put("pid", pid);
+                        ModelFactory.getBaseModel().checkPaperPwd(map, new Callback<BaseEntity>() {
+                            @Override
+                            public void onResponse(Call<BaseEntity> call, Response<BaseEntity> response) {
+                                if (response.isSuccessful()) {
+                                    // response.body() 返回 ResponseBody
+                                    BaseEntity entity = response.body();
+                                    if(entity.getResult()==1){
+                                        PaperDetailsActivity.actionActivity(context, pid, v, "home");
+                                    }else{
+                                        Utils.showToast(entity.getInfo());
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<BaseEntity> call, Throwable t) {
+
+                            }
+                        });
                     }
-                })
-                .setNegativeButton(R.string.cancel, null)
-                .show();
-
-
-
-
-
+                });
+        builder.show();
     }
+
+
 }
