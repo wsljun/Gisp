@@ -23,8 +23,7 @@
                       android:background="@color/colorBackground"
                       android:orientation="vertical">
 
-            <include layout="@layout/item_user_info"
-                />
+            <include layout="@layout/item_user_info" />
 
             <TextView
                 android:id="@+id/tv_recording_authentication"

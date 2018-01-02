@@ -144,7 +144,7 @@ public class EditInfoFragment extends BaseMvpFragment<BaseImpl, WholePresenter> 
                 String self = editText.getText().toString();
                 if (!TextUtils.isEmpty(self)) {
                     MultipartBody.Part part1 = MultipartBody.Part.createFormData("self_introduction", self);
-                    ((VerifiedActivity) getActivity()).parts.add(part1); // Todo au NO 上传照片
+                    ((VerifiedActivity) getActivity()).parts.add(part1);
                 }
                 getVerifiedActivity().getViewPagerVerified().setCurrentItem(1);
                 break;

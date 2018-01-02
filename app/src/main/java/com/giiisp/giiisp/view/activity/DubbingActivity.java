@@ -260,7 +260,6 @@ public class DubbingActivity extends DubbingPermissionActivity implements BaseQu
                 back = false;
                 resolveStopRecord();
                 resolvePausePlayRecord();
-//                postDubbing(); TODO 直接上传
                 upAudio();
 
                 break;
@@ -341,7 +340,7 @@ public class DubbingActivity extends DubbingPermissionActivity implements BaseQu
 
     }
     /*
-    * TODO 上传录音
+    * 传录音
     * */
     public void upAudio(){
         ArrayMap<String, Object> map = new ArrayMap<>();
@@ -372,12 +371,6 @@ public class DubbingActivity extends DubbingPermissionActivity implements BaseQu
             map.put("language", language); //application/x-www-form-urlencoded ,multipart/form-data
             RequestBody requestBody = RequestBody.create(MediaType.parse("audio/mp3"), file);
             MultipartBody.Part part = MultipartBody.Part.createFormData("recordFile", file.getName(), requestBody);
-            // form 表单形式上传
-//            MultipartBody.Builder multipartbody = new MultipartBody.Builder().setType(MultipartBody.FORM)
-//                            .add;
-//            map.put("path", UrlConstants.RequestUrl.MP3_URL + key); // TOdo recordFile
-//            List<MultipartBody.Part> parts = new ArrayList<>();
-//            parts.add(part);
             presenter.getSaveRecordData(map,part);
         }
 

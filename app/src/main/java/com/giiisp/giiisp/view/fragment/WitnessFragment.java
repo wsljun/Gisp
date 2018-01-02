@@ -102,8 +102,8 @@ public class WitnessFragment extends BaseMvpFragment<BaseImpl, WholePresenter> i
             netType = 2;
             MultipartBody.Part part1 = MultipartBody.Part.createFormData("ids",ids);
             MultipartBody.Part part2 = MultipartBody.Part.createFormData("uid",uid);
-            ((VerifiedActivity) getActivity()).parts.add(part1); // todo bug
-            ((VerifiedActivity) getActivity()).parts.add(part2); // todo au
+            ((VerifiedActivity) getActivity()).parts.add(part1);
+            ((VerifiedActivity) getActivity()).parts.add(part2);
 
             presenter.userAuthen(((VerifiedActivity) getActivity()).parts);
 
@@ -130,7 +130,7 @@ public class WitnessFragment extends BaseMvpFragment<BaseImpl, WholePresenter> i
                             UserInfoEntity.UserInfoBean admin =  new UserInfoEntity.UserInfoBean();
                             admin.setId("admin");
                             admin.setRealName("集思谱官方认证");
-                            list.add(0,admin); //TODO　admin
+                            list.add(0,admin);
                             if (null != list && list.size() > 0) {
                                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                                 listClick = new ArrayList<>();

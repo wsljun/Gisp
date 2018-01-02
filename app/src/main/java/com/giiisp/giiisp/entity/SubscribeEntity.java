@@ -89,6 +89,15 @@ public class SubscribeEntity extends BaseEntity {
             private PhotoOneBean photoOne;
             private PhotoOneBean photoTwo;
             private PhotoOneBean photoThree;
+            private String isEncrypt;
+
+            public String getIsEncrypt() {
+                return isEncrypt;
+            }
+
+            public void setIsEncrypt(String isEncrypt) {
+                this.isEncrypt = isEncrypt;
+            }
 
             public String getId() {
                 return id;

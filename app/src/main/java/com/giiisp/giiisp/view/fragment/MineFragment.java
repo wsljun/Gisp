@@ -176,7 +176,7 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
         } else {
             tvUserEmail.setText("未绑定邮箱");
         }
-        if (TextUtils.isEmpty(userInfo.getEmailauthen())) {  // TODO Test TextUtils.isEmpty(userInfo.getIsVIP()) 修改字段 isvip 替换
+        if (TextUtils.isEmpty(userInfo.getEmailauthen())) {  //  Test TextUtils.isEmpty(userInfo.getIsVIP()) 修改字段 isvip 替换
             Log.d("Presenter", "initUser: isIVP: "+userInfo.getIsVIP());
             emailauthen = "0";
             tvRecordinAuthentication.setText("去认证");
@@ -184,7 +184,7 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
         } else {
             emailauthen = userInfo.getEmailauthen(); // isvip = 1,2 认证完成 （身份认证判断），0 ：身份认证，3：认证中；
             isVip = userInfo.getIsVIP();
-            switch (emailauthen) { // 新认证字段 // userInfo.getEmailauthen() todo test 1
+            switch (emailauthen) { // 新认证字段 // userInfo.getEmailauthen()
                 case "0":
                     tvRecordinAuthentication.setText("去认证");
                     tvRecordinAuthentication.setCompoundDrawables(null, null, null, null);
@@ -311,7 +311,7 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
                 break;
             case R.id.tv_recording_authentication:
                 //
-                switch (emailauthen) { // TODO 开始录音是否Ok todo test 1 BaseActivity.emailauthen
+                switch (emailauthen) { //  开始录音是否Ok  test 1 BaseActivity.emailauthen
                     case "0":
 
                        /* Utils.showToast("      认证请联系：\n" +
@@ -321,7 +321,7 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
 //                        VerifiedActivity.actionActivity(getContext());
                     break;
                     case "1":
-                        FragmentActivity.actionActivity(getContext(), "wait_dubbing"); // TODO 认证完成开始录音
+                        FragmentActivity.actionActivity(getContext(), "wait_dubbing"); //  认证完成开始录音
                         break;
                     case "2":
                         Utils.showToast(R.string.in_authentication);

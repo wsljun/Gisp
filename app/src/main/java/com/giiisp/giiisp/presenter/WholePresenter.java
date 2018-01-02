@@ -576,7 +576,7 @@ public class WholePresenter extends BasePresenter<BaseImpl> {
         });
     }
 
-    public void getCancelFollowUserData(ArrayMap<String, Object> options) {
+    public void getCancelFollowUserData(ArrayMap<String, Object> options) { // TODO getCancelFollowUserData
         ModelFactory.getBaseModel().getCancelFollowUserData(options, new Callback<BaseEntity>() {
             @Override
             public void onResponse(Call<BaseEntity> call, Response<BaseEntity> response) {
@@ -976,7 +976,7 @@ public class WholePresenter extends BasePresenter<BaseImpl> {
             public void onResponse(Call<BaseEntity> call, Response<BaseEntity> response) {
                 if (response.isSuccessful()) {
                     // response.body() 返回 ResponseBody
-                    BaseEntity entity = response.body();//TODO fail
+                    BaseEntity entity = response.body();
                     impl.onSuccess(entity);
                 }
             }
@@ -1331,7 +1331,7 @@ public class WholePresenter extends BasePresenter<BaseImpl> {
     }
 
 
-    //TODO 验证论文密码
+    // 验证论文密码
     public void checkPaperPwd(ArrayMap<String, Object> options) {
         ModelFactory.getBaseModel().checkPaperPwd(options, new Callback<BaseEntity>() {
             @Override

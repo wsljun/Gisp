@@ -84,7 +84,7 @@ public class MailboxAuthenticationFragment extends BaseMvpFragment<BaseImpl, Who
     public void initView() {
         tvTitle.setText(R.string.mailbox_authentication);
         progressPopupWindow = new ProgressPopupWindow((BaseActivity) getActivity());
-        if (TextUtils.isEmpty(isVip)) {  // TODO Test 修改字段 isvip 判断身份认证的显示状态
+        if (TextUtils.isEmpty(isVip)) {  //  Test 修改字段 isvip 判断身份认证的显示状态
             Log.d("Presenter", "initUser: isIVP: "+isVip);
             isVip = "0";
             tvVerified.setText(R.string.position_verified);
@@ -128,7 +128,7 @@ public class MailboxAuthenticationFragment extends BaseMvpFragment<BaseImpl, Who
                 } else if (part == null) {
                     Utils.showToast(R.string.email_not_tu);
                 } else {
-                    ArrayMap<String, Object> map = new ArrayMap<>(); // todo
+                    ArrayMap<String, Object> map = new ArrayMap<>();
                     map.put("email", trim);
                     map.put("uid", uid);
                     presenter.getAuthenUserlData(trim, uid, part);
@@ -198,7 +198,6 @@ public class MailboxAuthenticationFragment extends BaseMvpFragment<BaseImpl, Who
         if (progressPopupWindow != null) {
             progressPopupWindow.dismiss();
         }
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show(); //TODO
     }
 
     private void initDialog(String string, DialogInterface.OnClickListener listener) {
