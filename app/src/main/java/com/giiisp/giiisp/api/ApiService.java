@@ -80,7 +80,7 @@ public interface ApiService {
     //更新用户头像接口
     @Multipart
     @POST(UrlConstants.RequestUrl.USER_UPDATE_PORTRAIT)
-    Call<BaseEntity> getUpdatePortraitInfo(@Query("uid") String uid, @Part MultipartBody.Part filePrta); // TODO img
+    Call<BaseEntity> getUpdatePortraitInfo(@Query("uid") String uid, @Part MultipartBody.Part filePrta);
 
     //检查指定手机号是否注册
     @GET(UrlConstants.RequestUrl.EXAMINE_PHONE)
@@ -269,7 +269,7 @@ public interface ApiService {
     @Multipart
     @POST(UrlConstants.RequestUrl.SAVE_RECORD)
 //    @Headers("Connection:close")
-    Call<BaseEntity> getSaveRecordInfo(@QueryMap ArrayMap<String, Object> options, @Part MultipartBody.Part parts); // TODO audio
+    Call<BaseEntity> getSaveRecordInfo(@QueryMap ArrayMap<String, Object> options, @Part MultipartBody.Part parts);
 
     //首页
     @FormUrlEncoded

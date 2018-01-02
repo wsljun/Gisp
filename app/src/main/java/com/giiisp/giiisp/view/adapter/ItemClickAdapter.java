@@ -127,7 +127,7 @@ public class ItemClickAdapter extends BaseQuickAdapter<ClickEntity, BaseViewHold
                     if (item.getUserInfo() != null) {
                         helper.setText(R.id.tv_user_name, item.getUserInfo().getRealName());
                         helper.setText(R.id.tv_user_position, item.getUserInfo().getPosition());
-                        if( item.getUserInfo().getId().equals("admin")){ //  TODO admin
+                        if( item.getUserInfo().getId().equals("admin")){ //   admin
                             helper.setImageResource(R.id.iv_user_icon,R.mipmap.about_logo);
 //                          ((ImageView) helper.getView(R.id.iv_user_icon)).setImageResource(R.mipmap.about_logo);
                                   //setBackgroundResource(R.mipmap.about_logo);
@@ -495,14 +495,14 @@ public class ItemClickAdapter extends BaseQuickAdapter<ClickEntity, BaseViewHold
                     }
                     break;
                 case R.layout.item_scholar_education:
-                   final UserInfoEntity.IntroductionBean introductionBean = item.getIntroduction();
-                    helper.setText(R.id.tv_description,"getSchool" );//introductionBean.getSchool()
-//                    String start = introductionBean.getTimeStart().substring(0, 4);
-//                    String end = introductionBean.getTimeEnd().substring(0, 4);
-//                    String major = introductionBean.getMajor();
-//                    String degree = introductionBean.getDegree();
-//                    helper.setText(R.id.tv_university_name, start + "~" + end + ", " + major + ", " + degree);
-                    helper.setText(R.id.tv_university_name, "start + end +,  + major + , + degree");
+                   final UserInfoEntity.IntroductionBean introductionBean = item.getIntroduction(); // Todo 学者详情需要更改
+                    helper.setText(R.id.tv_description,introductionBean.getSchool() );//introductionBean.getSchool()
+                    String start = introductionBean.getTimeStart().substring(0, 4);
+                    String end = introductionBean.getTimeEnd().substring(0, 4);
+                    String major = introductionBean.getMajor();
+                    String degree = introductionBean.getDegree();
+                    helper.setText(R.id.tv_university_name, start + "~" + end + ", " + major + ", " + degree);
+//                    helper.setText(R.id.tv_university_name,item.getString()+item.getUrl());
                     helper.getView(R.id.tv_edit).setOnClickListener(new View.OnClickListener() {
                             @Override
                         public void onClick(View view) {
@@ -801,7 +801,7 @@ public class ItemClickAdapter extends BaseQuickAdapter<ClickEntity, BaseViewHold
                         helper.setText(R.id.tv_position, rowsBeanHomeEntity.getOrganization());
                         ImageLoader.getInstance().displayCricleImage(activity, rowsBeanHomeEntity.getAvatar(), (ImageView) helper.getView(R.id.iv_user_icon));
 
-                        final String isFollowed = rowsBeanHomeEntity.getIsFollowed();
+                        final String isFollowed = rowsBeanHomeEntity.getIsFollowed(); // todo 关注
                         final String id = rowsBeanHomeEntity.getId();
                         helper.getView(R.id.iv_user_icon).setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -848,7 +848,7 @@ public class ItemClickAdapter extends BaseQuickAdapter<ClickEntity, BaseViewHold
                                     });
                                     break;
                                 case "2":
-                                    textViewAttention.setText("互相关注");
+                                    textViewAttention.setText("互相关注"); // TODO 关注
                                     textViewAttention.setBackground(null);
                                     textViewAttention.setOnClickListener(new View.OnClickListener() {
                                         @Override

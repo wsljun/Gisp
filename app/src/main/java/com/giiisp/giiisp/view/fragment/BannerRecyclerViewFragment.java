@@ -742,7 +742,7 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
                 }
                 itemClickAdapter = new ItemClickAdapter((BaseActivity) getActivity(), R.layout.item_collection, this.list, type);
                 break;
-            case "wait_dubbing": // TODo test
+            case "wait_dubbing": //  test
                 tvTitle.setText(R.string.voice_file_list);
                 ivMenu.setImageResource(R.mipmap.dubbing_refresh);
                 ivMenu.setVisibility(View.VISIBLE);
@@ -1813,10 +1813,10 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
 
                     String version = playsItem.getNote().getVersions();
 
-                    String paperId = id + version;
+                    String paperId = id ; // 取消 版本拼接 + version
                     ArrayList<String> list = new ArrayList<>();
                     list.add(version);
-                    if (list.size() > 0 && TextUtils.isEmpty(paperId))
+                    if (list.size() > 0 && !TextUtils.isEmpty(paperId))
                         PaperDetailsActivity.actionActivity(getContext(), paperId, list, type);
                 }
                 break;
@@ -1980,8 +1980,14 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
                     if (photoOne != null && photoOne.getRows() != null && photoOne.getRows().size() > 0) {
                         version.add("0");
                     }
-                    if (version.size() > 0 && TextUtils.isEmpty(id))
-                        PaperDetailsActivity.actionActivity(getContext(), id, version, "online_paper");
+                    if (version.size() > 0 && !TextUtils.isEmpty(id)){
+                        if (subscribeEntityRows.getIsEncrypt().equals("0")) { // TODO checkpwd
+                            PaperDetailsActivity.checkPwd(getContext(), id, version, "home");
+                        }else{
+                            PaperDetailsActivity.actionActivity(getContext(), id, version, "online_paper");
+                        }
+                    }
+
                 }
                 break;
             case "newest":
@@ -2003,7 +2009,7 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
                     ArrayList<String> list = new ArrayList<>();
                     if (!TextUtils.isEmpty(version))
                         list.add(version);
-                    if (list.size() > 0 && TextUtils.isEmpty(id))
+                    if (list.size() > 0 && !TextUtils.isEmpty(id))
                         PaperDetailsActivity.actionActivity(getContext(), id, list, type);
                 }
                 break;
@@ -2017,7 +2023,7 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
                     ArrayList<String> list = new ArrayList<>();
                     if (!TextUtils.isEmpty(version))
                         list.add(version);
-                    if (list.size() > 0 && TextUtils.isEmpty(id))
+                    if (list.size() > 0 && !TextUtils.isEmpty(id))
                         PaperDetailsActivity.actionActivity(getContext(), id, list, type);
                 }
                 break;
@@ -2085,7 +2091,7 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
                 //                           itemClickAdapter.getItem()
                 break;
 
-            case R.id.tv_release_dubbing:  // TODO 发布
+            case R.id.tv_release_dubbing:  //  发布
 
                 if (dubbingAdapter != null) {
                     ClickEntity item = dubbingAdapter.getItem(position);
@@ -2120,7 +2126,7 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
                 }
 
                 break;
-            case R.id.tv_preview_dubbing: // TODO 预览按钮
+            case R.id.tv_preview_dubbing: //  预览按钮
                 if (dubbingAdapter != null) {
                     ClickEntity item = dubbingAdapter.getItem(position);
                     if (item != null) {
@@ -2137,7 +2143,7 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
                     }
                 }
                 break;
-            case R.id.tv_edit_dubbing: // TODO 编辑
+            case R.id.tv_edit_dubbing: //  编辑
                 if (dubbingAdapter == null)
                     return;
                 ClickEntity dubbing = dubbingAdapter.getItem(position);
@@ -2221,7 +2227,7 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
                 }
 
                 break;
-            case R.id.iv_attention:
+            case R.id.iv_attention: // TODO  iv_attention
                 ClickEntity item1 = multipleItemQuickAdapter.getItem(position);
                 if (BaseActivity.uid.equals("15")) {
                     AlertDialog.Builder normalDialog =
@@ -2246,11 +2252,11 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
 //                        map.put("token", token);
                         map.put("oid", id);
                         map.put("uid", uid);
-                        switch (userInfoEntity.getIsFollowed()) {
-                            case "0":
+                        switch (userInfoEntity.getIsFollowed()) { // TODO getIsFollowed 1 未关注。0以关注
+                            case "1":
                                 presenter.getSaveFollowUserData(map);
                                 break;
-                            case "1":
+                            case "0":
                                 Utils.showDialog((BaseActivity) getActivity(), getString(R.string.determine_cancel_attention), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {

@@ -24,7 +24,7 @@ public class UserInfoEntity extends BaseEntity {
     private NumBean num;
     private SummarizeBean summarize;
     private AuthenBean authen;
-    private String isFollowed;
+    private String isFollowed; // 0 已关注 1 未关注
     private List<IntroductionBean> introduction;
 
     public UserInfoBean getUserInfo() {
@@ -300,7 +300,15 @@ public class UserInfoEntity extends BaseEntity {
         private AuthorsBeanX authors;
         private String digest;
         private String version;
+        private String isEncrypt;
 
+        public String getIsEncrypt() {
+            return isEncrypt;
+        }
+
+        public void setIsEncrypt(String isEncrypt) {
+            this.isEncrypt = isEncrypt;
+        }
         public String getId() {
             return id;
         }

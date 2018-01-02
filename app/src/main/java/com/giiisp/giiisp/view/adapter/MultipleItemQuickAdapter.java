@@ -67,7 +67,7 @@ public class MultipleItemQuickAdapter extends BaseMultiItemQuickAdapter<ClickEnt
                     helper.setText(R.id.tv_fans_number, num.getFollowedNum() + "");
                     helper.setText(R.id.tv_follow_number, num.getFollowNum() + "");
                     if (!TextUtils.isEmpty(userInfoEntity.getIsFollowed())) {
-                        helper.getView(R.id.iv_attention).setSelected(userInfoEntity.getIsFollowed().equals("1"));
+                        helper.getView(R.id.iv_attention).setSelected(userInfoEntity.getIsFollowed().equals("0"));
                     }
                     if (userInfo.getSex() == 1) {
                         ImageLoader.getInstance().displayImage(context, R.mipmap.ic_sex_male, helper.getView(R.id.iv_sex));
@@ -92,7 +92,7 @@ public class MultipleItemQuickAdapter extends BaseMultiItemQuickAdapter<ClickEnt
                     }
                     helper.setVisible(R.id.iv_attention, !Objects.equals(item.getPaperId(), uid + ""));
                     helper.setVisible(R.id.tv_user_phone, Objects.equals(item.getPaperId(), uid + ""));
-                    helper.getView(R.id.iv_attention).setSelected(Objects.equals("1", userInfoEntity.getIsFollowed()));
+                    helper.getView(R.id.iv_attention).setSelected(Objects.equals("0", userInfoEntity.getIsFollowed())); // todo getIsFollowed
                     ImageLoader.getInstance().displayCricleImage(context, userInfo.getAvatar(), (ImageView) helper.getView(R.id.iv_user_icon));
                     helper.setText(R.id.tv_prompt, userInfo.getSchool() + " " + userInfo.getDegree());
                     helper.setVisible(R.id.tv_user_position, !TextUtils.isEmpty(userInfo.getDomain()) || !TextUtils.isEmpty(userInfo.getPosition()));
@@ -157,9 +157,12 @@ public class MultipleItemQuickAdapter extends BaseMultiItemQuickAdapter<ClickEnt
                                         buffer.append(" ");
                                         buffer.append(introductionBean.getEduBackground());
                                     }
-                                    arrayList.add(new ClickEntity(introductionBean.getTimeStart() + "~" + introductionBean.getTimeEnd(), buffer.toString()));
+//                                    arrayList.add(new ClickEntity(introductionBean.getTimeStart() + "~" + introductionBean.getTimeEnd(), buffer.toString()));
+                                    // TODO 学者详情页
+                                    arrayList.add(new ClickEntity(introductionBean));
                                 }
                             }
+
                             title = "学者简介";
                             recyclerView.setAdapter(new ItemClickAdapter(context, R.layout.item_scholar_education, arrayList, item.getString()));
 

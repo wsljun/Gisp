@@ -123,7 +123,7 @@ public class UserUploadFragment extends BaseFragment implements View.OnClickList
             public void onClick(DialogInterface dialogInterface, int i) {
                 icAndpassport.setText(getString(R.string.icAndpassport_one));
                 MultipartBody.Part part = MultipartBody.Part.createFormData("icAndpassport", "1");
-                ((VerifiedActivity) getActivity()).parts.add(part); // todo au
+                ((VerifiedActivity) getActivity()).parts.add(part);
             }
         });
         builder.setPositiveButton(getString(R.string.icAndpassport_two),
@@ -131,7 +131,7 @@ public class UserUploadFragment extends BaseFragment implements View.OnClickList
                     public void onClick(DialogInterface dialog, int which) {
                         icAndpassport.setText(getString(R.string.icAndpassport_two));
                         MultipartBody.Part part = MultipartBody.Part.createFormData("icAndpassport", "2");
-                        ((VerifiedActivity) getActivity()).parts.add(part);  // todo au
+                        ((VerifiedActivity) getActivity()).parts.add(part);
                     }
                 });
         builder.show();
@@ -145,7 +145,7 @@ public class UserUploadFragment extends BaseFragment implements View.OnClickList
             public void onClick(DialogInterface dialogInterface, int i) {
                 zzAndzd.setText(getString(R.string.zzAndzd_one));
                 MultipartBody.Part part = MultipartBody.Part.createFormData("zzAndzd", "3");
-                ((VerifiedActivity) getActivity()).parts.add(part);  // todo au
+                ((VerifiedActivity) getActivity()).parts.add(part);
             }
         });
         builder.setPositiveButton(getString(R.string.zzAndzd_two),
@@ -154,7 +154,7 @@ public class UserUploadFragment extends BaseFragment implements View.OnClickList
                     public void onClick(DialogInterface dialog, int which) {
                         zzAndzd.setText(getString(R.string.zzAndzd_two));
                         MultipartBody.Part part = MultipartBody.Part.createFormData("zzAndzd", "4");
-                        ((VerifiedActivity) getActivity()).parts.add(part);  // todo au
+                        ((VerifiedActivity) getActivity()).parts.add(part);
                     }
                 });
         builder.show();
@@ -264,7 +264,7 @@ public class UserUploadFragment extends BaseFragment implements View.OnClickList
 
                     RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpg"), file);
                     MultipartBody.Part part = MultipartBody.Part.createFormData(param, file.getName(), requestBody);
-                    ((VerifiedActivity) getActivity()).parts.add(part);  // todo au
+                    ((VerifiedActivity) getActivity()).parts.add(part);
 
                     imageLoad();
                 } else {
@@ -278,7 +278,7 @@ public class UserUploadFragment extends BaseFragment implements View.OnClickList
 
                         RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpg"), file);
                         MultipartBody.Part part = MultipartBody.Part.createFormData(param, file.getName(), requestBody);
-                        ((VerifiedActivity) getActivity()).parts.add(part); // todo au
+                        ((VerifiedActivity) getActivity()).parts.add(part);
 
                         imageLoad();
                     } else {
