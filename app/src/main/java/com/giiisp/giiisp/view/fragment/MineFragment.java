@@ -283,7 +283,7 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
     @Override
     public void onResume() {
         super.onResume();
-        loadDownloadNunber();
+        onRefresh();
     }
 
     @Override
@@ -397,7 +397,7 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
                     case "2":
                         break;
                     case "3":
-                        VerifiedActivity.actionActivity(context);
+                        Utils.showToast(R.string.in_authentication);
                         break;
                 }
                 break;
