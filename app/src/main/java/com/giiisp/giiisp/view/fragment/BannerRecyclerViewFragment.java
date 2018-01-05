@@ -1981,7 +1981,7 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
                         version.add("2");
                     }
                     if (version.size() > 0 && !TextUtils.isEmpty(id)) {
-                        if (subscribeEntityRows.getIsEncrypt().equals("0")) { // TODO checkpwd
+                        if (null != subscribeEntityRows.getIsEncrypt() && subscribeEntityRows.getIsEncrypt().equals("0")) { // TODO checkpwd
                             PaperDetailsActivity.checkPwd(getContext(), id, version, "online_paper");
                         } else {
                             PaperDetailsActivity.actionActivity(getContext(), id, version, "online_paper");
