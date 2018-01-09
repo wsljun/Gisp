@@ -341,15 +341,24 @@ public class UserInfoFragment extends BaseMvpFragment<BaseImpl, WholePresenter> 
             tvUserPhone.setText(userInfoEntity.getUserInfo().getMobile());
         }
         if (Utils.checkEmail(userInfoEntity.getUserInfo().getEmail())) {
-            tvUserEmail.setText(userInfoEntity.getUserInfo().getEmail());
+            tvUserEmail.setText(userInfoEntity.getUserInfo().getEmail().trim());
         }
         if (userInfoEntity.getAuthen()== null) {
             return;
         }
-        tvUserMechanism.setText(userInfoEntity.getAuthen().getOrganization());
-        tvUserPosition.setText(userInfoEntity.getAuthen().getPosition());
-        tvUserResume.setText(userInfoEntity.getAuthen().getDepartment());
-        tvUserWeb.setText(userInfoEntity.getUserInfo().getWeb());
+        if(TextUtils.isEmpty(userInfoEntity.getAuthen().getOrganization())){
+            tvUserMechanism.setText(userInfoEntity.getAuthen().getOrganization());
+        }
+        if(TextUtils.isEmpty(userInfoEntity.getAuthen().getOrganization())){
+            tvUserPosition.setText(userInfoEntity.getAuthen().getPosition());
+        }
+
+        if(TextUtils.isEmpty(userInfoEntity.getAuthen().getOrganization())){
+            tvUserResume.setText(userInfoEntity.getAuthen().getDepartment());
+        }
+        if(TextUtils.isEmpty(userInfoEntity.getAuthen().getOrganization())){
+            tvUserWeb.setText(userInfoEntity.getUserInfo().getWeb());
+        }
     }
 
     private void inputTitleDialog(final TextView view, final String name) {

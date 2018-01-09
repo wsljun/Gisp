@@ -199,7 +199,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     public static String paperId;
     public static String id;
     private String storageId;
-    public static String downloadId;
+    public static String downloadId="";
     private ItemClickAdapter itemClickAdapter;
     private ArrayList<String> photoList;
     private ArrayList<String> recordOneList;
@@ -1738,7 +1738,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                                     // response.body() 返回 ResponseBody
                                     BaseEntity entity = response.body();
                                     if(entity.getResult()==1){
-                                        PaperDetailsActivity.actionActivity(context, pid, v, "home");
+                                        PaperDetailsActivity.actionActivity(context, pid, v, type);
                                     }else{
                                         Utils.showToast(entity.getInfo());
                                     }
