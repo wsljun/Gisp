@@ -108,7 +108,8 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
     ImageView ivSex;
     @BindView(R.id.tv_user_web)
     TextView tvUserWeb;
-
+    @BindView(R.id.tv_verified)
+    TextView tvVerified;
     private int downloadNunber;
     private String imageUrl = "";
 
@@ -176,15 +177,15 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
         } else {
             tvUserEmail.setText("未绑定邮箱");
         }
-        if (TextUtils.isEmpty(userInfo.getEmailauthen())) {  // TODO Test TextUtils.isEmpty(userInfo.getIsVIP()) 修改字段 isvip 替换
-            Log.d("Presenter", "initUser: isIVP: "+userInfo.getIsVIP());
+        if (TextUtils.isEmpty(userInfo.getEmailauthen())) {  //  Test TextUtils.isEmpty(userInfo.getIsVIP()) 修改字段 isvip 替换
+            Log.d("Presenter", "initUser: isIVP: " + userInfo.getIsVIP());
             emailauthen = "0";
             tvRecordinAuthentication.setText("去认证");
             tvRecordinAuthentication.setCompoundDrawables(null, null, null, null);
         } else {
             emailauthen = userInfo.getEmailauthen(); // isvip = 1,2 认证完成 （身份认证判断），0 ：身份认证，3：认证中；
             isVip = userInfo.getIsVIP();
-            switch (emailauthen) { // 新认证字段 // userInfo.getEmailauthen() todo test 1
+            switch (emailauthen) { // 新认证字段 // userInfo.getEmailauthen()
                 case "0":
                     tvRecordinAuthentication.setText("去认证");
                     tvRecordinAuthentication.setCompoundDrawables(null, null, null, null);
@@ -198,7 +199,22 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
                 default:
                     tvRecordinAuthentication.setText("未认证");
                     break;
-
+            }
+            switch (isVip) {
+                case "0":
+                    tvVerified.setVisibility(View.VISIBLE);
+                    tvVerified.setText("身份认证");
+                    break;
+                case "1":
+                    tvVerified.setVisibility(View.GONE);
+                    break;
+                case "2":
+                    tvVerified.setVisibility(View.GONE);
+                    break;
+                case "3":
+                    tvVerified.setVisibility(View.VISIBLE);
+                    tvVerified.setText("认证中");
+                    break;
             }
         }
         tvPrompt.setText(userInfo.getSchool() + " " + userInfo.getDegree());
@@ -267,7 +283,7 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
     @Override
     public void onResume() {
         super.onResume();
-        loadDownloadNunber();
+        onRefresh();
     }
 
     @Override
@@ -296,7 +312,7 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
     }
 
 
-    @OnClick({R.id.tv_paper_number, R.id.tv_paper, R.id.iv_empty, R.id.tv_empty, R.id.tv_review_number, R.id.tv_review, R.id.fl_mine_history, R.id.tv_follow_number, R.id.tv_follow, R.id.rl_user_info, R.id.tv_recording_authentication, R.id.tv_fans_number, R.id.tv_fans, R.id.fl_mine_qa, R.id.fl_mine_download, R.id.fl_mine_subscribe, R.id.fl_mine_news, R.id.fl_mine_contacts, R.id.fl_mine_collection, R.id.fl_mine_setting})
+    @OnClick({R.id.tv_verified,R.id.tv_paper_number, R.id.tv_paper, R.id.iv_empty, R.id.tv_empty, R.id.tv_review_number, R.id.tv_review, R.id.fl_mine_history, R.id.tv_follow_number, R.id.tv_follow, R.id.rl_user_info, R.id.tv_recording_authentication, R.id.tv_fans_number, R.id.tv_fans, R.id.fl_mine_qa, R.id.fl_mine_download, R.id.fl_mine_subscribe, R.id.fl_mine_news, R.id.fl_mine_contacts, R.id.fl_mine_collection, R.id.fl_mine_setting})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_empty:
@@ -311,7 +327,7 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
                 break;
             case R.id.tv_recording_authentication:
                 //
-                switch (emailauthen) { // TODO 开始录音是否Ok todo test 1 BaseActivity.emailauthen
+                switch (emailauthen) { //  开始录音是否Ok  test 1 BaseActivity.emailauthen
                     case "0":
 
                        /* Utils.showToast("      认证请联系：\n" +
@@ -319,9 +335,9 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
                                 " service@giiisp.com");*/
                         FragmentActivity.actionActivity(getContext(), "mailbox_authentication");
 //                        VerifiedActivity.actionActivity(getContext());
-                    break;
+                        break;
                     case "1":
-                        FragmentActivity.actionActivity(getContext(), "wait_dubbing"); // TODO 认证完成开始录音
+                        FragmentActivity.actionActivity(getContext(), "wait_dubbing"); //  认证完成开始录音
                         break;
                     case "2":
                         Utils.showToast(R.string.in_authentication);
@@ -370,6 +386,20 @@ public class MineFragment extends BaseMvpFragment<BaseImpl, WholePresenter> impl
                 break;
             case R.id.fl_mine_setting:
                 SettingActivity.actionActivity(getContext());
+                break;
+            case R.id.tv_verified:
+                switch (isVip) {
+                    case "0":
+                        VerifiedActivity.actionActivity(context);
+                        break;
+                    case "1":
+                        break;
+                    case "2":
+                        break;
+                    case "3":
+                        Utils.showToast(R.string.in_authentication);
+                        break;
+                }
                 break;
         }
     }

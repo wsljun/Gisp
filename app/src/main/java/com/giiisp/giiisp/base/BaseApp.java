@@ -130,7 +130,7 @@ public class BaseApp extends Application {
 
         PlatformConfig.setWeixin("wxbc54fb482164e3f9", "b3c249a0f0cb298c2c520f0e4f5b233a");
         PlatformConfig.setQQZone("1106127773", "s7s8AKzC4E4i6ZpQ");
-//        PlatformConfig.setSinaWeibo("126663232","d39969613faa5fcc75859cf8406649eb","http://sns.whalecloud.com");
+        PlatformConfig.setSinaWeibo("126663232","d39969613faa5fcc75859cf8406649eb","http://sns.whalecloud.com");
     }
 
 }

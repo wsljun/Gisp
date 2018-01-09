@@ -279,16 +279,14 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     }
 
     public static void actionActivity(Context context, int id, String type) {
-//        checkPwd(context);
-//        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
-//        sIntent.putExtra("id", id);
-//        sIntent.putExtra("type", type);
-//        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-//        context.startActivity(sIntent);
+        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
+        sIntent.putExtra("id", id);
+        sIntent.putExtra("type", type);
+        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(sIntent);
     }
 
     public static void actionActivity(Context context, String id, ArrayList<String> version, String type) {
-//        checkPwd(context);
         Intent sIntent = new Intent(context, PaperDetailsActivity.class);
         sIntent.putExtra("id", id);
         sIntent.putExtra("type", type);
@@ -298,7 +296,6 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     }
 
     public static void actionActivity(Context context, String id, ArrayList<String> recordOneRows, ArrayList<String> recordTwoRows, ArrayList<String> photoRows, String type, String title) {
-//        checkPwd(context);
         Intent sIntent = new Intent(context, PaperDetailsActivity.class);
         sIntent.putExtra("id", id);
         sIntent.putExtra("type", type);
@@ -311,16 +308,15 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     }
 
     public static void actionActivity(Context context) {
-//        checkPwd(context);
-//        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
-//        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-//        context.startActivity(sIntent);
+        Intent sIntent = new Intent(context, PaperDetailsActivity.class);
+        sIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(sIntent);
     }
 
     @Override
     public void initData() {
         id = getIntent().getStringExtra("id");
-//        downloadId = getIntent().getStringExtra("id");
+        //        downloadId = getIntent().getIntExtra("downloadId", -1);
         type = getIntent().getStringExtra("type");
         title = getIntent().getStringExtra("title");
         version = getIntent().getStringArrayListExtra("version");
@@ -566,9 +562,9 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                         playService.setImageList(photoList);
                         playService.play(position);
                     }
+                    downloadId = string;
+                    paperId = "";
                 }
-                downloadId = id;
-                paperId = "";
 
                 break;
         }
@@ -634,6 +630,8 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                 initNetwork();
                 break;
             case R.id.tv_back:
+                if (getPlayService() != null)
+                    getPlayService().playPause();
                 finish();
                 break;
             case R.id.tv_paper_complete:
@@ -750,7 +748,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                     // 显示
                     normalDialog.show();
                 } else
-                    switch (BaseActivity.emailauthen) { // TODO 按照 emailauthen 判断
+                    switch (BaseActivity.emailauthen) { //  按照 emailauthen 判断
                         case "0":
                             Utils.showToast("      认证请联系：\n" +
                                     "+86 185 0101 0114 \n" +
@@ -1623,7 +1621,10 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         Log.i("--->>", "onKeyDown: " + keyCode);
+        if (getPlayService() != null)
+            getPlayService().playPause();
         return super.onKeyDown(keyCode, event);
+
     }
 
 
@@ -1736,9 +1737,9 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                                 if (response.isSuccessful()) {
                                     // response.body() 返回 ResponseBody
                                     BaseEntity entity = response.body();
-                                    if (entity.getResult() == 1) {
-                                        PaperDetailsActivity.actionActivity(context, pid, v, "home");
-                                    } else {
+                                    if(entity.getResult()==1){
+                                        PaperDetailsActivity.actionActivity(context, pid, v, type);
+                                    }else{
                                         Utils.showToast(entity.getInfo());
                                     }
                                 }

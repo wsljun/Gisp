@@ -69,24 +69,24 @@ public class SearchHistoryEntity extends BaseEntity{
              * createTime : null
              */
 
-            private int id;
-            private int uid;
+            private String id;
+            private String uid;
             private String content;
             private Object createTime;
 
-            public int getId() {
+            public String getId() {
                 return id;
             }
 
-            public void setId(int id) {
+            public void setId(String id) {
                 this.id = id;
             }
 
-            public int getUid() {
+            public String getUid() {
                 return uid;
             }
 
-            public void setUid(int uid) {
+            public void setUid(String uid) {
                 this.uid = uid;
             }
 
@@ -141,24 +141,24 @@ public class SearchHistoryEntity extends BaseEntity{
              * createTime : null
              */
 
-            private int id;
-            private int uid;
+            private String id;
+            private String uid;
             private String content;
             private Object createTime;
 
-            public int getId() {
+            public String getId() {
                 return id;
             }
 
-            public void setId(int id) {
+            public void setId(String id) {
                 this.id = id;
             }
 
-            public int getUid() {
+            public String getUid() {
                 return uid;
             }
 
-            public void setUid(int uid) {
+            public void setUid(String uid) {
                 this.uid = uid;
             }
 

@@ -62,6 +62,8 @@ public class ExperienceActivity extends BaseMvpActivity<BaseImpl, WholePresenter
     ProgressPopupWindow progressPopupWindow;
     UserInfoEntity.IntroductionBean introductionBean;
 
+    String rid = "";
+
     @Override
     public int getLayoutId() {
         return R.layout.layout_fragment_experience;
@@ -100,6 +102,7 @@ public class ExperienceActivity extends BaseMvpActivity<BaseImpl, WholePresenter
                     tvUserDagree.setText(introductionBean.getDegree());
                     tvUserStarttime.setText(introductionBean.getTimeStart());
                     tvUserEndtime.setText(introductionBean.getTimeEnd());
+                    rid = introductionBean.getId();
                     break;
             }
         }
@@ -190,6 +193,7 @@ public class ExperienceActivity extends BaseMvpActivity<BaseImpl, WholePresenter
                 } else {
                     map.put("timeend", timeEnd);
                 }
+                map.put("rid", rid);
                 if (presenter != null) {
                     progressPopupWindow.showPopupWindow();
                     if (type.equals("add")) {
@@ -259,7 +263,7 @@ public class ExperienceActivity extends BaseMvpActivity<BaseImpl, WholePresenter
     }
 
     private String getTime(Date date) {//可根据需要自行截取数据显示
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return format.format(date);
     }
 

@@ -260,7 +260,6 @@ public class DubbingActivity extends DubbingPermissionActivity implements BaseQu
                 back = false;
                 resolveStopRecord();
                 resolvePausePlayRecord();
-//                postDubbing(); TODO 直接上传
                 upAudio();
 
                 break;
@@ -335,13 +334,13 @@ public class DubbingActivity extends DubbingPermissionActivity implements BaseQu
             map.put("language", language);
             RequestBody requestBody = RequestBody.create(MediaType.parse("audio/mp3"), file);
             MultipartBody.Part part = MultipartBody.Part.createFormData("recordFile", file.getName(), requestBody);
-//            map.put("path", UrlConstants.RequestUrl.MP3_URL + key); // TOdo recordFile
+//            map.put("path", UrlConstants.RequestUrl.MP3_URL + key);
             presenter.getSaveRecordData(map,part);
         }
 
     }
     /*
-    * TODO 上传录音
+    * 传录音
     * */
     public void upAudio(){
         ArrayMap<String, Object> map = new ArrayMap<>();
@@ -349,9 +348,10 @@ public class DubbingActivity extends DubbingPermissionActivity implements BaseQu
             String id = photoRows.get(position).getId();
 
             double duration = 0;
+            long fileSize = 0;
             try {
                 file = new File(filePath);
-                long fileSize = SDFileHelper.getFileSize(new File(filePath));
+                fileSize = SDFileHelper.getFileSize(new File(filePath));
                 double rint = SDFileHelper.FormetFileSize(fileSize);
                 duration = Math.rint(rint * 100) / 100;
             } catch (Exception e) {
@@ -360,18 +360,17 @@ public class DubbingActivity extends DubbingPermissionActivity implements BaseQu
             if (recordRows != null && recordRows.size() > position) {
                 String recordId = recordRows.get(position).getId();
                 map.put("id", recordId);
+            }else{
+                map.put("id","0");
             }
 //            map.put("token", token);
             map.put("uid", uid);
             map.put("pcid", id);
-            map.put("size", duration);
-            map.put("duration", recorderSecondsElapsed);
+            map.put("size", fileSize);
+            map.put("duration", (long)recorderSecondsElapsed);
             map.put("language", language); //application/x-www-form-urlencoded ,multipart/form-data
-            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            RequestBody requestBody = RequestBody.create(MediaType.parse("audio/mp3"), file);
             MultipartBody.Part part = MultipartBody.Part.createFormData("recordFile", file.getName(), requestBody);
-//            map.put("path", UrlConstants.RequestUrl.MP3_URL + key); // TOdo recordFile
-//            List<MultipartBody.Part> parts = new ArrayList<>();
-//            parts.add(part);
             presenter.getSaveRecordData(map,part);
         }
 

@@ -317,7 +317,7 @@ public class UserInfoFragment extends BaseMvpFragment<BaseImpl, WholePresenter> 
                 Utils.showToast(R.string.web_editing_data);
                 break;
             case R.id.fl_user_web:
-                Utils.showToast(R.string.edit_user_web);
+                inputTitleDialog(tvUserWeb, getString(R.string.edit_user_web));
                 break;
         }
     }
@@ -341,14 +341,24 @@ public class UserInfoFragment extends BaseMvpFragment<BaseImpl, WholePresenter> 
             tvUserPhone.setText(userInfoEntity.getUserInfo().getMobile());
         }
         if (Utils.checkEmail(userInfoEntity.getUserInfo().getEmail())) {
-            tvUserEmail.setText(userInfoEntity.getUserInfo().getEmail());
+            tvUserEmail.setText(userInfoEntity.getUserInfo().getEmail().trim());
         }
         if (userInfoEntity.getAuthen()== null) {
             return;
         }
-        tvUserMechanism.setText(userInfoEntity.getAuthen().getOrganization());
-        tvUserPosition.setText(userInfoEntity.getAuthen().getPosition());
-        tvUserResume.setText(userInfoEntity.getAuthen().getDepartment());
+        if(TextUtils.isEmpty(userInfoEntity.getAuthen().getOrganization())){
+            tvUserMechanism.setText(userInfoEntity.getAuthen().getOrganization());
+        }
+        if(TextUtils.isEmpty(userInfoEntity.getAuthen().getOrganization())){
+            tvUserPosition.setText(userInfoEntity.getAuthen().getPosition());
+        }
+
+        if(TextUtils.isEmpty(userInfoEntity.getAuthen().getOrganization())){
+            tvUserResume.setText(userInfoEntity.getAuthen().getDepartment());
+        }
+        if(TextUtils.isEmpty(userInfoEntity.getAuthen().getOrganization())){
+            tvUserWeb.setText(userInfoEntity.getUserInfo().getWeb());
+        }
     }
 
     private void inputTitleDialog(final TextView view, final String name) {

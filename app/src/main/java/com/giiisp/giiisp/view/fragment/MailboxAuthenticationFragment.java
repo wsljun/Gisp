@@ -64,8 +64,6 @@ import static com.giiisp.giiisp.base.BaseActivity.isVip;
 public class MailboxAuthenticationFragment extends BaseMvpFragment<BaseImpl, WholePresenter> implements BaseImpl, View.OnClickListener {
     @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.tv_verified)
-    TextView tvVerified;
     @BindView(R.id.ed_enter_email)
     EditText edEnterEmail;
     @BindView(R.id.iv_email_tu)
@@ -84,28 +82,6 @@ public class MailboxAuthenticationFragment extends BaseMvpFragment<BaseImpl, Who
     public void initView() {
         tvTitle.setText(R.string.mailbox_authentication);
         progressPopupWindow = new ProgressPopupWindow((BaseActivity) getActivity());
-        if (TextUtils.isEmpty(isVip)) {  // TODO Test 修改字段 isvip 判断身份认证的显示状态
-            Log.d("Presenter", "initUser: isIVP: "+isVip);
-            isVip = "0";
-            tvVerified.setText(R.string.position_verified);
-            tvVerified.setCompoundDrawables(null, null, null, null);
-        } else {
-            switch (isVip) { // 新认证字段
-                case "0":
-                    tvVerified.setText(R.string.position_verified);
-                    tvVerified.setCompoundDrawables(null, null, null, null);
-                    break;
-                case "1":
-                case "2":
-                    tvVerified.setText("认证完成");
-                    tvVerified.setClickable(false);
-                    break;
-                case "3":
-                    tvVerified.setText("正在认证中");
-                    tvVerified.setClickable(false);
-                    break;
-            }
-        }
     }
 
     @Override
@@ -114,7 +90,7 @@ public class MailboxAuthenticationFragment extends BaseMvpFragment<BaseImpl, Who
         unbinder.unbind();
     }
 
-    @OnClick({R.id.tv_back, R.id.tv_submit, R.id.tv_verified, R.id.fl_email_tu})
+    @OnClick({R.id.tv_back, R.id.tv_submit, R.id.fl_email_tu})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_back:
@@ -128,15 +104,12 @@ public class MailboxAuthenticationFragment extends BaseMvpFragment<BaseImpl, Who
                 } else if (part == null) {
                     Utils.showToast(R.string.email_not_tu);
                 } else {
-                    ArrayMap<String, Object> map = new ArrayMap<>(); // todo
+                    ArrayMap<String, Object> map = new ArrayMap<>();
                     map.put("email", trim);
                     map.put("uid", uid);
                     presenter.getAuthenUserlData(trim, uid, part);
                     progressPopupWindow.showPopupWindow();
                 }
-                break;
-            case R.id.tv_verified:
-                VerifiedActivity.actionActivity(getActivity());
                 break;
             case R.id.fl_email_tu:
                 showDialog();
@@ -198,7 +171,6 @@ public class MailboxAuthenticationFragment extends BaseMvpFragment<BaseImpl, Who
         if (progressPopupWindow != null) {
             progressPopupWindow.dismiss();
         }
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show(); //TODO
     }
 
     private void initDialog(String string, DialogInterface.OnClickListener listener) {

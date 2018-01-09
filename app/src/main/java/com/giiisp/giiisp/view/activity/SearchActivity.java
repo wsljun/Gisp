@@ -140,10 +140,10 @@ public class SearchActivity extends BaseMvpActivity<BaseImpl, WholePresenter> im
         map.put("oid", id);
         map.put("uid", uid);
         switch (isFollowed) {
-            case "0":
+            case "1": //getIsFollowed 1 未关注， 0 已关注
                 presenter.getSaveFollowUserData(map);
                 break;
-            case "1":
+            case "0":
             case "2":
                 presenter.getCancelFollowUserData(map);
                 break;

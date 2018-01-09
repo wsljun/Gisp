@@ -144,7 +144,7 @@ public class EditInfoFragment extends BaseMvpFragment<BaseImpl, WholePresenter> 
                 String self = editText.getText().toString();
                 if (!TextUtils.isEmpty(self)) {
                     MultipartBody.Part part1 = MultipartBody.Part.createFormData("self_introduction", self);
-                    ((VerifiedActivity) getActivity()).parts.add(part1); // Todo au NO 上传照片
+                    ((VerifiedActivity) getActivity()).parts.add(part1);
                 }
                 getVerifiedActivity().getViewPagerVerified().setCurrentItem(1);
                 break;
@@ -232,6 +232,7 @@ public class EditInfoFragment extends BaseMvpFragment<BaseImpl, WholePresenter> 
 
         List<UserInfoEntity.IntroductionBean> introduction = userInfoEntity.getIntroduction();
         if (null != introduction && introduction.size() > 0) {
+            recyclerView.setVisibility(View.VISIBLE);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             List<ClickEntity> list = new ArrayList<>();
             for (UserInfoEntity.IntroductionBean introductionBean : introduction) {
@@ -239,6 +240,8 @@ public class EditInfoFragment extends BaseMvpFragment<BaseImpl, WholePresenter> 
             }
             itemClickAdapter = new ItemClickAdapter((BaseActivity) getActivity(), R.layout.item_scholar_education, list, type);
             recyclerView.setAdapter(itemClickAdapter);
+        }else{
+            recyclerView.setVisibility(View.GONE);
         }
     }
 

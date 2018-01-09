@@ -36,7 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity implements NetChang
     protected boolean isResume = false;
 //    public static String token = "";
     public static String uid = "";
-    public static String emailauthen = ""; // TODO 替代原先 isVIP 的功能
+    public static String emailauthen = ""; //  替代原先 isVIP 的功能
     public static String isVip = "";  // 用作身份认证按钮 的判断
     public Unbinder unbinder;
     public int downloadNunber;
