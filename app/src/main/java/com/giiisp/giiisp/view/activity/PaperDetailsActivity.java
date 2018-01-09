@@ -1218,7 +1218,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                 firstPic = rowsBeanXX.getFirstPic();
                 isFollowed = rowsBeanXX.getIsFollowed();
                 ivLikedIcon.setSelected("1".equals(isFollowed));
-                PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.PhotosBean photos = rowsBeanXX.getPhotos();
+                PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.PhotosBean photos = rowsBeanXX.getPhotos();// todo add type 1,png ,2 mp4, 3 gif
                 PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.RecordOneBean recordOne = rowsBeanXX.getRecordOne();
                 PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.RecordOneBean recordTwo = rowsBeanXX.getRecordTwo();
 
@@ -1547,7 +1547,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
 
     private class ImageAdapter extends PagerAdapter {
 
-        private List<ImageView> viewlist;
+        private List<ImageView> viewlist; // todo 图片和视频混排
         private Activity activity;
 
         public ImageAdapter(Activity activity, List<ImageView> viewlist) {
@@ -1575,20 +1575,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-         /*   //对ViewPager页号求模取出View列表中要显示的项
-            position %= viewlist.size();
-            if (position < 0) {
-                position = viewlist.size() + position;
-            }
-            ImageView path = viewlist.get(position);
-            //如果View已经在之前添加到了一个父组件，则必须先remove，否则会抛出IllegalStateException。
-
-            //            view.setImageURI(Uri.parse(path));
-            Log.i("--->>", "instantiateItem: " + container.getChildCount());
-            container.addView(path);
-            //add listeners here if necessary
-            return path;*/
-            ImageView imageView = viewlist.get(position % viewlist.size());
+            ImageView imageView = (ImageView) viewlist.get(position % viewlist.size());
             ViewParent vp = imageView.getParent();
             if (vp != null) {
                 ViewGroup parent = (ViewGroup) vp;
