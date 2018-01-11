@@ -202,8 +202,8 @@ public class MultipleItemQuickAdapter extends BaseMultiItemQuickAdapter<ClickEnt
                             imageUrl.add(row.getPath());
                             pathUrl.add(row.getLink());
                         }
+                        viewPager.setAdapter(new ImageAdapter(context, imageUrl, pathUrl));
                     }
-                    viewPager.setAdapter(new ImageAdapter(context, imageUrl, pathUrl));
                 }
 
                 RecyclerView recyclerview = helper.getView(R.id.recycler_view);
@@ -280,8 +280,6 @@ public class MultipleItemQuickAdapter extends BaseMultiItemQuickAdapter<ClickEnt
                     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                         ClickEntity clickEntity = (ClickEntity) adapter.getItem(position);
                         if (clickEntity != null) {
-
-
                             String paperId = clickEntity.getPaperId();
                             String version = clickEntity.getVersion();
                             ArrayList<String> arrayVersion = new ArrayList<>();
@@ -293,10 +291,11 @@ public class MultipleItemQuickAdapter extends BaseMultiItemQuickAdapter<ClickEnt
                                 case "热门推荐":
                                     if (clickEntity.getIsEncrypt().equals("0")) {
                                         PaperDetailsActivity.checkPwd(context, paperId, arrayVersion, "home");
+                                    }else{
+                                        PaperDetailsActivity.actionActivity(context, paperId, arrayVersion, "home");
                                     }
                                     break;
                                 default:
-                                    PaperDetailsActivity.actionActivity(context, paperId, arrayVersion, "home");
                                     break;
 
                             }

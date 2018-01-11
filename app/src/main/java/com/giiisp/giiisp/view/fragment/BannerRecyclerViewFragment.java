@@ -1813,7 +1813,7 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
 
                     String version = playsItem.getNote().getVersions();
 
-                    String paperId = id ; // 取消 版本拼接 + version
+                    String paperId = id; // 取消 版本拼接 + version
                     ArrayList<String> list = new ArrayList<>();
                     list.add(version);
                     if (list.size() > 0 && !TextUtils.isEmpty(paperId))
@@ -1971,19 +1971,19 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
                     SubscribeEntity.PageInfoBean.RowsBeanXXXXX.PhotoOneBean photoThree = subscribeEntityRows.getPhotoThree();
                     ArrayList<String> version = new ArrayList<>();
 
-                    if (photoThree != null && photoThree.getRows() != null && photoThree.getRows().size() > 0) {
-                        version.add("2");
+                    if (photoOne != null && photoOne.getRows() != null && photoOne.getRows().size() > 0) {
+                        version.add("0");
                     }
                     if (photoTwo != null && photoTwo.getRows() != null && photoTwo.getRows().size() > 0) {
                         version.add("1");
                     }
-                    if (photoOne != null && photoOne.getRows() != null && photoOne.getRows().size() > 0) {
-                        version.add("0");
+                    if (photoThree != null && photoThree.getRows() != null && photoThree.getRows().size() > 0) {
+                        version.add("2");
                     }
-                    if (version.size() > 0 && !TextUtils.isEmpty(id)){
-                        if (subscribeEntityRows.getIsEncrypt().equals("0")) { // TODO checkpwd
-                            PaperDetailsActivity.checkPwd(getContext(), id, version, "home");
-                        }else{
+                    if (version.size() > 0 && !TextUtils.isEmpty(id)) {
+                        if (null != subscribeEntityRows.getIsEncrypt() && subscribeEntityRows.getIsEncrypt().equals("0")) { // TODO checkpwd
+                            PaperDetailsActivity.checkPwd(getContext(), id, version, "online_paper");
+                        } else {
                             PaperDetailsActivity.actionActivity(getContext(), id, version, "online_paper");
                         }
                     }

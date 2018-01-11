@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/TabBarLibrary/TabBarLibrary.iml" filepath="$PROJECT_DIR$/TabBarLibrary/TabBarLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/rxdownload2/rxdownload2.iml" filepath="$PROJECT_DIR$/rxdownload2/rxdownload2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/videoapp/videoapp.iml" filepath="$PROJECT_DIR$/videoapp/videoapp.iml" />
     </modules>
   </component>
 </project>

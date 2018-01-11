@@ -21,18 +21,6 @@
         android:layout_toEndOf="@+id/iv_user_icon"
         android:textSize="20sp" />
 
-    <ImageView
-        android:id="@+id/iv_attention"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tv_user_name"
-        android:layout_toEndOf="@+id/tv_user_name"
-        android:paddingBottom="3dp"
-        android:paddingEnd="8dp"
-        android:paddingStart="6.7dp"
-        android:paddingTop="2dp"
-        android:src="@drawable/isfollow_selector"
-        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/iv_sex"
@@ -44,6 +32,19 @@
         android:paddingEnd="8dp"
         android:paddingStart="6.7dp"
         android:paddingTop="2dp" />
+
+    <ImageView
+        android:id="@+id/iv_attention"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_sex"
+        android:layout_toEndOf="@+id/iv_sex"
+        android:paddingBottom="3dp"
+        android:paddingEnd="8dp"
+        android:visibility="gone"
+        android:paddingStart="6.7dp"
+        android:paddingTop="2dp"
+        android:src="@drawable/isfollow_selector" />
 
     <TextView
         android:id="@+id/tv_prompt"
@@ -66,8 +67,8 @@
         style="@style/text_12sp_colorinterface"
         android:layout_alignStart="@+id/iv_user_icon"
         android:layout_below="@+id/tv_user_position"
-        android:layout_marginTop="9.3dp"
         android:layout_marginLeft="2dp"
+        android:layout_marginTop="9.3dp"
         android:drawablePadding="5dp"
         android:drawableStart="@mipmap/phoen_icon" />
 
@@ -87,8 +88,8 @@
         style="@style/text_12sp_colorinterface"
         android:layout_alignStart="@+id/iv_user_icon"
         android:layout_below="@+id/tv_user_email"
-        android:drawablePadding="5dp"
         android:layout_marginTop="1dp"
+        android:drawablePadding="5dp"
         android:drawableStart="@mipmap/web" />
 
     <TextView
