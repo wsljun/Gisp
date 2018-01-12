@@ -20,6 +20,7 @@ import com.giiisp.giiisp.R;
 import com.giiisp.giiisp.entity.BaseEntity;
 import com.giiisp.giiisp.entity.PaperDatailEntity;
 import com.giiisp.giiisp.entity.Song;
+import com.giiisp.giiisp.utils.FileUtils;
 import com.giiisp.giiisp.utils.ImageLoader;
 import com.giiisp.giiisp.view.activity.PaperDetailsActivity;
 import com.giiisp.giiisp.view.adapter.ClickEntity;
@@ -215,16 +216,17 @@ public class FullScreenPopupWindow extends BasePopupWindow implements View.OnCli
     public void initDownload() {
         List<ImageView> imagesFull = new ArrayList<>();
         if (stringArrayList != null) {
+            stringArrayList.clear();
             for (int i = 0; i < stringArrayList.size(); i++) {
                 itemClickAdapter.addData(new ClickEntity(stringArrayList.get(i)));
             }
-            for (String s : stringArrayList) {
-                PhotoView imageView = new PhotoView(getContext());
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                ImageLoader.getInstance().displayImage(context, s, imageView);
-                imagesFull.add(imageView);
-            }
-            viewPagerFull.setAdapter(new ViewPagerImage(getContext(), imagesFull));
+//            for (String s : stringArrayList) {
+//                PhotoView imageView = new PhotoView(getContext());
+//                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+//                ImageLoader.getInstance().displayImage(context, s, imageView);
+//                imagesFull.add(imageView);
+//            }
+            viewPagerFull.setAdapter(new ViewPagerImage(getContext(), stringArrayList)); // TODO video
         }
     }
 
@@ -236,14 +238,15 @@ public class FullScreenPopupWindow extends BasePopupWindow implements View.OnCli
                 for (int i = 0; i < stringArrayList.size(); i++) {
                     itemClickAdapter.addData(new ClickEntity(stringArrayList.get(i)));
                 }
-                for (String s : stringArrayList) {
-                    PhotoView imageView = new PhotoView(getContext());
-                    imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                    ImageLoader.getInstance().displayImage(context, s, imageView);
-                    imagesFull.add(imageView);
-                }
-                viewPagerFull.setAdapter(new ViewPagerImage(getContext(), imagesFull));
+//                for (String s : stringArrayList) {
+//                    PhotoView imageView = new PhotoView(getContext());
+//                    imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+//                    ImageLoader.getInstance().displayImage(context, s, imageView);
+//                    imagesFull.add(imageView);
+//                }
+                viewPagerFull.setAdapter(new ViewPagerImage(getContext(), stringArrayList)); // TODO video
             } else {
+                stringArrayList  = new ArrayList<>();
                 PaperDatailEntity.PaperBaseBean paperBase = ((PaperDatailEntity) entity).getPaperBase();
                 if (paperBase == null)
                     return;
@@ -267,16 +270,17 @@ public class FullScreenPopupWindow extends BasePopupWindow implements View.OnCli
         PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.PhotosBean photos = rowsBeanXX.getPhotos();
         if (photos != null && photos.getRows() != null && photos.getRows().size() > 0) {
             List<PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.PhotosBean.RowsBean> photosBeanRows = photos.getRows();
-            List<ImageView> images = new ArrayList<>();
+            List<String> images = new ArrayList<>();
+            if(stringArrayList!=null)stringArrayList.clear();
             for (PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.PhotosBean.RowsBean photosBeanRow : photosBeanRows) {
                 itemClickAdapter.addData(new ClickEntity(photosBeanRow.getPath(), photosBeanRow.getId()));
-                PhotoView imageView = new PhotoView(getContext());
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                ImageLoader.getInstance().displayImage(context, photosBeanRow.getPath(), imageView);
-                images.add(imageView);
+//                PhotoView imageView = new PhotoView(getContext());
+//                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+//                ImageLoader.getInstance().displayImage(context, photosBeanRow.getPath(), imageView);
+                stringArrayList.add( photosBeanRow.getPath());
             }
 
-            viewPagerFull.setAdapter(new ViewPagerImage(getContext(), images));
+            viewPagerFull.setAdapter(new ViewPagerImage(getContext(), stringArrayList));  // TODO video
         }
     }
 
@@ -292,7 +296,15 @@ public class FullScreenPopupWindow extends BasePopupWindow implements View.OnCli
 
     @Override
     public void onPageSelected(int position) {
-
+//        if("mp4".equals(FileUtils.parseSuffix(stringArrayList.get(position)))){
+//            recyclerview.setVisibility(View.INVISIBLE);
+//        }else{
+//            recyclerview.setVisibility(View.VISIBLE);
+//        }
+        viewPagerFull.setCurrentItem(position);
+        recyclerview.scrollToPosition(position);
+        itemClickAdapter.setSelectedPosition(position);
+        itemClickAdapter.notifyDataSetChanged();
     }
 
     @Override

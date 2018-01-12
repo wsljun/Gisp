@@ -13,8 +13,11 @@ import android.support.annotation.Nullable;
 import android.text.format.DateUtils;
 import android.util.Log;
 
+import com.giiisp.giiisp.entity.PaperDatailEntity;
 import com.giiisp.giiisp.entity.Song;
+import com.giiisp.giiisp.utils.FileUtils;
 import com.giiisp.giiisp.utils.Utils;
+import com.giiisp.giiisp.view.activity.PaperDetailsActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -184,6 +187,9 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
 
     public void play(Song music) {
         mPlayingMusic = music;
+        if("mp4".equals(FileUtils.parseSuffix(mPlayingMusic.getPath()))) {
+            return;
+        }
         try {
             mPlayer.reset();
             mPlayer.setDataSource(music.getPath());
