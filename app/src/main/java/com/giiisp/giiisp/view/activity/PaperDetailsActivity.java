@@ -8,7 +8,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.media.Image;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -31,10 +33,12 @@ import android.view.ViewParent;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.giiisp.giiisp.R;
@@ -54,6 +58,7 @@ import com.giiisp.giiisp.entity.PaperEntity;
 import com.giiisp.giiisp.entity.Song;
 import com.giiisp.giiisp.model.ModelFactory;
 import com.giiisp.giiisp.presenter.WholePresenter;
+import com.giiisp.giiisp.utils.FileUtils;
 import com.giiisp.giiisp.utils.ImageLoader;
 import com.giiisp.giiisp.utils.Utils;
 import com.giiisp.giiisp.view.adapter.ClickEntity;
@@ -345,6 +350,9 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
         if (type == null)
             type = "";
 
+        if(photoList == null){
+            photoList = new ArrayList<>();
+        }
 
         DaoSession daoSession = BaseApp.app.getDaoSession();
         noteDao = daoSession.getNoteDao();
@@ -484,18 +492,19 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                         Log.i("--->>", "initData: " + playService.getPlayingMusic().getDuration());
 
                         if (playService.getImageList().size() > 0) {
-                            List<String> imageList = playService.getImageList();
-                            for (String photo : imageList) {
+                            if(photoList!=null)photoList.clear();
+                            photoList = (ArrayList<String>) playService.getImageList();
+                            for (String photo : photoList) {
                                 itemClickAdapter.addData(new ClickEntity(photo));
                             }
-                            List<ImageView> images = new ArrayList<>();
-                            for (String s : imageList) {
-                                ImageView imageView = new ImageView(this);
-                                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                                ImageLoader.getInstance().displayImage(this, s, imageView);
-                                images.add(imageView);
-                            }
-                            viewpagerPaper.setAdapter(new ImageAdapter(this, images));
+//                            List<ImageView> images = new ArrayList<>();
+//                            for (String s : imageList) {
+//                                ImageView imageView = new ImageView(this);
+//                                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                                ImageLoader.getInstance().displayImage(this, s, imageView);
+//                                images.add(imageView);
+//                            }
+                            viewpagerPaper.setAdapter(new ImageAdapter(this, photoList));// todo fix photo and video
                         }
                         viewpagerPaper.setCurrentItem(playService.getPlayingPosition());
                         recyclerView.scrollToPosition(playService.getPlayingPosition());
@@ -514,14 +523,14 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                             for (String photo : photoList) {
                                 itemClickAdapter.addData(new ClickEntity(photo));
                             }
-                            List<ImageView> images = new ArrayList<>();
-                            for (String s : photoList) {
-                                ImageView imageView = new ImageView(this);
-                                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                                ImageLoader.getInstance().displayImage(this, s, imageView);
-                                images.add(imageView);
-                            }
-                            viewpagerPaper.setAdapter(new ImageAdapter(this, images));
+//                            List<ImageView> images = new ArrayList<>();
+//                            for (String s : photoList) {
+//                                ImageView imageView = new ImageView(this);
+//                                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                                ImageLoader.getInstance().displayImage(this, s, imageView);
+//                                images.add(imageView);
+//                            }
+                            viewpagerPaper.setAdapter(new ImageAdapter(this, photoList)); // todo fix photo and video
                         }
 
                         if (recordOneList != null) {
@@ -1127,6 +1136,14 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
 
     }
 
+    public void setViewState(boolean isShow){
+        if(isShow){
+            seekBarPaper.setVisibility(View.VISIBLE);
+        }else{
+            seekBarPaper.setVisibility(View.INVISIBLE);
+        }
+    }
+
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 
@@ -1149,6 +1166,14 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
         this.position = position;
         tvTitle.setText("P" + (position + 1));
         viewpagerPaper.setCurrentItem(position);
+//        recyclerView.scrollToPosition(position);
+//        itemClickAdapter.setSelectedPosition(position);
+//        itemClickAdapter.notifyDataSetChanged();
+        if("mp4".equals(FileUtils.parseSuffix(photoList.get(position)))){
+            seekBarPaper.setVisibility(View.GONE);
+        }else{
+            seekBarPaper.setVisibility(View.VISIBLE);
+        }
         switch (type) {
             case "online_paper":
             case "collection_paper":
@@ -1218,19 +1243,23 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                 firstPic = rowsBeanXX.getFirstPic();
                 isFollowed = rowsBeanXX.getIsFollowed();
                 ivLikedIcon.setSelected("1".equals(isFollowed));
-                PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.PhotosBean photos = rowsBeanXX.getPhotos();
+                PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.PhotosBean photos = rowsBeanXX.getPhotos();// todo add type 1,png ,2 mp4, 3 gif
                 PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.RecordOneBean recordOne = rowsBeanXX.getRecordOne();
                 PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.RecordOneBean recordTwo = rowsBeanXX.getRecordTwo();
-
                 if (photos != null && photos.getRows() != null && photos.getRows().size() > 0) {
                     photosBeanRows = photos.getRows();
-                    List<ImageView> images = new ArrayList<>();
+                    List<String> images = new ArrayList<>();
+                    if(photoList!=null){
+                        photoList.clear();
+                    }else{
+                        photoList = new ArrayList<>();
+                    }
                     for (PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.PhotosBean.RowsBean photosBeanRow : photosBeanRows) {
-                        itemClickAdapter.addData(new ClickEntity(photosBeanRow.getPath(), photosBeanRow.getId()));
-                        ImageView imageView = new ImageView(this);
-                        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                        ImageLoader.getInstance().displayImage(this, photosBeanRow.getPath(), imageView);
-                        images.add(imageView);
+                        itemClickAdapter.addData(new ClickEntity(photosBeanRow.getPath(), photosBeanRow.getId())); // todo
+//                        ImageView imageView = new ImageView(this);
+//                        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+//                        ImageLoader.getInstance().displayImage(this, photosBeanRow.getPath(), imageView);
+                        photoList.add(photosBeanRow.getPath());
                         imageId.add(photosBeanRow.getId());
                     }
                     if (imageId.size() > position && paperQA != null) {
@@ -1239,7 +1268,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
 
                     }
                     note.setPath(photos.getRows().get(0).getPath());
-                    viewpagerPaper.setAdapter(new ImageAdapter(this, images));
+                    viewpagerPaper.setAdapter(new ImageAdapter(this,photoList)); // todo fix photo and video
                     viewpagerPaper.setCurrentItem(position);
                     recyclerView.scrollToPosition(position);
                     itemClickAdapter.setSelectedPosition(position);
@@ -1256,6 +1285,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                             song.setPhotoPath(photosBeanRows.get(i).getPath());
                         }
                         song.setPath(recordsBeanOneRows.get(i).getPath());
+                        song.setType(recordsBeanOneRows.get(i).getType());
                         song.setDuration(Integer.parseInt(recordsBeanOneRows.get(i).getDuration()));
                         queueCN.add(song);
                     }
@@ -1270,6 +1300,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                             song.setPhotoPath(photosBeanRows.get(i).getPath());
                         }
                         song.setPath(recordsBeanTwoRows.get(i).getPath());
+                        song.setType(recordsBeanOneRows.get(i).getType());
                         song.setDuration(Integer.parseInt(recordsBeanTwoRows.get(i).getDuration()));
                         queueEN.add(song);
                     }
@@ -1413,7 +1444,6 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         //手动调节进度
-        // TODO Auto-generated method stub
         //seekbar的拖动位置
         int dest = seekBar.getProgress();
         //seekbar的最大值
@@ -1547,18 +1577,18 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
 
     private class ImageAdapter extends PagerAdapter {
 
-        private List<ImageView> viewlist;
+        private List<String> viewpathlist; // todo 图片和视频混排
         private Activity activity;
 
-        public ImageAdapter(Activity activity, List<ImageView> viewlist) {
-            this.viewlist = viewlist;
+        public ImageAdapter(Activity activity, ArrayList<String> viewpathlist) {
+            this.viewpathlist = viewpathlist;
             this.activity = activity;
         }
 
         @Override
         public int getCount() {
             //设置成最大，使用户看不到边界
-            return viewlist.size();
+            return viewpathlist.size();
         }
 
         @Override
@@ -1569,40 +1599,51 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
         @Override
         public void destroyItem(ViewGroup container, int position,
                                 Object object) {
-            ((ViewPager) container).removeView(viewlist.get(position % viewlist.size()));
+//            ((ViewPager) container).removeView(viewlist.get(position % viewlist.size()));
             //Warning：不要在这里调用removeView
+            container.removeView((View) object);
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-         /*   //对ViewPager页号求模取出View列表中要显示的项
-            position %= viewlist.size();
-            if (position < 0) {
-                position = viewlist.size() + position;
-            }
-            ImageView path = viewlist.get(position);
-            //如果View已经在之前添加到了一个父组件，则必须先remove，否则会抛出IllegalStateException。
-
-            //            view.setImageURI(Uri.parse(path));
-            Log.i("--->>", "instantiateItem: " + container.getChildCount());
-            container.addView(path);
-            //add listeners here if necessary
-            return path;*/
-            ImageView imageView = viewlist.get(position % viewlist.size());
-            ViewParent vp = imageView.getParent();
-            if (vp != null) {
-                ViewGroup parent = (ViewGroup) vp;
-                parent.removeView(imageView);
-            }
-            ((ViewPager) container).addView((imageView), 0);
-            imageView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View view, MotionEvent motionEvent) {
-                    mGestureDetector.onTouchEvent(motionEvent);
-                    return true;
+//            ImageView imageView = (ImageView) viewlist.get(position % viewlist.size());
+            String path = viewpathlist.get(position);
+            if("mp4".equals(FileUtils.parseSuffix(path))){
+                final VideoView videoView = new VideoView(activity.getApplicationContext());
+                videoView.setVideoURI(Uri.parse(path));
+                //开始播放
+                MediaController mediaController = new MediaController(activity);
+                videoView.setMediaController(mediaController);
+                mediaController.setMediaPlayer(videoView);
+                container.addView(videoView);
+//                videoView.setOnTouchListener(new View.OnTouchListener() {
+//                    @Override
+//                    public boolean onTouch(View view, MotionEvent motionEvent) {
+//                        mGestureDetector.onTouchEvent(motionEvent);
+//                        return true;
+//                    }
+//                });
+                return videoView;
+            }else{
+                ImageView imageView = new ImageView(activity);
+//                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                ImageLoader.getInstance().displayImage((BaseActivity) activity, viewpathlist.get(position), imageView);
+                ViewParent vp = imageView.getParent();
+                if (vp != null) {
+                    ViewGroup parent = (ViewGroup) vp;
+                    parent.removeView(imageView);
                 }
-            });
-            return viewlist.get(position % viewlist.size());
+                ((ViewPager) container).addView((imageView), 0);
+                imageView.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View view, MotionEvent motionEvent) {
+                        mGestureDetector.onTouchEvent(motionEvent);
+                        return true;
+                    }
+                });
+                return imageView;
+            }
+
         }
 
         GestureDetector mGestureDetector = new GestureDetector(PaperDetailsActivity.this, new GestureDetector.SimpleOnGestureListener() {

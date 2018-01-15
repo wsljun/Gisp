@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Giiisp.iml" filepath="$PROJECT_DIR$/Giiisp.iml" />
       <module fileurl="file://E:\Git\Gisp\Giiisp.iml" filepath="E:\Git\Gisp\Giiisp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Gisp.iml" filepath="$PROJECT_DIR$/Gisp.iml" />
+      <module fileurl="file://E:\lyndon\caojian\C2\Giiisp\Gisp.iml" filepath="E:\lyndon\caojian\C2\Giiisp\Gisp.iml" />
       <module fileurl="file://$PROJECT_DIR$/TabBarLibrary/TabBarLibrary.iml" filepath="$PROJECT_DIR$/TabBarLibrary/TabBarLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/rxdownload2/rxdownload2.iml" filepath="$PROJECT_DIR$/rxdownload2/rxdownload2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/videoapp/videoapp.iml" filepath="$PROJECT_DIR$/videoapp/videoapp.iml" />
     </modules>
   </component>
 </project>

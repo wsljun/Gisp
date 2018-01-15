@@ -13,7 +13,9 @@
             android:id="@+id/viewpager_paper"
             android:layout_width="match_parent"
             android:layout_height="275dp"
-            android:background="@color/colorPrimary"/>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimary" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -21,7 +23,8 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/viewpager_paper"
             android:layout_marginTop="2dp"
-            android:background="@color/colorInterface"/>
+            android:background="@color/colorInterface"
+            />
 
         <ImageView
             android:id="@+id/iv_fullscreen_button"

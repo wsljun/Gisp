@@ -39,6 +39,7 @@ android {
 //            shrinkResources true // 移除无用的resource文件
             zipAlignEnabled true // zipalign优化
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
@@ -46,6 +47,7 @@ android {
 //            shrinkResources true // 移除无用的resource文件
             zipAlignEnabled true // zipalign优化
             minifyEnabled false
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
