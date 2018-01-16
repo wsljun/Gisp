@@ -1,20 +1,12 @@
 package com.giiisp.giiisp.view.adapter;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.ImageView;
-import android.widget.MediaController;
-import android.widget.VideoView;
-
-import com.giiisp.giiisp.base.BaseActivity;
-import com.giiisp.giiisp.utils.FileUtils;
-import com.giiisp.giiisp.utils.ImageLoader;
 
 import java.util.List;
 
@@ -24,10 +16,10 @@ import java.util.List;
 
 public class ViewPagerImage extends PagerAdapter {
 
-    private List<String> viewlist;
+    private List<ImageView> viewlist;
     private Activity activity;
 
-    public ViewPagerImage(Activity activity, List<String> viewlist) {
+    public ViewPagerImage(Activity activity, List<ImageView> viewlist) {
         this.viewlist = viewlist;
         this.activity = activity;
     }
@@ -46,9 +38,8 @@ public class ViewPagerImage extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position,
                             Object object) {
-//        ((ViewPager) container).removeView(viewlist.get(position % viewlist.size()));
+        ((ViewPager) container).removeView(viewlist.get(position % viewlist.size()));
         //Warning：不要在这里调用removeView
-        container.removeView((View) object);
     }
 
     @Override
@@ -66,44 +57,19 @@ public class ViewPagerImage extends PagerAdapter {
             container.addView(path);
             //add listeners here if necessary
             return path;*/
-//        position %= viewlist.size();
-//        if (position < 0) {
-//            position = viewlist.size() + position;
-//        }
-//
-//        ImageView imageView = viewlist.get(position);
-//
-//        ViewParent vp = imageView.getParent();
-//        if (vp != null) {
-//            ViewGroup parent = (ViewGroup) vp;
-//            parent.removeView(imageView);
-//        }
-//        ((ViewPager) container).addView((imageView), 0);
-//        return imageView;
-
-        String path = viewlist.get(position);
-        if("mp4".equals(FileUtils.parseSuffix(path))){
-            final VideoView videoView = new VideoView(activity.getApplicationContext());
-            videoView.setVideoURI(Uri.parse(path));
-            //开始播放
-            MediaController mediaController = new MediaController(activity);
-            videoView.setMediaController(mediaController);
-            mediaController.setMediaPlayer(videoView);
-            container.addView(videoView);
-            return videoView;
-        }else{
-            ImageView imageView = new ImageView(activity);
-//            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            ImageLoader.getInstance().displayImage((BaseActivity) activity, viewlist.get(position), imageView);
-            ViewParent vp = imageView.getParent();
-            if (vp != null) {
-                ViewGroup parent = (ViewGroup) vp;
-                parent.removeView(imageView);
-            }
-            ((ViewPager) container).addView((imageView), 0);
-            return imageView;
+        position %= viewlist.size();
+        if (position < 0) {
+            position = viewlist.size() + position;
         }
 
+        ImageView imageView = viewlist.get(position);
 
+        ViewParent vp = imageView.getParent();
+        if (vp != null) {
+            ViewGroup parent = (ViewGroup) vp;
+            parent.removeView(imageView);
+        }
+        ((ViewPager) container).addView((imageView), 0);
+        return imageView;
     }
 }

@@ -68,4 +68,14 @@ public class DensityUtils {
         return (pxVal / context.getResources().getDisplayMetrics().scaledDensity);
     }
 
+    public static final float getHeightInPx(Context context) {
+        final float height = context.getResources().getDisplayMetrics().heightPixels;
+        return height;
+    }
+    public static final float getWidthInPx(Context context) {
+        final float width = context.getResources().getDisplayMetrics().widthPixels;
+        return width;
+    }
+
+
 }  

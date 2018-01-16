@@ -15,6 +15,16 @@
 
 
     <RelativeLayout
+        android:id="@+id/rl_viewpager_full"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:gravity="bottom"
+        >
+
+
+    </RelativeLayout>
+    <RelativeLayout
         android:id="@+id/line_banner"
         android:layout_width="match_parent"
         android:layout_height="64dp"
@@ -81,7 +91,9 @@
 
 
     </RelativeLayout>
-    <include layout="@layout/empty_view"/>
+    <include layout="@layout/empty_view"
+        android:visibility="gone"
+        />
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordinator_layout"
@@ -102,19 +114,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                >
 
 
                 <RelativeLayout
                     android:id="@+id/relative_full"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <android.support.v4.view.ViewPager
                         android:id="@+id/viewpager_paper"
                         android:layout_width="match_parent"
-                        android:layout_height="275dp"
+                        android:layout_height="280dp"
                         android:background="@color/colorPrimary"/>
 
                     <android.support.v7.widget.RecyclerView
@@ -220,7 +233,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="6.7dp"
                         android:layout_below="@+id/linear_layout"
-                        android:background="@color/colorBackground"/>
+                        android:background="@color/colorBackground"
+                        />
                 </RelativeLayout>
             </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -231,7 +245,8 @@
                 app:tabIndicatorColor="@color/colorInterface"
                 app:tabIndicatorHeight="1dp"
                 app:tabSelectedTextColor="@color/colorInterface"
-                app:tabTextColor="@color/colorTextLineGrey"/>
+                app:tabTextColor="@color/colorTextLineGrey"
+                />
 
             <View
                 android:layout_width="match_parent"

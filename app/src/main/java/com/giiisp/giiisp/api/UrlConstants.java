@@ -11,7 +11,7 @@ public class UrlConstants {
 
         //        public static final String BASE_URL = "https://47.93.23.62/giiisp/";
 //        public static final String BASE_URL = "http://121.21.34.153:7777/jsp/";//z
-        public static final String BASE_URL = "http://122.70.151.186:8787/jsp/";//fhttp://www.wwfgzs.com/jsp/
+        public static final String BASE_URL = "http://47.104.97.60/";//fhttp://www.wwfgzs.com/jsp/
         //
         //        public static final String BASE_URL = "app.giiisp.com/";getWaitRecordPaperList.do
         //        public static final String MP3_URL = "http://o9kg05vzs.bkt.clouddn.com/";

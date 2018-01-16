@@ -8,10 +8,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -30,7 +36,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
@@ -58,6 +67,7 @@ import com.giiisp.giiisp.entity.PaperEntity;
 import com.giiisp.giiisp.entity.Song;
 import com.giiisp.giiisp.model.ModelFactory;
 import com.giiisp.giiisp.presenter.WholePresenter;
+import com.giiisp.giiisp.utils.DensityUtils;
 import com.giiisp.giiisp.utils.FileUtils;
 import com.giiisp.giiisp.utils.ImageLoader;
 import com.giiisp.giiisp.utils.Utils;
@@ -69,6 +79,7 @@ import com.giiisp.giiisp.view.impl.BaseImpl;
 import com.giiisp.giiisp.widget.FloatDragView;
 import com.giiisp.giiisp.widget.FullScreenPopupWindow;
 import com.giiisp.giiisp.widget.ProgressPopupWindow;
+import com.giiisp.giiisp.widget.WrapVideoView;
 import com.giiisp.giiisp.widget.recording.AppCache;
 import com.giiisp.giiisp.widget.recording.OnPlayerEventListener;
 import com.giiisp.giiisp.widget.recording.PlayService;
@@ -88,7 +99,9 @@ import com.umeng.socialize.shareboard.ShareBoardConfig;
 import org.greenrobot.greendao.query.Query;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -176,8 +189,6 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     LinearLayout llEmptyView;
     @BindView(R.id.coordinator_layout)
     CoordinatorLayout coordinatorLayout;
-    //    @BindView(R.id.scroll_view)
-//    ScrollView scrollView;
     @BindView(R.id.tv_paper_complete)
     TextView tvPaperComplete;
     @BindView(R.id.tv_paper_marrow)
@@ -192,8 +203,10 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     ProgressWheel progressWheel;
     @BindView(R.id.iv_empty)
     ImageView ivEmpty;
+    @BindView(R.id.rl_viewpager_full)
+    RelativeLayout rl_viewpager_full;
 
-    private boolean isFulllScreen;
+    private boolean isFulllScreen = false;
     private FullScreenPopupWindow fullScreenPopup;
     private DownloadController mDownloadController;
     private String type;
@@ -230,6 +243,29 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     private ProgressPopupWindow progressPopupWindow;
     private int isSave;
     private boolean isMove = false;
+    /*** viewpager的根视图数据集合 ***/
+    List<View> mViewList;
+
+    /*** 当前页面索引 ***/
+    int currentViewPagerItem = 0;
+
+    /*** 上一个页面索引 ***/
+    int lastItem = 0;
+
+    /*** 页面的视频控件集合,Integer所处位置 ***/
+    static Map<Integer,WrapVideoView> mVideoViewMap;
+    static Map<Integer,View> mVideoBgViewMap;
+    /*** 页面播放进度控制器集合 ***/
+    static Map<Integer,MediaController> mMediaControllerMap;
+
+    /*** 页面视频缓冲图集合 ***/
+    static List<View> mCacheViewList;
+
+    /*** 记录每个page页面视频播放的进度 ***/
+    static Map<Integer, Integer> mCurrentPositions;
+
+    /*** 记录当前page页面是否为视频 ***/
+    static Map<Integer, Boolean> mIsVideo;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -497,14 +533,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                             for (String photo : photoList) {
                                 itemClickAdapter.addData(new ClickEntity(photo));
                             }
-//                            List<ImageView> images = new ArrayList<>();
-//                            for (String s : imageList) {
-//                                ImageView imageView = new ImageView(this);
-//                                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//                                ImageLoader.getInstance().displayImage(this, s, imageView);
-//                                images.add(imageView);
-//                            }
-                            viewpagerPaper.setAdapter(new ImageAdapter(this, photoList));// todo fix photo and video
+                            viewpagerPaper.setAdapter(new ImageAdapter(this, photoList));
                         }
                         viewpagerPaper.setCurrentItem(playService.getPlayingPosition());
                         recyclerView.scrollToPosition(playService.getPlayingPosition());
@@ -523,14 +552,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                             for (String photo : photoList) {
                                 itemClickAdapter.addData(new ClickEntity(photo));
                             }
-//                            List<ImageView> images = new ArrayList<>();
-//                            for (String s : photoList) {
-//                                ImageView imageView = new ImageView(this);
-//                                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//                                ImageLoader.getInstance().displayImage(this, s, imageView);
-//                                images.add(imageView);
-//                            }
-                            viewpagerPaper.setAdapter(new ImageAdapter(this, photoList)); // todo fix photo and video
+                            viewpagerPaper.setAdapter(new ImageAdapter(this, photoList));
                         }
 
                         if (recordOneList != null) {
@@ -722,21 +744,24 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                 break;
             case R.id.iv_fullscreen_button:
                 //                FullscreenActivity.actionActivity(this);
-                isFulllScreen = !isFulllScreen;
-                Log.i("--->>", "onViewClicked: 11" + getRequestedOrientation());
-                if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE) {
-                    //切换竖屏
-                    fullScreenPopup.dismiss();
-                    //                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-                    PaperDetailsActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+//                if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE) {
+//                    //切换竖屏
+//                    fullScreenPopup.dismiss();
+//                    //                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+//                    PaperDetailsActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//
+//                } else {
+//                    //切换横屏
+//                    PaperDetailsActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+//                    fullScreenPopup.showPopupWindow();
+//                    //                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+//                }
+                if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 } else {
-                    //切换横屏
-                    PaperDetailsActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
-                    fullScreenPopup.showPopupWindow();
-                    //                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 }
-
+                isFulllScreen = !isFulllScreen;
                 break;
             case R.id.et_comm_post:
                 if (photosBeanRows == null || photosBeanRows.size() <= position)
@@ -1068,79 +1093,40 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-  /*      if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            //                    button.setText(getResources().getText(R.string.exit_full_screen));
-
-            WindowManager.LayoutParams params = getWindow().getAttributes();
-
-            params.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
-*//*            getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN ,
-                    WindowManager.LayoutParams. FLAG_FULLSCREEN);*//*
-            getWindow().setAttributes(params);
-            viewpagerTab.setVisibility(View.GONE);
-            tabLayoutPaper.setVisibility(View.GONE);
-            lineBanner.setVisibility(View.GONE);
-            linerBottomComm.setVisibility(View.GONE);
-            linearLayout.setVisibility(View.GONE);
-            //            getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        } else {
-            tabLayoutPaper.setVisibility(View.VISIBLE);
-            linearLayout.setVisibility(View.VISIBLE);
-            viewpagerTab.setVisibility(View.VISIBLE);
-            lineBanner.setVisibility(View.VISIBLE);
-            linerBottomComm.setVisibility(View.VISIBLE);
-            coordinatorLayout.setLayoutParams(new AppBarLayout.LayoutParams(ViewPager.LayoutParams.MATCH_PARENT, ViewPager.LayoutParams.MATCH_PARENT));
-            //                    button.setText(getResources().getText(R.string.full_screen));
-            WindowManager.LayoutParams params = getWindow().getAttributes();
-            params.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            getWindow().setAttributes(params);
-
-            //            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
-        }
-        Log.i("--->>", "onConfigurationChanged: " + newConfig.orientation);
-        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            //            relativeFull.setLayoutParams(layoutParams);
-            ViewGroup.LayoutParams layoutParams = viewpagerPaper.getLayoutParams();
-            layoutParams.height = DensityUtils.dp2px(this, 275);
-            viewpagerPaper.setLayoutParams(layoutParams);
-            viewpagerPaper.setOnTouchListener(null);
-            recyclerView.requestDisallowInterceptTouchEvent(true);
-            coordinatorLayout.setOnTouchListener(null);
-        } else {
-            ViewGroup.LayoutParams layoutParams = viewpagerPaper.getLayoutParams();
-            layoutParams.height = DensityUtils.dp2px(this, 300);
-            coordinatorLayout.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View arg0, MotionEvent arg1) {
-                    return true;
-                }
-            });
-            viewpagerPaper.setLayoutParams(layoutParams);
-            viewpagerPaper.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    v.getParent().requestDisallowInterceptTouchEvent(true);
-                    switch (event.getAction() & MotionEvent.ACTION_MASK) {
-                        case MotionEvent.ACTION_UP:
-                            v.getParent().requestDisallowInterceptTouchEvent(false);
-                            break;
-                    }
-                    return false;
-                }
-            });
-            recyclerView.requestDisallowInterceptTouchEvent(false);
-            //            relativeFull.setLayoutParams(layoutParams);
-        }
-*/
-
+        setViewState(newConfig);
     }
 
-    public void setViewState(boolean isShow){
-        if(isShow){
-            seekBarPaper.setVisibility(View.VISIBLE);
-        }else{
-            seekBarPaper.setVisibility(View.INVISIBLE);
+    /**
+     * 设置全屏
+     * @param newConfig
+     */
+    public void setViewState(Configuration newConfig){
+        if (relativeFull != null) {
+            if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+                rl_viewpager_full.setVisibility(View.GONE);
+                rl_viewpager_full.removeAllViews();
+                toolbarLayout.addView(relativeFull);
+                linearLayout.setVisibility(View.VISIBLE);
+            } else {
+                ViewGroup viewGroup = (ViewGroup) relativeFull.getParent();
+                if (viewGroup == null)
+                    return;
+                viewGroup.removeAllViews();
+                rl_viewpager_full.addView(relativeFull);
+                rl_viewpager_full.setVisibility(View.VISIBLE);
+                linearLayout.setVisibility(View.GONE);
+                int mHideFlags =
+                        View.SYSTEM_UI_FLAG_LOW_PROFILE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                                | View.SYSTEM_UI_FLAG_IMMERSIVE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        ;
+                rl_viewpager_full.setSystemUiVisibility(mHideFlags);
+            }
+        } else {
+            rl_viewpager_full.setVisibility(View.GONE);
         }
     }
 
@@ -1164,15 +1150,30 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
     @Override
     public void onPageSelected(int position) {
         this.position = position;
+        lastItem = currentViewPagerItem;
+        currentViewPagerItem = position;
         tvTitle.setText("P" + (position + 1));
         viewpagerPaper.setCurrentItem(position);
 //        recyclerView.scrollToPosition(position);
 //        itemClickAdapter.setSelectedPosition(position);
 //        itemClickAdapter.notifyDataSetChanged();
-        if("mp4".equals(FileUtils.parseSuffix(photoList.get(position)))){
-            seekBarPaper.setVisibility(View.GONE);
+        if(mIsVideo.get(currentViewPagerItem)){ // 当前是视频
+            seekBarPaper.setVisibility(View.INVISIBLE);
+            linearLayout.setVisibility(View.GONE);
+            mMediaControllerMap.get(currentViewPagerItem).setVisibility(View.VISIBLE);
         }else{
             seekBarPaper.setVisibility(View.VISIBLE);
+            if(!isFulllScreen){
+                linearLayout.setVisibility(View.VISIBLE);
+            }
+            if(mIsVideo.get(lastItem)){ // 上一个为视频时
+                if(mVideoViewMap.get(lastItem).isPlaying()){
+                    mVideoViewMap.get(lastItem).pause();
+                }
+                if(mMediaControllerMap.get(lastItem).isShowing()){
+                    mMediaControllerMap.get(lastItem).setVisibility(View.INVISIBLE);
+                }
+            }
         }
         switch (type) {
             case "online_paper":
@@ -1190,13 +1191,6 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                 break;
 
         }
-
-/*        if (itemClickAdapter.getSelectedPosition() > position) {
-            recyclerView.scrollToPosition(position - 2);
-        } else {
-            recyclerView.scrollToPosition(position + 2);
-        }
- */
     }
 
     @Override
@@ -1243,7 +1237,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                 firstPic = rowsBeanXX.getFirstPic();
                 isFollowed = rowsBeanXX.getIsFollowed();
                 ivLikedIcon.setSelected("1".equals(isFollowed));
-                PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.PhotosBean photos = rowsBeanXX.getPhotos();// todo add type 1,png ,2 mp4, 3 gif
+                PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.PhotosBean photos = rowsBeanXX.getPhotos();//  add type 1,png ,2 mp4, 3 gif
                 PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.RecordOneBean recordOne = rowsBeanXX.getRecordOne();
                 PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.RecordOneBean recordTwo = rowsBeanXX.getRecordTwo();
                 if (photos != null && photos.getRows() != null && photos.getRows().size() > 0) {
@@ -1255,10 +1249,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                         photoList = new ArrayList<>();
                     }
                     for (PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.PhotosBean.RowsBean photosBeanRow : photosBeanRows) {
-                        itemClickAdapter.addData(new ClickEntity(photosBeanRow.getPath(), photosBeanRow.getId())); // todo
-//                        ImageView imageView = new ImageView(this);
-//                        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//                        ImageLoader.getInstance().displayImage(this, photosBeanRow.getPath(), imageView);
+                        itemClickAdapter.addData(new ClickEntity(photosBeanRow.getPath(), photosBeanRow.getId()));
                         photoList.add(photosBeanRow.getPath());
                         imageId.add(photosBeanRow.getId());
                     }
@@ -1268,11 +1259,14 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
 
                     }
                     note.setPath(photos.getRows().get(0).getPath());
-                    viewpagerPaper.setAdapter(new ImageAdapter(this,photoList)); // todo fix photo and video
+//                    long time3 = System.currentTimeMillis(); //  time test 3
+                    viewpagerPaper.setAdapter(new ImageAdapter(this,photoList));
                     viewpagerPaper.setCurrentItem(position);
                     recyclerView.scrollToPosition(position);
                     itemClickAdapter.setSelectedPosition(position);
                     itemClickAdapter.notifyDataSetChanged();
+//                    long result3 = (System.currentTimeMillis()-time3);
+//                    Log.e("time","result3= "+result3);
                 }
 
                 if (recordOne != null && recordOne.getRows() != null && recordOne.getRows().size() > 0) {
@@ -1577,18 +1571,114 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
 
     private class ImageAdapter extends PagerAdapter {
 
-        private List<String> viewpathlist; // todo 图片和视频混排
+        private List<String> viewpathlist;
         private Activity activity;
+        private View view;
+        private VideoView videoView;
 
         public ImageAdapter(Activity activity, ArrayList<String> viewpathlist) {
             this.viewpathlist = viewpathlist;
             this.activity = activity;
+            initImageView();
+        }
+
+        private void initImageView() {
+            mViewList = new ArrayList<View>();
+            mVideoViewMap = new HashMap<Integer, WrapVideoView>();
+            mVideoBgViewMap = new HashMap<Integer, View>();
+            mMediaControllerMap = new HashMap<Integer, MediaController>();
+            mCacheViewList = new ArrayList<View>();
+
+            mCurrentPositions = new HashMap<>();
+            mIsVideo = new HashMap<>();
+            // mIsPageFirstAvaliable = new HashMap<Integer, Boolean>();
+
+            for (int i = 0; i < viewpathlist.size(); i++) {
+                String path= viewpathlist.get(i);
+                if("mp4".equals(FileUtils.parseSuffix(path))){
+                    path = "http://flashmedia.eastday.com/newdate/news/2016-11/shznews1125-19.mp4";
+                    View videoview_layout = (View) View.inflate(activity, R.layout.item_paper_videoview,
+                            null);
+                    WrapVideoView videoview = (WrapVideoView) videoview_layout.findViewById(R.id.videoview);
+                    View mVideoBgView = (View) videoview_layout.findViewById(R.id.iv_bg);
+                    ImageButton imPlayBtn =videoview_layout.findViewById(R.id.imbtn_video_play);
+                    imPlayBtn.setOnClickListener(new ImgBtnClickLister());
+                    mVideoBgView.setBackground(new BitmapDrawable(getVideoBitmap(path)));
+
+                    MediaController mpc = new MediaController(activity);
+                    videoview.setVideoPath(path);
+                    videoview.setMediaController(mpc);
+                    videoview.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(videoview.isPlaying()){
+                                mpc.show();
+                            }else{
+                                mpc.hide();
+                                imPlayBtn.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    });
+//                    setListener(vv);
+                    mViewList.add(videoview_layout);
+                    mVideoViewMap.put(i,videoview);
+                    mMediaControllerMap.put(i,mpc);
+                    mVideoBgViewMap.put(i,mVideoBgView);
+                    mCurrentPositions.put(i, 0);// 每个页面的初始播放进度为0
+                    mIsVideo.put(i, true);// 每个页面的初始播放状态false
+                }else{
+                    mIsVideo.put(i, false);
+                    ImageView imageView = new ImageView(activity);
+//                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    ImageLoader.getInstance().displayImage((BaseActivity) activity, path, imageView);
+                    ViewParent vp = imageView.getParent();
+                    if (vp != null) {
+                        ViewGroup parent = (ViewGroup) vp;
+                        parent.removeView(imageView);
+                    }
+                    mViewList.add(imageView);
+                    imageView.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View view, MotionEvent motionEvent) {
+                            mGestureDetector.onTouchEvent(motionEvent);
+                            return true;
+                        }
+                    });
+                }
+            }
+        }
+
+        class ImgBtnClickLister implements View.OnClickListener{
+
+            @Override
+            public void onClick(View v) {
+                if(v.getVisibility() == View.VISIBLE ){
+                    mVideoViewMap.get(currentViewPagerItem).start();
+                    v.setVisibility(View.GONE);
+                    mVideoBgViewMap.get(currentViewPagerItem).setVisibility(View.GONE);
+                }
+            }
+        }
+
+        public Bitmap getVideoBitmap(String mVideoUrl){
+            Bitmap bitmap = null;
+            MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+            int kind = MediaStore.Video.Thumbnails.MINI_KIND;
+            if (Build.VERSION.SDK_INT >= 14) {
+                retriever.setDataSource(mVideoUrl, new HashMap<String, String>());
+            } else {
+                retriever.setDataSource(mVideoUrl);
+            }
+            bitmap = retriever.getFrameAtTime();
+            retriever.release();
+
+            return bitmap;
         }
 
         @Override
         public int getCount() {
             //设置成最大，使用户看不到边界
-            return viewpathlist.size();
+            return mViewList.size();
         }
 
         @Override
@@ -1599,51 +1689,16 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
         @Override
         public void destroyItem(ViewGroup container, int position,
                                 Object object) {
-//            ((ViewPager) container).removeView(viewlist.get(position % viewlist.size()));
+            ((ViewPager) container).removeView(mViewList.get(position % mViewList.size()));
             //Warning：不要在这里调用removeView
-            container.removeView((View) object);
+//            container.removeView((View) object);
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-//            ImageView imageView = (ImageView) viewlist.get(position % viewlist.size());
-            String path = viewpathlist.get(position);
-            if("mp4".equals(FileUtils.parseSuffix(path))){
-                final VideoView videoView = new VideoView(activity.getApplicationContext());
-                videoView.setVideoURI(Uri.parse(path));
-                //开始播放
-                MediaController mediaController = new MediaController(activity);
-                videoView.setMediaController(mediaController);
-                mediaController.setMediaPlayer(videoView);
-                container.addView(videoView);
-//                videoView.setOnTouchListener(new View.OnTouchListener() {
-//                    @Override
-//                    public boolean onTouch(View view, MotionEvent motionEvent) {
-//                        mGestureDetector.onTouchEvent(motionEvent);
-//                        return true;
-//                    }
-//                });
-                return videoView;
-            }else{
-                ImageView imageView = new ImageView(activity);
-//                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                ImageLoader.getInstance().displayImage((BaseActivity) activity, viewpathlist.get(position), imageView);
-                ViewParent vp = imageView.getParent();
-                if (vp != null) {
-                    ViewGroup parent = (ViewGroup) vp;
-                    parent.removeView(imageView);
-                }
-                ((ViewPager) container).addView((imageView), 0);
-                imageView.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View view, MotionEvent motionEvent) {
-                        mGestureDetector.onTouchEvent(motionEvent);
-                        return true;
-                    }
-                });
-                return imageView;
-            }
 
+            container.addView(mViewList.get(position));
+            return mViewList.get(position);
         }
 
         GestureDetector mGestureDetector = new GestureDetector(PaperDetailsActivity.this, new GestureDetector.SimpleOnGestureListener() {
@@ -1657,7 +1712,6 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
 
 
     }
-
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
