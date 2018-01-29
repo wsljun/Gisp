@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
@@ -11,19 +12,26 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.giiisp.giiisp.R;
+import com.giiisp.giiisp.api.ApiStore;
 import com.giiisp.giiisp.api.UrlConstants;
 import com.giiisp.giiisp.base.BaseActivity;
 import com.giiisp.giiisp.model.GlideApp;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Hashtable;
 
 
 public class ImageLoader {
     public static final String ANDROID_RESOURCE = "android.resource://";
     public static final String FOREWARD_SLASH = "/";
-
+    public static final String TAG = "ImageLoader";
     private static class ImageLoaderHolder {
         private static final ImageLoader INSTANCE = new ImageLoader();
     }
@@ -46,6 +54,7 @@ public class ImageLoader {
                 .load(url)
                 .placeholder(R.mipmap.placeholder_icon)
                 .error(R.mipmap.ic_launcher)
+                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
 //                .centerInside()
                 .into(imageView);
     }
@@ -238,5 +247,67 @@ public class ImageLoader {
         }
         return bitmap;
     }
+    /**
+     * Bitmap转换成byte[]并且进行压缩,压缩到不大于maxkb
+     * @param bitmap
+     * @param maxkb
+     * @return
+     */
+    public static byte[] bitmap2Bytes(Bitmap bitmap, int maxkb) {
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
+        int options = 100;
+        while (output.toByteArray().length > maxkb&& options != 10) {
+            output.reset(); //清空output
+            bitmap.compress(Bitmap.CompressFormat.JPEG, options, output);//这里压缩options%，把压缩后的数据存放到output中
+            options -= 10;
+        }
+//        bitmap = BitmapFactory.decodeByteArray(output.toByteArray(),0,output.toByteArray().length);
+        return output.toByteArray();
+    }
 
+    /**
+     * 根据一个网络连接(String)获取bitmap图像
+     *
+     * @param imageUri
+     * @return
+     */
+    static Bitmap bitmap ;
+    public static Bitmap getbitmap(String imageUri) {
+        Log.setShow(true);
+        Log.v(TAG, "getbitmap:" + imageUri);
+        // 显示网络上的图片
+        try {
+            URL myFileUrl = new URL(imageUri);
+            HttpURLConnection conn = (HttpURLConnection) myFileUrl
+                    .openConnection();
+            conn.setDoInput(true);
+            conn.setRequestMethod("GET"); //设置请求方法
+            conn.setConnectTimeout(10000); //设置连接服务器超时时间
+            conn.setReadTimeout(5000);  //设置读取数据超时时间
+            conn.connect(); //开始连接
+            int responseCode = conn.getResponseCode(); //得到服务器的响应码
+            if (responseCode == 200) {
+                //访问成功
+                InputStream is = conn.getInputStream(); //获得服务器返回的流数据
+                bitmap = BitmapFactory.decodeStream(is); //根据流数据 创建一个bitmap对象
+                is.close();
+                Log.d(TAG, "responseCode 200 = ：" +  bitmap.getByteCount());
+                return bitmap;
+
+            } else {
+                //访问失败
+                Log.d(TAG, "访问失败===responseCode：" + responseCode);
+            }
+            Log.v(TAG, "image download finished." + imageUri);
+        } catch (OutOfMemoryError e) {
+            e.printStackTrace();
+            bitmap = null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.v(TAG, "getbitmap bmp fail---");
+            bitmap = null;
+        }
+        return bitmap;
+    }
 }

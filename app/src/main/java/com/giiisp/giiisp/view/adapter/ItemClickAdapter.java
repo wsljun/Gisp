@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.giiisp.giiisp.R;
@@ -33,6 +34,7 @@ import com.giiisp.giiisp.entity.MyScholarBean;
 import com.giiisp.giiisp.entity.QAEntity;
 import com.giiisp.giiisp.entity.SubscribeEntity;
 import com.giiisp.giiisp.entity.UserInfoEntity;
+import com.giiisp.giiisp.model.GlideApp;
 import com.giiisp.giiisp.utils.DensityUtils;
 import com.giiisp.giiisp.utils.FileUtils;
 import com.giiisp.giiisp.utils.ImageLoader;
@@ -498,7 +500,7 @@ public class ItemClickAdapter extends BaseQuickAdapter<ClickEntity, BaseViewHold
                     }
                     break;
                 case R.layout.item_scholar_education:
-                   final UserInfoEntity.IntroductionBean introductionBean = item.getIntroduction(); // Todo 学者详情需要更改
+                   final UserInfoEntity.IntroductionBean introductionBean = item.getIntroduction(); // 学者详情
                     helper.setText(R.id.tv_description,introductionBean.getSchool() );//introductionBean.getSchool()
                     String start = introductionBean.getTimeStart().substring(0, 4);
                     String end = introductionBean.getTimeEnd().substring(0, 4);
@@ -666,7 +668,8 @@ public class ItemClickAdapter extends BaseQuickAdapter<ClickEntity, BaseViewHold
                     ImageLoader.getInstance().displayImage(activity, item.getUrl(), (ImageView) helper.getView(R.id.iv_icon));
                     break;
                 case R.layout.item_paper_pic:
-                case R.layout.item_paperpull_pic: // TODO 图片+视频
+                case R.layout.item_paperpull_pic: //  图片+视频
+                    String path = item.getString();
                     View viewBg = helper.getView(R.id.iv_bg);
                     if (helper.getLayoutPosition() == selectedPosition) {
                         Log.i("-->>", "convert: " + selectedPosition);
@@ -674,11 +677,11 @@ public class ItemClickAdapter extends BaseQuickAdapter<ClickEntity, BaseViewHold
                     } else {
                         viewBg.setVisibility(View.VISIBLE);
                     }
-                    if("mp4".equals(FileUtils.parseSuffix(item.getString()))){ // 视频
-                        ImageView imageView1 = helper.getView(R.id.iv_pic);
-                        imageView1.setImageBitmap(ImageLoader.getInstance().createVideoThumbnail(item.getString(),1));
+                    ImageView imageView1 = helper.getView(R.id.iv_pic);
+                    if("mp4".equals(FileUtils.parseSuffix(path))){ // 视频
+                        imageView1.setImageBitmap(ImageLoader.getInstance().createVideoThumbnail(path,0));
                     }else{
-                        ImageLoader.getInstance().displayImage(activity, item.getString(), (ImageView) helper.getView(R.id.iv_pic));
+                        ImageLoader.getInstance().displayImage(activity, path, imageView1);
                     }
                     break;
                 case R.layout.item_search:
@@ -809,7 +812,7 @@ public class ItemClickAdapter extends BaseQuickAdapter<ClickEntity, BaseViewHold
                         helper.setText(R.id.tv_position, rowsBeanHomeEntity.getOrganization());
                         ImageLoader.getInstance().displayCricleImage(activity, rowsBeanHomeEntity.getAvatar(), (ImageView) helper.getView(R.id.iv_user_icon));
 
-                        final String isFollowed = rowsBeanHomeEntity.getIsFollowed(); // todo 关注
+                        final String isFollowed = rowsBeanHomeEntity.getIsFollowed();
                         final String id = rowsBeanHomeEntity.getId();
                         helper.getView(R.id.iv_user_icon).setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -856,7 +859,7 @@ public class ItemClickAdapter extends BaseQuickAdapter<ClickEntity, BaseViewHold
                                     });
                                     break;
                                 case "2":
-                                    textViewAttention.setText("互相关注"); // TODO 关注
+                                    textViewAttention.setText("互相关注");
                                     textViewAttention.setBackground(null);
                                     textViewAttention.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -963,7 +966,7 @@ public class ItemClickAdapter extends BaseQuickAdapter<ClickEntity, BaseViewHold
         List<SubscribeEntity.PageInfoBean.RowsBeanXXXXX.PhotoOneBean.RowsBeanXXXX> photoOneRows = photoOne.getRows();
         List<ClickEntity> total = new ArrayList<>();
         List<ClickEntity> one = new ArrayList<>();
-        if (photoThreeRows != null && photoThreeRows.size() == 1 && photoThreeRows.get(0) != null && Objects.equals("1", photoThreeRows.get(0).getStatus())) {
+        if (photoThreeRows != null && photoThreeRows.size() == 1 && photoThreeRows.get(0) != null) { //TODO && Objects.equals("1", photoThreeRows.get(0).getStatus())
             ClickEntity clickEntity = new ClickEntity();
             clickEntity.setPhotoRecord(subscribeEntityRows.getTitle());
             clickEntity.setPhotoOrder(subscribeEntityRows.getCreateTime());
@@ -975,7 +978,7 @@ public class ItemClickAdapter extends BaseQuickAdapter<ClickEntity, BaseViewHold
             clickEntity.setPosition(helper.getAdapterPosition());
             total.add(clickEntity);
         }
-        if (photoTwoRows != null && photoTwoRows.size() == 1 && photoTwoRows.get(0) != null && Objects.equals("1", photoTwoRows.get(0).getStatus())) {
+        if (photoTwoRows != null && photoTwoRows.size() == 1 && photoTwoRows.get(0) != null ) { //TODO && Objects.equals("1", photoTwoRows.get(0).getStatus())
             ClickEntity clickEntity = new ClickEntity();
             clickEntity.setPhotoRecord(subscribeEntityRows.getTitle());
             clickEntity.setPhotoOrder(subscribeEntityRows.getCreateTime());
@@ -987,7 +990,7 @@ public class ItemClickAdapter extends BaseQuickAdapter<ClickEntity, BaseViewHold
             clickEntity.setPosition(helper.getAdapterPosition());
             total.add(clickEntity);
         }
-        if (photoOneRows != null && photoOneRows.size() == 1 && photoOneRows.get(0) != null && Objects.equals("1", photoOneRows.get(0).getStatus())) {
+        if (photoOneRows != null && photoOneRows.size() == 1 && photoOneRows.get(0) != null ) { //TODO  && Objects.equals("1", photoOneRows.get(0).getStatus())
             ClickEntity clickEntity = new ClickEntity();
             clickEntity.setPhotoRecord(subscribeEntityRows.getTitle());
             clickEntity.setPhotoOrder(subscribeEntityRows.getCreateTime());

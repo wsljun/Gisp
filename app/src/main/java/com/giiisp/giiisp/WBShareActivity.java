@@ -1,6 +1,5 @@
 package com.giiisp.giiisp;
 
-//import com.umeng.socialize.media.WBShareCallBackActivity;
 
 import com.umeng.socialize.media.WBShareCallBackActivity;
 

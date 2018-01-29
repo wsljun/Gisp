@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Debug;
 import android.provider.MediaStore;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -49,6 +50,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.giiisp.giiisp.R;
 import com.giiisp.giiisp.api.UrlConstants;
@@ -65,6 +67,7 @@ import com.giiisp.giiisp.entity.NoteDao;
 import com.giiisp.giiisp.entity.PaperDatailEntity;
 import com.giiisp.giiisp.entity.PaperEntity;
 import com.giiisp.giiisp.entity.Song;
+import com.giiisp.giiisp.model.GlideApp;
 import com.giiisp.giiisp.model.ModelFactory;
 import com.giiisp.giiisp.presenter.WholePresenter;
 import com.giiisp.giiisp.utils.DensityUtils;
@@ -266,15 +269,11 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
 
     /*** 记录当前page页面是否为视频 ***/
     static Map<Integer, Boolean> mIsVideo;
+    private static Bitmap thumbBitmap;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         switch (type) {
             case "online_paper":
             case "collection_paper":
@@ -291,6 +290,11 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                 break;
 
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -882,9 +886,14 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                         }, new Action() {
                             @Override
                             public void run() throws Exception {
-
-                                UMWeb web = new UMWeb("http://giiisp.com/paper_play.php?id=" + id);
-                                UMImage thumb = new UMImage(PaperDetailsActivity.this, firstPic);
+                                if(thumbBitmap == null){
+                                    Utils.showToast("获取缩略图失败，请重试!");
+                                    return;
+                                }
+                                UMWeb web = new UMWeb("http://www.giiisp.cn/detail?pid=" + id);
+//                                UMImage thumb = new UMImage(PaperDetailsActivity.this, firstPic);
+                                UMImage thumb = new UMImage(PaperDetailsActivity.this, ImageLoader.bitmap2Bytes(thumbBitmap,32));
+                                Log.e("UMImage", "run: firstPic= "+firstPic );
                                 web.setTitle(title);//标题
                                 web.setThumb(thumb);  //缩略图
                                 web.setDescription(realName);//描述
@@ -944,6 +953,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
         public void onResult(SHARE_MEDIA platform) {
             Log.d("plat", "platform" + platform);
             Utils.showToast(getString(R.string.share_result));
+            progressPopupWindow.dismiss();
             //uId=1&pid=5&ptype=1&ttype=1
             ArrayMap<String, Object> map = new ArrayMap<>();
             map.put("uid", uid);
@@ -951,7 +961,6 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
             map.put("ttype", 1);
             map.put("ptype", 1);
             presenter.getSaveShareData(map);
-            progressPopupWindow.dismiss();
         }
 
         @Override
@@ -1154,9 +1163,9 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
         currentViewPagerItem = position;
         tvTitle.setText("P" + (position + 1));
         viewpagerPaper.setCurrentItem(position);
-//        recyclerView.scrollToPosition(position);
-//        itemClickAdapter.setSelectedPosition(position);
-//        itemClickAdapter.notifyDataSetChanged();
+        recyclerView.scrollToPosition(position);
+        itemClickAdapter.setSelectedPosition(position);
+        itemClickAdapter.notifyDataSetChanged();
         if(mIsVideo.get(currentViewPagerItem)){ // 当前是视频
             seekBarPaper.setVisibility(View.INVISIBLE);
             linearLayout.setVisibility(View.GONE);
@@ -1235,6 +1244,7 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
             if (photo != null && photo.getRows() != null && photo.getRows().size() > 0) {
                 PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX rowsBeanXX = photo.getRows().get(0);
                 firstPic = rowsBeanXX.getFirstPic();
+                createThumbBitmap(firstPic);
                 isFollowed = rowsBeanXX.getIsFollowed();
                 ivLikedIcon.setSelected("1".equals(isFollowed));
                 PaperDatailEntity.PaperBaseBean.PhotoOneBean.RowsBeanXX.PhotosBean photos = rowsBeanXX.getPhotos();//  add type 1,png ,2 mp4, 3 gif
@@ -1253,20 +1263,20 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                         photoList.add(photosBeanRow.getPath());
                         imageId.add(photosBeanRow.getId());
                     }
+                    note.setPath(photos.getRows().get(0).getPath());
+                    recyclerView.scrollToPosition(position);
+                    itemClickAdapter.setSelectedPosition(position);
+                    itemClickAdapter.notifyDataSetChanged();
+                    long time3 = System.currentTimeMillis(); //  time test 3
+                    viewpagerPaper.setAdapter(new ImageAdapter(this,photoList));
+                    viewpagerPaper.setCurrentItem(position);
                     if (imageId.size() > position && paperQA != null) {
                         paperQA.setImageId(imageId.get(position));
                         paperQA.initNetwork();
 
                     }
-                    note.setPath(photos.getRows().get(0).getPath());
-//                    long time3 = System.currentTimeMillis(); //  time test 3
-                    viewpagerPaper.setAdapter(new ImageAdapter(this,photoList));
-                    viewpagerPaper.setCurrentItem(position);
-                    recyclerView.scrollToPosition(position);
-                    itemClickAdapter.setSelectedPosition(position);
-                    itemClickAdapter.notifyDataSetChanged();
-//                    long result3 = (System.currentTimeMillis()-time3);
-//                    Log.e("time","result3= "+result3);
+                    long result3 = (System.currentTimeMillis()-time3);
+                    Log.e("time","result3= "+result3);
                 }
 
                 if (recordOne != null && recordOne.getRows() != null && recordOne.getRows().size() > 0) {
@@ -1592,34 +1602,20 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
             mCurrentPositions = new HashMap<>();
             mIsVideo = new HashMap<>();
             // mIsPageFirstAvaliable = new HashMap<Integer, Boolean>();
-
+            long time4 = System.currentTimeMillis(); //  time test 3
             for (int i = 0; i < viewpathlist.size(); i++) {
-                String path= viewpathlist.get(i);
+                String path= viewpathlist.get(i); // 加载视频
                 if("mp4".equals(FileUtils.parseSuffix(path))){
-                    path = "http://flashmedia.eastday.com/newdate/news/2016-11/shznews1125-19.mp4";
                     View videoview_layout = (View) View.inflate(activity, R.layout.item_paper_videoview,
                             null);
                     WrapVideoView videoview = (WrapVideoView) videoview_layout.findViewById(R.id.videoview);
                     View mVideoBgView = (View) videoview_layout.findViewById(R.id.iv_bg);
                     ImageButton imPlayBtn =videoview_layout.findViewById(R.id.imbtn_video_play);
                     imPlayBtn.setOnClickListener(new ImgBtnClickLister());
-                    mVideoBgView.setBackground(new BitmapDrawable(getVideoBitmap(path)));
-
                     MediaController mpc = new MediaController(activity);
-                    videoview.setVideoPath(path);
                     videoview.setMediaController(mpc);
-                    videoview.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if(videoview.isPlaying()){
-                                mpc.show();
-                            }else{
-                                mpc.hide();
-                                imPlayBtn.setVisibility(View.VISIBLE);
-                            }
-                        }
-                    });
-//                    setListener(vv);
+                    mVideoBgView.setBackground(new BitmapDrawable(getVideoBitmap(path)));
+                    videoview.setVideoPath(path);
                     mViewList.add(videoview_layout);
                     mVideoViewMap.put(i,videoview);
                     mMediaControllerMap.put(i,mpc);
@@ -1629,7 +1625,6 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                 }else{
                     mIsVideo.put(i, false);
                     ImageView imageView = new ImageView(activity);
-//                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     ImageLoader.getInstance().displayImage((BaseActivity) activity, path, imageView);
                     ViewParent vp = imageView.getParent();
                     if (vp != null) {
@@ -1646,6 +1641,8 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                     });
                 }
             }
+            long result4 = (System.currentTimeMillis()-time4);
+            Log.e("time","result4= "+result4);
         }
 
         class ImgBtnClickLister implements View.OnClickListener{
@@ -1848,6 +1845,15 @@ public class PaperDetailsActivity extends BaseMvpActivity<BaseImpl, WholePresent
                     }
                 });
         builder.show();
+    }
+
+    private  void createThumbBitmap(String picPath ){
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    thumbBitmap = ImageLoader.getbitmap(picPath);
+                }
+            }).start();
     }
 
 

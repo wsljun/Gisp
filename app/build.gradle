@@ -7,8 +7,8 @@ android {
         applicationId "com.giiisp.giiisp"
         minSdkVersion 22
         targetSdkVersion 26
-        versionCode 100003
-        versionName "1.0.3"
+        versionCode 100004
+        versionName "1.0.4"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
@@ -71,6 +71,9 @@ android {
             dimension "default"
         }
         Giiisp {
+            dimension "default"
+        }
+        HAHA {
             dimension "default"
         }
     }
@@ -200,4 +203,5 @@ dependencies {
 
     //date
     compile 'com.contrarywind:Android-PickerView:3.2.7'
+
 }

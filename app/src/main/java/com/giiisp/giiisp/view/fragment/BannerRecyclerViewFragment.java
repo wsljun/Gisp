@@ -1464,7 +1464,7 @@ public class BannerRecyclerViewFragment extends BaseMvpFragment<BaseImpl, WholeP
             case "my_review":
             case "my_paper":
             case "summary_list":
-                if (entity instanceof SubscribeEntity) {
+                if (entity instanceof SubscribeEntity) { // TODO 论文列表
                     itemClickAdapter.loadMoreComplete();
                     if (itemClickAdapter == null || ((SubscribeEntity) entity).getPageInfo() == null || ((SubscribeEntity) entity).getPageInfo().getRows() == null) {
                         itemClickAdapter.loadMoreEnd(false);
